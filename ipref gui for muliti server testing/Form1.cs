@@ -275,7 +275,7 @@ namespace ipref_gui_for_muliti_server_testing
             process.OutputDataReceived += new DataReceivedEventHandler(OutputHandler);
             process.ErrorDataReceived += new DataReceivedEventHandler(OutputHandler);
             //* Start process and handlers
-            using (StreamWriter file = new StreamWriter(get_log_path("ipref3_log"), true))
+            using (StreamWriter file = new StreamWriter(get_log_path("ipref3_"+protocol+"_log"), true))
             {
                 file.WriteLine("");
                 file.WriteLine("Test nr: " + test_number + ". - " + DateTime.Now.ToString());
