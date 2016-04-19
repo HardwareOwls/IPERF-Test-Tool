@@ -12,6 +12,14 @@ using System.IO;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
+
+/// <summary>
+/// TODO:
+/// * Fiks TCP til ekstern server
+/// * Fiks UDP til ekstern server
+/// * Lav klasser
+/// * Ryd op i kode der ikke bliver brugt 
+/// </summary>
 namespace ipref_gui_for_muliti_server_testing
 {
     public partial class Form1 : Form
@@ -43,8 +51,8 @@ namespace ipref_gui_for_muliti_server_testing
 
         public string get_log_path(string log_type) //JHEj
         {
-            string path = Directory.GetCurrentDirectory() + "\\log\\" + shared_time_and_date + " - " + log_type + ".txt";
-            path = @Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\log - ping and speedtester\\" + shared_time_and_date + "  - " + log_type + ".txt";
+            string path = Directory.GetCurrentDirectory() + "\\log\\" + shared_time_and_date + " - " + log_type + ".csv";
+            path = @Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\log - ping and speedtester\\" + shared_time_and_date + "  - " + log_type + ".csv";
             Directory.CreateDirectory(@Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\log - ping and speedtester");
             return path;
         }
@@ -298,24 +306,18 @@ namespace ipref_gui_for_muliti_server_testing
             start_ipref3_async(arg);
         }
 
-        // ---------------------------------------------------------- //
-        // Ping 1
-        // ---------------------------------------------------------- //
-        private void button4_Click(object sender, EventArgs e)
-        {
-            test_number_ping++;
-            Thread th = new Thread(ping1);
-            if (!th.IsAlive)
-            {
-                th.IsBackground = true;
-                th.Start();
-            }
 
-        }
 
-        public void ping1()
+
+        /// <summary>
+        /// Ping1s this instance.
+        /// </summary>
+        /// <param name="Ip">The ip.</param>
+        /// <param name="times">Times to ping.</param>
+        /// <param name="name">The name of the log file.</param>
+        public void ping(string Ip, string times, string name)
         {
-            string cmd = tekst_boks_ip_adresse_1.Text + " I -q -i 0 -n " + antal_ping_1.Value;
+            string cmd = Ip + " I -q -i 0 -n " + times.ToString();
             Process proc = new Process();
             proc.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\psping.exe";
             proc.StartInfo.Arguments = cmd;
@@ -326,124 +328,37 @@ namespace ipref_gui_for_muliti_server_testing
             {
                 proc.Start();
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                MessageBox.Show("Error 30, mikki har lavet i buksen" + e);
                 //throw;
             }
-            string output = proc.StandardOutput.ReadToEnd();
+            string output = proc.StandardOutput.ReadToEnd();            
+            output = output.Replace("ms", "");
+            output = output.Substring(output.Length- 8, 6);
+            output = output.Replace("=", "").Replace(" ","");
+            output = output.TrimEnd(Environment.NewLine.ToCharArray()).Replace('.', ',');
 
-            string pattern = "ms";
-            string replacement = "";
-            Regex rgx2 = new Regex(pattern);
-            string besked2 = rgx2.Replace(output, replacement);
-
-            string besked3 = besked2.Substring(besked2.IndexOf('=') + 1);
-            string besked4 = besked3.Substring(besked3.IndexOf('=') + 1);
-            string besked5 = besked4.Substring(besked4.IndexOf('=') + 1);
-            string besked6 = besked5.Substring(besked5.IndexOf('=') + 1);
-            string besked7 = besked6.Substring(besked6.IndexOf('=') + 1);
-            string besked8 = besked7.Substring(besked7.IndexOf('=') + 1);
-
-            pattern = "\\ ";
-            replacement = "";
-            Regex rgx3 = new Regex(pattern);
-            string besked9 = rgx3.Replace(besked8, replacement);
             try
             {
                 Invoke((MethodInvoker)delegate
                 {
-                    tekst_boks_ping_ud_1.Clear();
-                    tekst_boks_ping_ud_1.AppendText(besked9);
+                    if (name == "ping_1")
+                        tekst_boks_ping_ud_1.Text = output;
+                    if(name == "ping_2")
+                        tekst_boks_ping_ud_2.Text = output;
 
-                    using (StreamWriter file = new StreamWriter(get_log_path("ping_1"), true))
+                    using (StreamWriter file = new StreamWriter(get_log_path(name), true))
                     {
-                        file.WriteLine("Test nr: " + test_number_ping + " - " + DateTime.Now.ToString());
-                        file.WriteLine(besked9);
-                    }
-
-                });
-            }
-            catch (Exception)
-            {
-                //throw;
-            }
-        }
-
-        // ---------------------------------------------------------- //
-        // Ping 2
-        // ---------------------------------------------------------- //
-        private void button3_Click(object sender, EventArgs e)
-        {
-            test_number_ping++;
-            Thread th2 = new Thread(ping2);
-            if (!th2.IsAlive)
-            {
-                th2.IsBackground = true;
-                th2.Start();
-            }
-        }
-
-        private void ping2()
-        {
-            string cmd = tekst_boks_ip_adresse_2.Text + " I -q -i 0 -n " + antal_ping_2.Value;
-            System.Diagnostics.Process proc2 = new System.Diagnostics.Process();
-            proc2.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\psping.exe";
-            proc2.StartInfo.Arguments = cmd;
-            proc2.StartInfo.UseShellExecute = false;
-            proc2.StartInfo.RedirectStandardOutput = true;
-            proc2.StartInfo.CreateNoWindow = true;
-            try
-            {
-                proc2.Start();
-            }
-            catch (Exception)
-            {
-                //throw;
-            }
-            string output = proc2.StandardOutput.ReadToEnd();
-
-            string pattern = "ms";
-            string replacement = "";
-            Regex rgx2 = new Regex(pattern);
-            string besked2 = rgx2.Replace(output, replacement);
-
-            string besked3 = besked2.Substring(besked2.IndexOf('=') + 1);
-            string besked4 = besked3.Substring(besked3.IndexOf('=') + 1);
-            string besked5 = besked4.Substring(besked4.IndexOf('=') + 1);
-            string besked6 = besked5.Substring(besked5.IndexOf('=') + 1);
-            string besked7 = besked6.Substring(besked6.IndexOf('=') + 1);
-            string besked8 = besked7.Substring(besked7.IndexOf('=') + 1);
-
-            pattern = "\\ ";
-            replacement = "";
-            Regex rgx3 = new Regex(pattern);
-            string besked9 = rgx3.Replace(besked8, replacement);
-
-            string besked10 = besked9;
-            if (besked9 == "0.00")
-            {
-                besked10 = "fejl";
-            }
-            try
-            {
-                Invoke((MethodInvoker)delegate
-                {
-                    tekst_boks_ping_ud_2.Clear();
-                    tekst_boks_ping_ud_2.AppendText(besked10);
-
-                    using (StreamWriter file = new StreamWriter(get_log_path("ping_2"), true))
-                    {
-                        file.WriteLine("Test nr: " + test_number_ping + " - " + DateTime.Now.ToString());
-                        file.WriteLine(besked10);
+                        file.WriteLine(output);
                     }
                 });
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                //throw;
+                MessageBox.Show(e.ToString(), "Error");
             }
-        }
-
+        }       
         // ---------------------------------------------------------- //
         // Ping alle
         // ---------------------------------------------------------- //
@@ -483,19 +398,19 @@ namespace ipref_gui_for_muliti_server_testing
                     //throw;
                 }
 
-                Thread.Sleep(1 * 1000);
+                Thread.Sleep(500);
 
-                Thread th = new Thread(ping1);
+                Thread th = new Thread(() => ping(tekst_boks_ip_adresse_1.Text, antal_ping_1.Value.ToString(), "ping_1"));
                 th.IsBackground = true;
 
-                //Thread th2 = new Thread(ping2);
-                //th2.IsBackground = true;
+                Thread th2 = new Thread(() => ping(tekst_boks_ip_adresse_2.Text, antal_ping_2.Value.ToString(), "ping_2"));
+                th2.IsBackground = true;
 
                 th.Start();
-                //th2.Start();
+                th2.Start();
 
                 th.Join();
-                //th2.Join();
+                th2.Join();
             }
             try
             {
@@ -621,7 +536,14 @@ namespace ipref_gui_for_muliti_server_testing
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-
+            try
+            {
+                ipref3_server.Kill();
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -634,11 +556,6 @@ namespace ipref_gui_for_muliti_server_testing
             {
                 //throw;
             }
-        }
-
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         // ---------------------------------------------------------- //
@@ -664,6 +581,65 @@ namespace ipref_gui_for_muliti_server_testing
             textBox_UDP_IP_DNS.Text = "localhost";
             numericUpDown_UDP_Port.Value = 5201;
             textBox_UDP_bitrate.Text = "1M";
+        }
+
+        private void antal_ping_1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tekst_boks_ip_adresse_1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Return)
+            {
+                btn_ping1.PerformClick();
+            }
+        }
+
+        private void tekst_boks_ip_adresse_2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Return)
+            {
+                btn_ping2.PerformClick();
+            }
+        }
+
+        private void antal_ping_1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Return)
+            {
+                btn_ping1.PerformClick();
+            }
+        }
+
+        private void antal_ping_2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Return)
+            {
+                btn_ping2.PerformClick();
+            }
+        }
+
+        private void btn_ping1_Click(object sender, EventArgs e)
+        {
+            test_number_ping++;
+            Thread th = new Thread(() => ping(tekst_boks_ip_adresse_1.Text, antal_ping_1.Value.ToString(), "ping_1"));
+            if (!th.IsAlive)
+            {
+                th.IsBackground = true;
+                th.Start();
+            }
+        }
+
+        private void btn_ping2_Click(object sender, EventArgs e)
+        {
+            test_number_ping++;
+            Thread th = new Thread(() => ping(tekst_boks_ip_adresse_2.Text, antal_ping_2.Value.ToString(), "ping_2"));
+            if (!th.IsAlive)
+            {
+                th.IsBackground = true;
+                th.Start();
+            }
         }
     }
 }

@@ -58,12 +58,12 @@
             this.tekst_boks_ip_adresse_2 = new System.Windows.Forms.TextBox();
             this.antal_ping_2 = new System.Windows.Forms.NumericUpDown();
             this.tekst_boks_ping_ud_2 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btn_ping2 = new System.Windows.Forms.Button();
             this.antal_ping_1 = new System.Windows.Forms.NumericUpDown();
             this.tekst_boks_ping_ud_1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tekst_boks_ip_adresse_1 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btn_ping1 = new System.Windows.Forms.Button();
             this.TCPSpeedtest = new System.Windows.Forms.TabPage();
             this.UDPTest = new System.Windows.Forms.TabPage();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
@@ -433,7 +433,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(478, 443);
             this.tabControl1.TabIndex = 4;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // Pingtest
             // 
@@ -445,12 +444,12 @@
             this.Pingtest.Controls.Add(this.tekst_boks_ip_adresse_2);
             this.Pingtest.Controls.Add(this.antal_ping_2);
             this.Pingtest.Controls.Add(this.tekst_boks_ping_ud_2);
-            this.Pingtest.Controls.Add(this.button3);
+            this.Pingtest.Controls.Add(this.btn_ping2);
             this.Pingtest.Controls.Add(this.antal_ping_1);
             this.Pingtest.Controls.Add(this.tekst_boks_ping_ud_1);
             this.Pingtest.Controls.Add(this.label1);
             this.Pingtest.Controls.Add(this.tekst_boks_ip_adresse_1);
-            this.Pingtest.Controls.Add(this.button4);
+            this.Pingtest.Controls.Add(this.btn_ping1);
             this.Pingtest.Location = new System.Drawing.Point(4, 22);
             this.Pingtest.Name = "Pingtest";
             this.Pingtest.Padding = new System.Windows.Forms.Padding(3);
@@ -482,8 +481,9 @@
             0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(69, 20);
-            this.numericUpDown1.TabIndex = 29;
+            this.numericUpDown1.TabIndex = 8;
             this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDown1.ThousandsSeparator = true;
             this.numericUpDown1.Value = new decimal(new int[] {
             10,
             0,
@@ -495,7 +495,7 @@
             this.knap_alle.Location = new System.Drawing.Point(387, 388);
             this.knap_alle.Name = "knap_alle";
             this.knap_alle.Size = new System.Drawing.Size(75, 23);
-            this.knap_alle.TabIndex = 28;
+            this.knap_alle.TabIndex = 9;
             this.knap_alle.Text = "Ping alle";
             this.knap_alle.UseVisualStyleBackColor = true;
             this.knap_alle.Click += new System.EventHandler(this.knap_alle_Click);
@@ -505,7 +505,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label3.Location = new System.Drawing.Point(284, 10);
+            this.label3.Location = new System.Drawing.Point(284, 11);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(98, 15);
             this.label3.TabIndex = 27;
@@ -527,12 +527,18 @@
             this.tekst_boks_ip_adresse_2.Location = new System.Drawing.Point(8, 60);
             this.tekst_boks_ip_adresse_2.Name = "tekst_boks_ip_adresse_2";
             this.tekst_boks_ip_adresse_2.Size = new System.Drawing.Size(195, 20);
-            this.tekst_boks_ip_adresse_2.TabIndex = 25;
+            this.tekst_boks_ip_adresse_2.TabIndex = 5;
             this.tekst_boks_ip_adresse_2.Text = "127.0.0.1";
+            this.tekst_boks_ip_adresse_2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tekst_boks_ip_adresse_2_KeyDown);
             // 
             // antal_ping_2
             // 
             this.antal_ping_2.Location = new System.Drawing.Point(209, 60);
+            this.antal_ping_2.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.antal_ping_2.Minimum = new decimal(new int[] {
             1,
             0,
@@ -540,36 +546,43 @@
             0});
             this.antal_ping_2.Name = "antal_ping_2";
             this.antal_ping_2.Size = new System.Drawing.Size(69, 20);
-            this.antal_ping_2.TabIndex = 24;
+            this.antal_ping_2.TabIndex = 6;
             this.antal_ping_2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.antal_ping_2.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
+            this.antal_ping_2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.antal_ping_2_KeyDown);
             // 
             // tekst_boks_ping_ud_2
             // 
-            this.tekst_boks_ping_ud_2.Location = new System.Drawing.Point(284, 59);
+            this.tekst_boks_ping_ud_2.Location = new System.Drawing.Point(284, 60);
             this.tekst_boks_ping_ud_2.Name = "tekst_boks_ping_ud_2";
             this.tekst_boks_ping_ud_2.ReadOnly = true;
             this.tekst_boks_ping_ud_2.Size = new System.Drawing.Size(98, 20);
-            this.tekst_boks_ping_ud_2.TabIndex = 23;
+            this.tekst_boks_ping_ud_2.TabIndex = 7;
+            this.tekst_boks_ping_ud_2.TabStop = false;
             this.tekst_boks_ping_ud_2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // button3
+            // btn_ping2
             // 
-            this.button3.Location = new System.Drawing.Point(388, 57);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 22;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btn_ping2.Location = new System.Drawing.Point(388, 57);
+            this.btn_ping2.Name = "btn_ping2";
+            this.btn_ping2.Size = new System.Drawing.Size(75, 23);
+            this.btn_ping2.TabIndex = 7;
+            this.btn_ping2.Text = "Pedal";
+            this.btn_ping2.UseVisualStyleBackColor = true;
+            this.btn_ping2.Click += new System.EventHandler(this.btn_ping2_Click);
             // 
             // antal_ping_1
             // 
             this.antal_ping_1.Location = new System.Drawing.Point(209, 30);
+            this.antal_ping_1.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.antal_ping_1.Minimum = new decimal(new int[] {
             1,
             0,
@@ -577,21 +590,25 @@
             0});
             this.antal_ping_1.Name = "antal_ping_1";
             this.antal_ping_1.Size = new System.Drawing.Size(69, 20);
-            this.antal_ping_1.TabIndex = 21;
+            this.antal_ping_1.TabIndex = 2;
             this.antal_ping_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.antal_ping_1.ThousandsSeparator = true;
             this.antal_ping_1.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
+            this.antal_ping_1.ValueChanged += new System.EventHandler(this.antal_ping_1_ValueChanged);
+            this.antal_ping_1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.antal_ping_1_KeyDown);
             // 
             // tekst_boks_ping_ud_1
             // 
-            this.tekst_boks_ping_ud_1.Location = new System.Drawing.Point(284, 28);
+            this.tekst_boks_ping_ud_1.Location = new System.Drawing.Point(284, 29);
             this.tekst_boks_ping_ud_1.Name = "tekst_boks_ping_ud_1";
             this.tekst_boks_ping_ud_1.ReadOnly = true;
             this.tekst_boks_ping_ud_1.Size = new System.Drawing.Size(98, 20);
-            this.tekst_boks_ping_ud_1.TabIndex = 20;
+            this.tekst_boks_ping_ud_1.TabIndex = 3;
+            this.tekst_boks_ping_ud_1.TabStop = false;
             this.tekst_boks_ping_ud_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label1
@@ -610,18 +627,19 @@
             this.tekst_boks_ip_adresse_1.Location = new System.Drawing.Point(8, 30);
             this.tekst_boks_ip_adresse_1.Name = "tekst_boks_ip_adresse_1";
             this.tekst_boks_ip_adresse_1.Size = new System.Drawing.Size(195, 20);
-            this.tekst_boks_ip_adresse_1.TabIndex = 18;
+            this.tekst_boks_ip_adresse_1.TabIndex = 1;
             this.tekst_boks_ip_adresse_1.Text = "127.0.0.1";
+            this.tekst_boks_ip_adresse_1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tekst_boks_ip_adresse_1_KeyDown);
             // 
-            // button4
+            // btn_ping1
             // 
-            this.button4.Location = new System.Drawing.Point(388, 28);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 17;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btn_ping1.Location = new System.Drawing.Point(388, 28);
+            this.btn_ping1.Name = "btn_ping1";
+            this.btn_ping1.Size = new System.Drawing.Size(75, 23);
+            this.btn_ping1.TabIndex = 4;
+            this.btn_ping1.Text = "Pedal!";
+            this.btn_ping1.UseVisualStyleBackColor = true;
+            this.btn_ping1.Click += new System.EventHandler(this.btn_ping1_Click);
             // 
             // TCPSpeedtest
             // 
@@ -1207,12 +1225,12 @@
         private System.Windows.Forms.TextBox tekst_boks_ip_adresse_2;
         private System.Windows.Forms.NumericUpDown antal_ping_2;
         private System.Windows.Forms.TextBox tekst_boks_ping_ud_2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btn_ping2;
         private System.Windows.Forms.NumericUpDown antal_ping_1;
         private System.Windows.Forms.TextBox tekst_boks_ping_ud_1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tekst_boks_ip_adresse_1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btn_ping1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Button knap_alle;
         private System.Windows.Forms.Button button5;
