@@ -306,9 +306,6 @@ namespace ipref_gui_for_muliti_server_testing
             start_ipref3_async(arg);
         }
 
-
-
-
         /// <summary>
         /// Ping1s this instance.
         /// </summary>
@@ -327,37 +324,37 @@ namespace ipref_gui_for_muliti_server_testing
             try
             {
                 proc.Start();
+                string output = proc.StandardOutput.ReadToEnd();
+                output = output.Replace("ms", "");
+                output = output.Substring(output.Length - 8, 6);
+                output = output.Replace("=", "").Replace(" ", "");
+                output = output.TrimEnd(Environment.NewLine.ToCharArray()).Replace('.', ',');
+
+                try
+                {
+                    Invoke((MethodInvoker)delegate
+                    {
+                        if (name == "ping_1")
+                            tekst_boks_ping_ud_1.Text = output;
+                        if (name == "ping_2")
+                            tekst_boks_ping_ud_2.Text = output; 
+                    });
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString(), "Error");
+                }
+                using (StreamWriter file = new StreamWriter(get_log_path(name), true))
+                {
+                    file.WriteLine(output);
+                }
             }
             catch (Exception e)
             {
-                MessageBox.Show("Error 30, mikki har lavet i buksen" + e);
+                MessageBox.Show(e.ToString(),"Error");
                 //throw;
             }
-            string output = proc.StandardOutput.ReadToEnd();            
-            output = output.Replace("ms", "");
-            output = output.Substring(output.Length- 8, 6);
-            output = output.Replace("=", "").Replace(" ","");
-            output = output.TrimEnd(Environment.NewLine.ToCharArray()).Replace('.', ',');
-
-            try
-            {
-                Invoke((MethodInvoker)delegate
-                {
-                    if (name == "ping_1")
-                        tekst_boks_ping_ud_1.Text = output;
-                    if(name == "ping_2")
-                        tekst_boks_ping_ud_2.Text = output;
-
-                    using (StreamWriter file = new StreamWriter(get_log_path(name), true))
-                    {
-                        file.WriteLine(output);
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.ToString(), "Error");
-            }
+            
         }       
         // ---------------------------------------------------------- //
         // Ping alle
@@ -398,8 +395,6 @@ namespace ipref_gui_for_muliti_server_testing
                     //throw;
                 }
 
-                Thread.Sleep(500);
-
                 Thread th = new Thread(() => ping(tekst_boks_ip_adresse_1.Text, antal_ping_1.Value.ToString(), "ping_1"));
                 th.IsBackground = true;
 
@@ -411,6 +406,8 @@ namespace ipref_gui_for_muliti_server_testing
 
                 th.Join();
                 th2.Join();
+
+                Thread.Sleep(1000);
             }
             try
             {
@@ -640,6 +637,12 @@ namespace ipref_gui_for_muliti_server_testing
                 th.IsBackground = true;
                 th.Start();
             }
+        }
+
+        private void tekst_boks_ping_ud_1_MouseClick(object sender, MouseEventArgs e)
+        {
+            tekst_boks_ping_ud_1.SelectAll();
+            tekst_boks_ping_ud_1.Copy();
         }
     }
 }

@@ -104,6 +104,7 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripProgressBar3 = new System.Windows.Forms.ToolStripProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -137,6 +138,8 @@
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -436,6 +439,7 @@
             // 
             // Pingtest
             // 
+            this.Pingtest.Controls.Add(this.splitContainer4);
             this.Pingtest.Controls.Add(this.progressBar1);
             this.Pingtest.Controls.Add(this.numericUpDown1);
             this.Pingtest.Controls.Add(this.knap_alle);
@@ -481,7 +485,7 @@
             0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(69, 20);
-            this.numericUpDown1.TabIndex = 8;
+            this.numericUpDown1.TabIndex = 9;
             this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numericUpDown1.ThousandsSeparator = true;
             this.numericUpDown1.Value = new decimal(new int[] {
@@ -492,10 +496,11 @@
             // 
             // knap_alle
             // 
+            this.knap_alle.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.knap_alle.Location = new System.Drawing.Point(387, 388);
             this.knap_alle.Name = "knap_alle";
             this.knap_alle.Size = new System.Drawing.Size(75, 23);
-            this.knap_alle.TabIndex = 9;
+            this.knap_alle.TabIndex = 10;
             this.knap_alle.Text = "Ping alle";
             this.knap_alle.UseVisualStyleBackColor = true;
             this.knap_alle.Click += new System.EventHandler(this.knap_alle_Click);
@@ -567,10 +572,11 @@
             // 
             // btn_ping2
             // 
+            this.btn_ping2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btn_ping2.Location = new System.Drawing.Point(388, 57);
             this.btn_ping2.Name = "btn_ping2";
             this.btn_ping2.Size = new System.Drawing.Size(75, 23);
-            this.btn_ping2.TabIndex = 7;
+            this.btn_ping2.TabIndex = 8;
             this.btn_ping2.Text = "Pedal";
             this.btn_ping2.UseVisualStyleBackColor = true;
             this.btn_ping2.Click += new System.EventHandler(this.btn_ping2_Click);
@@ -610,6 +616,7 @@
             this.tekst_boks_ping_ud_1.TabIndex = 3;
             this.tekst_boks_ping_ud_1.TabStop = false;
             this.tekst_boks_ping_ud_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tekst_boks_ping_ud_1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tekst_boks_ping_ud_1_MouseClick);
             // 
             // label1
             // 
@@ -633,6 +640,7 @@
             // 
             // btn_ping1
             // 
+            this.btn_ping1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btn_ping1.Location = new System.Drawing.Point(388, 28);
             this.btn_ping1.Name = "btn_ping1";
             this.btn_ping1.Size = new System.Drawing.Size(75, 23);
@@ -1143,6 +1151,13 @@
             this.timer1.Interval = 11000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // splitContainer4
+            // 
+            this.splitContainer4.Location = new System.Drawing.Point(469, 343);
+            this.splitContainer4.Name = "splitContainer4";
+            this.splitContainer4.Size = new System.Drawing.Size(150, 100);
+            this.splitContainer4.TabIndex = 31;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1198,6 +1213,8 @@
             this.toolStripContainer1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
+            this.splitContainer4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1278,6 +1295,7 @@
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.SplitContainer splitContainer4;
     }
 }
 
