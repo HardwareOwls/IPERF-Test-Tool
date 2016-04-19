@@ -46,10 +46,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.textBox_TCP_IP_DNS = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_TCP_UL = new System.Windows.Forms.Button();
+            this.btn_TCP_DL = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Pingtest = new System.Windows.Forms.TabPage();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.knap_alle = new System.Windows.Forms.Button();
@@ -85,13 +86,13 @@
             this.label11 = new System.Windows.Forms.Label();
             this.textBox_UDP_IP_DNS = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btn_UDP_UL = new System.Windows.Forms.Button();
+            this.btn_UDP_DL = new System.Windows.Forms.Button();
             this.Server = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.textBox_server_log = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_server_port = new System.Windows.Forms.NumericUpDown();
             this.button2 = new System.Windows.Forms.Button();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -104,7 +105,8 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripProgressBar3 = new System.Windows.Forms.ToolStripProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.textBox_TCP_bitrate = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -115,6 +117,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_TCP_Port)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Pingtest.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.antal_ping_2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.antal_ping_1)).BeginInit();
@@ -133,13 +137,11 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_server_port)).BeginInit();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
-            this.splitContainer4.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -160,6 +162,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.button9);
             this.splitContainer1.Panel2.Controls.Add(this.button8);
             this.splitContainer1.Panel2.Controls.Add(this.label16);
+            this.splitContainer1.Panel2.Controls.Add(this.textBox_TCP_bitrate);
+            this.splitContainer1.Panel2.Controls.Add(this.label18);
             this.splitContainer1.Panel2.Controls.Add(this.numericUpDown_TCP_pakke_storlse);
             this.splitContainer1.Panel2.Controls.Add(this.label13);
             this.splitContainer1.Panel2.Controls.Add(this.numericUpDown_TCP_parallele_streams);
@@ -170,8 +174,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.label6);
             this.splitContainer1.Panel2.Controls.Add(this.textBox_TCP_IP_DNS);
             this.splitContainer1.Panel2.Controls.Add(this.label5);
-            this.splitContainer1.Panel2.Controls.Add(this.button5);
-            this.splitContainer1.Panel2.Controls.Add(this.button1);
+            this.splitContainer1.Panel2.Controls.Add(this.btn_TCP_UL);
+            this.splitContainer1.Panel2.Controls.Add(this.btn_TCP_DL);
             this.splitContainer1.Size = new System.Drawing.Size(464, 411);
             this.splitContainer1.SplitterDistance = 328;
             this.splitContainer1.TabIndex = 3;
@@ -191,7 +195,7 @@
             this.button11.Dock = System.Windows.Forms.DockStyle.Top;
             this.button11.Enabled = false;
             this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.Location = new System.Drawing.Point(0, 335);
+            this.button11.Location = new System.Drawing.Point(0, 375);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(132, 23);
             this.button11.TabIndex = 40;
@@ -203,7 +207,7 @@
             this.button10.Dock = System.Windows.Forms.DockStyle.Top;
             this.button10.Enabled = false;
             this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Location = new System.Drawing.Point(0, 312);
+            this.button10.Location = new System.Drawing.Point(0, 352);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(132, 23);
             this.button10.TabIndex = 39;
@@ -215,7 +219,7 @@
             this.button9.Dock = System.Windows.Forms.DockStyle.Top;
             this.button9.Enabled = false;
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Location = new System.Drawing.Point(0, 289);
+            this.button9.Location = new System.Drawing.Point(0, 329);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(132, 23);
             this.button9.TabIndex = 38;
@@ -226,7 +230,7 @@
             // 
             this.button8.Dock = System.Windows.Forms.DockStyle.Top;
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Location = new System.Drawing.Point(0, 266);
+            this.button8.Location = new System.Drawing.Point(0, 306);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(132, 23);
             this.button8.TabIndex = 36;
@@ -237,7 +241,7 @@
             // label16
             // 
             this.label16.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label16.Location = new System.Drawing.Point(0, 246);
+            this.label16.Location = new System.Drawing.Point(0, 286);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(132, 20);
             this.label16.TabIndex = 37;
@@ -369,6 +373,7 @@
             0,
             0,
             0});
+            this.numericUpDown_TCP_Port.ValueChanged += new System.EventHandler(this.numericUpDown_TCP_Port_ValueChanged);
             // 
             // label6
             // 
@@ -389,6 +394,7 @@
             this.textBox_TCP_IP_DNS.TabIndex = 25;
             this.textBox_TCP_IP_DNS.Text = "localhost";
             this.textBox_TCP_IP_DNS.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox_TCP_IP_DNS.TextChanged += new System.EventHandler(this.textBox_TCP_IP_DNS_TextChanged);
             // 
             // label5
             // 
@@ -400,29 +406,29 @@
             this.label5.Text = "IP eller DNS";
             this.label5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // button5
+            // btn_TCP_UL
             // 
-            this.button5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Location = new System.Drawing.Point(0, 23);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(132, 23);
-            this.button5.TabIndex = 2;
-            this.button5.Text = "Upload";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.btn_TCP_UL.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_TCP_UL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_TCP_UL.Location = new System.Drawing.Point(0, 23);
+            this.btn_TCP_UL.Name = "btn_TCP_UL";
+            this.btn_TCP_UL.Size = new System.Drawing.Size(132, 23);
+            this.btn_TCP_UL.TabIndex = 2;
+            this.btn_TCP_UL.Text = "Upload";
+            this.btn_TCP_UL.UseVisualStyleBackColor = true;
+            this.btn_TCP_UL.Click += new System.EventHandler(this.button5_Click);
             // 
-            // button1
+            // btn_TCP_DL
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(132, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Download";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_TCP_DL.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_TCP_DL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_TCP_DL.Location = new System.Drawing.Point(0, 0);
+            this.btn_TCP_DL.Name = "btn_TCP_DL";
+            this.btn_TCP_DL.Size = new System.Drawing.Size(132, 23);
+            this.btn_TCP_DL.TabIndex = 0;
+            this.btn_TCP_DL.Text = "Download";
+            this.btn_TCP_DL.UseVisualStyleBackColor = true;
+            this.btn_TCP_DL.Click += new System.EventHandler(this.button1_Click);
             // 
             // tabControl1
             // 
@@ -461,6 +467,13 @@
             this.Pingtest.TabIndex = 2;
             this.Pingtest.Text = "Ping test";
             this.Pingtest.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer4
+            // 
+            this.splitContainer4.Location = new System.Drawing.Point(469, 343);
+            this.splitContainer4.Name = "splitContainer4";
+            this.splitContainer4.Size = new System.Drawing.Size(150, 100);
+            this.splitContainer4.TabIndex = 31;
             // 
             // progressBar1
             // 
@@ -701,8 +714,8 @@
             this.splitContainer3.Panel2.Controls.Add(this.label11);
             this.splitContainer3.Panel2.Controls.Add(this.textBox_UDP_IP_DNS);
             this.splitContainer3.Panel2.Controls.Add(this.label12);
-            this.splitContainer3.Panel2.Controls.Add(this.button6);
-            this.splitContainer3.Panel2.Controls.Add(this.button7);
+            this.splitContainer3.Panel2.Controls.Add(this.btn_UDP_UL);
+            this.splitContainer3.Panel2.Controls.Add(this.btn_UDP_DL);
             this.splitContainer3.Size = new System.Drawing.Size(464, 411);
             this.splitContainer3.SplitterDistance = 328;
             this.splitContainer3.TabIndex = 4;
@@ -920,6 +933,7 @@
             0,
             0,
             0});
+            this.numericUpDown_UDP_Port.ValueChanged += new System.EventHandler(this.numericUpDown_UDP_Port_ValueChanged);
             // 
             // label11
             // 
@@ -940,6 +954,7 @@
             this.textBox_UDP_IP_DNS.TabIndex = 25;
             this.textBox_UDP_IP_DNS.Text = "localhost";
             this.textBox_UDP_IP_DNS.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox_UDP_IP_DNS.TextChanged += new System.EventHandler(this.textBox_UDP_IP_DNS_TextChanged);
             // 
             // label12
             // 
@@ -951,29 +966,29 @@
             this.label12.Text = "IP eller DNS";
             this.label12.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // button6
+            // btn_UDP_UL
             // 
-            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Location = new System.Drawing.Point(0, 23);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(132, 23);
-            this.button6.TabIndex = 2;
-            this.button6.Text = "Upload";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.btn_UDP_UL.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_UDP_UL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_UDP_UL.Location = new System.Drawing.Point(0, 23);
+            this.btn_UDP_UL.Name = "btn_UDP_UL";
+            this.btn_UDP_UL.Size = new System.Drawing.Size(132, 23);
+            this.btn_UDP_UL.TabIndex = 2;
+            this.btn_UDP_UL.Text = "Upload";
+            this.btn_UDP_UL.UseVisualStyleBackColor = true;
+            this.btn_UDP_UL.Click += new System.EventHandler(this.button6_Click);
             // 
-            // button7
+            // btn_UDP_DL
             // 
-            this.button7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Location = new System.Drawing.Point(0, 0);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(132, 23);
-            this.button7.TabIndex = 0;
-            this.button7.Text = "Download";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.btn_UDP_DL.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_UDP_DL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_UDP_DL.Location = new System.Drawing.Point(0, 0);
+            this.btn_UDP_DL.Name = "btn_UDP_DL";
+            this.btn_UDP_DL.Size = new System.Drawing.Size(132, 23);
+            this.btn_UDP_DL.TabIndex = 0;
+            this.btn_UDP_DL.Text = "Download";
+            this.btn_UDP_DL.UseVisualStyleBackColor = true;
+            this.btn_UDP_DL.Click += new System.EventHandler(this.button7_Click);
             // 
             // Server
             // 
@@ -1000,7 +1015,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.label4);
-            this.splitContainer2.Panel2.Controls.Add(this.numericUpDown2);
+            this.splitContainer2.Panel2.Controls.Add(this.numericUpDown_server_port);
             this.splitContainer2.Panel2.Controls.Add(this.button2);
             this.splitContainer2.Size = new System.Drawing.Size(464, 411);
             this.splitContainer2.SplitterDistance = 328;
@@ -1024,29 +1039,30 @@
             this.label4.TabIndex = 23;
             this.label4.Text = "port";
             // 
-            // numericUpDown2
+            // numericUpDown_server_port
             // 
-            this.numericUpDown2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.numericUpDown2.Location = new System.Drawing.Point(0, 23);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
+            this.numericUpDown_server_port.Dock = System.Windows.Forms.DockStyle.Top;
+            this.numericUpDown_server_port.Location = new System.Drawing.Point(0, 23);
+            this.numericUpDown_server_port.Maximum = new decimal(new int[] {
             65535,
             0,
             0,
             0});
-            this.numericUpDown2.Minimum = new decimal(new int[] {
+            this.numericUpDown_server_port.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(132, 20);
-            this.numericUpDown2.TabIndex = 22;
-            this.numericUpDown2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericUpDown2.Value = new decimal(new int[] {
+            this.numericUpDown_server_port.Name = "numericUpDown_server_port";
+            this.numericUpDown_server_port.Size = new System.Drawing.Size(132, 20);
+            this.numericUpDown_server_port.TabIndex = 22;
+            this.numericUpDown_server_port.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numericUpDown_server_port.Value = new decimal(new int[] {
             5201,
             0,
             0,
             0});
+            this.numericUpDown_server_port.ValueChanged += new System.EventHandler(this.numericUpDown_server_port_ValueChanged);
             // 
             // button2
             // 
@@ -1151,12 +1167,25 @@
             this.timer1.Interval = 11000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // splitContainer4
+            // textBox_TCP_bitrate
             // 
-            this.splitContainer4.Location = new System.Drawing.Point(469, 343);
-            this.splitContainer4.Name = "splitContainer4";
-            this.splitContainer4.Size = new System.Drawing.Size(150, 100);
-            this.splitContainer4.TabIndex = 31;
+            this.textBox_TCP_bitrate.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox_TCP_bitrate.Location = new System.Drawing.Point(0, 266);
+            this.textBox_TCP_bitrate.Name = "textBox_TCP_bitrate";
+            this.textBox_TCP_bitrate.Size = new System.Drawing.Size(132, 20);
+            this.textBox_TCP_bitrate.TabIndex = 42;
+            this.textBox_TCP_bitrate.Text = "0";
+            this.textBox_TCP_bitrate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label18
+            // 
+            this.label18.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label18.Location = new System.Drawing.Point(0, 246);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(132, 20);
+            this.label18.TabIndex = 41;
+            this.label18.Text = "Ønsked bitrate K/M/G";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // Form1
             // 
@@ -1183,6 +1212,8 @@
             this.tabControl1.ResumeLayout(false);
             this.Pingtest.ResumeLayout(false);
             this.Pingtest.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
+            this.splitContainer4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.antal_ping_2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.antal_ping_1)).EndInit();
@@ -1205,7 +1236,7 @@
             this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_server_port)).EndInit();
             this.toolStripContainer1.BottomToolStripPanel.ResumeLayout(false);
             this.toolStripContainer1.BottomToolStripPanel.PerformLayout();
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
@@ -1213,15 +1244,13 @@
             this.toolStripContainer1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
-            this.splitContainer4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_TCP_DL;
         private System.Windows.Forms.TextBox textBox_TCP_log;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage TCPSpeedtest;
@@ -1250,10 +1279,10 @@
         private System.Windows.Forms.Button btn_ping1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Button knap_alle;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btn_TCP_UL;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown numericUpDown_server_port;
         private System.Windows.Forms.NumericUpDown numericUpDown_TCP_Port;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
@@ -1279,8 +1308,8 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox_UDP_IP_DNS;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btn_UDP_UL;
+        private System.Windows.Forms.Button btn_UDP_DL;
         private System.Windows.Forms.NumericUpDown numericUpDown_TCP_pakke_storlse;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button10;
@@ -1296,6 +1325,8 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.SplitContainer splitContainer4;
+        private System.Windows.Forms.TextBox textBox_TCP_bitrate;
+        private System.Windows.Forms.Label label18;
     }
 }
 

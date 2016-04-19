@@ -37,6 +37,7 @@ namespace ipref_gui_for_muliti_server_testing
         int test_number = 0;
         string arg = "";
         int test_number_ping = 0;
+        string protocol = "";
 
 
         static public string get_time_and_date()
@@ -81,15 +82,27 @@ namespace ipref_gui_for_muliti_server_testing
                     toolStripProgressBar1.Value = 1;
                     toolStripProgressBar2.Value = 1;
                     //Task task = Task.Run((void));
-                    arg = "-R" +
-                        " -i " + numericUpDown_TCP_Interval.Value +
+                    if (textBox_TCP_bitrate.Text == "0")
+                    {
+                        arg = "-i " + numericUpDown_TCP_Interval.Value +
                         " -P " + numericUpDown_TCP_parallele_streams.Value +
                         " -l " + numericUpDown_TCP_pakke_storlse.Value +
                         " -c " + textBox_TCP_IP_DNS.Text +
                         " -p " + numericUpDown_TCP_Port.Value;
+                    }
+                    else
+                    {
+                        arg = "-i " + numericUpDown_TCP_Interval.Value +
+                        " -P " + numericUpDown_TCP_parallele_streams.Value +
+                        " -l " + numericUpDown_TCP_pakke_storlse.Value +
+                        " -b " + textBox_TCP_bitrate.Text +
+                        " -c " + textBox_TCP_IP_DNS.Text +
+                        " -p " + numericUpDown_TCP_Port.Value;
+                    }
+                    protocol = "TCP";
                     start_ipref3_async(arg);
                     timer1.Start();
-                    this.button1.Text = "Stop";
+                    this.btn_TCP_DL.Text = "Stop";
                 }
             }
             else if (timer1.Enabled == true)
@@ -97,7 +110,7 @@ namespace ipref_gui_for_muliti_server_testing
                 timer1.Enabled = false;
                 timer1.Stop();
                 toolStripProgressBar2.Value = 0;
-                this.button1.Text = "Download";
+                this.btn_TCP_DL.Text = "Download";
             }
         }
 
@@ -124,14 +137,27 @@ namespace ipref_gui_for_muliti_server_testing
                     toolStripProgressBar1.Value = 1;
                     toolStripProgressBar2.Value = 1;
                     //Task task = Task.Run((void));
-                    arg = "-i " + numericUpDown_TCP_Interval.Value +
+                    if (textBox_TCP_bitrate.Text == "0")
+                    {
+                        arg = "-i " + numericUpDown_TCP_Interval.Value +
                         " -P " + numericUpDown_TCP_parallele_streams.Value +
                         " -l " + numericUpDown_TCP_pakke_storlse.Value +
                         " -c " + textBox_TCP_IP_DNS.Text +
                         " -p " + numericUpDown_TCP_Port.Value;
+                    }
+                    else
+                    {
+                        arg = "-i " + numericUpDown_TCP_Interval.Value +
+                        " -P " + numericUpDown_TCP_parallele_streams.Value +
+                        " -l " + numericUpDown_TCP_pakke_storlse.Value +
+                        " -b " + textBox_TCP_bitrate.Text +
+                        " -c " + textBox_TCP_IP_DNS.Text +
+                        " -p " + numericUpDown_TCP_Port.Value;
+                    }
+                    protocol = "TCP";
                     start_ipref3_async(arg);
                     timer1.Start();
-                    this.button5.Text = "Stop";
+                    this.btn_TCP_UL.Text = "Stop";
                 }
             }
             else if (timer1.Enabled == true)
@@ -139,7 +165,7 @@ namespace ipref_gui_for_muliti_server_testing
                 timer1.Enabled = false;
                 timer1.Stop();
                 toolStripProgressBar2.Value = 0;
-                this.button5.Text = "Upload";
+                this.btn_TCP_UL.Text = "Upload";
             }
         }
 
@@ -173,9 +199,10 @@ namespace ipref_gui_for_muliti_server_testing
                         " -b " + textBox_UDP_bitrate.Text +
                         " -c " + textBox_UDP_IP_DNS.Text +
                         " -p " + numericUpDown_UDP_Port.Value;
+                    protocol = "UDP";
                     start_ipref3_async(arg);
                     timer1.Start();
-                    this.button1.Text = "Stop";
+                    this.btn_UDP_DL.Text = "Stop";
                 }
             }
             else if (timer1.Enabled == true)
@@ -183,7 +210,7 @@ namespace ipref_gui_for_muliti_server_testing
                 timer1.Enabled = false;
                 timer1.Stop();
                 toolStripProgressBar2.Value = 0;
-                this.button1.Text = "Download";
+                this.btn_UDP_DL.Text = "Download";
             }
         }
 
@@ -216,9 +243,10 @@ namespace ipref_gui_for_muliti_server_testing
                         " -b " + textBox_UDP_bitrate.Text +
                         " -c " + textBox_UDP_IP_DNS.Text +
                         " -p " + numericUpDown_UDP_Port.Value;
+                    protocol = "UDP";
                     start_ipref3_async(arg);
                     timer1.Start();
-                    this.button1.Text = "Stop";
+                    this.btn_UDP_UL.Text = "Stop";
                 }
             }
             else if (timer1.Enabled == true)
@@ -226,7 +254,7 @@ namespace ipref_gui_for_muliti_server_testing
                 timer1.Enabled = false;
                 timer1.Stop();
                 toolStripProgressBar2.Value = 0;
-                this.button1.Text = "Upload";
+                this.btn_UDP_UL.Text = "Upload";
             }
         }
 
@@ -282,7 +310,14 @@ namespace ipref_gui_for_muliti_server_testing
                                 MessageBoxIcon.Information);
 
                     }
-                    textBox_TCP_log.AppendText(outLine.Data + Environment.NewLine);
+                    if (protocol == "TCP")
+                    {
+                        textBox_TCP_log.AppendText(outLine.Data + Environment.NewLine);
+                    }
+                    if (protocol == "UDP")
+                    {
+                        textBox_UDP_log.AppendText(outLine.Data + Environment.NewLine);
+                    }
                     toolStripProgressBar1.Value = 0;
 
                     using (StreamWriter file = new StreamWriter(get_log_path("ipref3_log"), true))
@@ -432,7 +467,7 @@ namespace ipref_gui_for_muliti_server_testing
             if (button2.Text == "Start")
             {
                 button2.Text = "Stop";
-                string port = numericUpDown2.Value.ToString();
+                string port = numericUpDown_server_port.Value.ToString();
                 arg = " -s -i 1 -p " + port;
                 start_ipref3_async_server(arg);
                 toolStripProgressBar3.Value = 1;
@@ -535,7 +570,7 @@ namespace ipref_gui_for_muliti_server_testing
         {
             try
             {
-                ipref3_server.Kill();
+                //ipref3_server.Kill();
             }
             catch (Exception)
             {
@@ -565,6 +600,7 @@ namespace ipref_gui_for_muliti_server_testing
             numericUpDown_TCP_pakke_storlse.Value = 16000;
             textBox_TCP_IP_DNS.Text = "localhost";
             numericUpDown_TCP_Port.Value = 5201;
+            textBox_TCP_bitrate.Text = "0";
         }
 
         // ---------------------------------------------------------- //
@@ -643,6 +679,34 @@ namespace ipref_gui_for_muliti_server_testing
         {
             tekst_boks_ping_ud_1.SelectAll();
             tekst_boks_ping_ud_1.Copy();
+        }
+
+        private void textBox_TCP_IP_DNS_TextChanged(object sender, EventArgs e)
+        {
+            textBox_UDP_IP_DNS.Text = textBox_TCP_IP_DNS.Text;
+        }
+
+        private void textBox_UDP_IP_DNS_TextChanged(object sender, EventArgs e)
+        {
+            textBox_TCP_IP_DNS.Text = textBox_UDP_IP_DNS.Text;
+        }
+
+        private void numericUpDown_TCP_Port_ValueChanged(object sender, EventArgs e)
+        {
+            numericUpDown_UDP_Port.Value = numericUpDown_TCP_Port.Value;
+            numericUpDown_server_port.Value = numericUpDown_TCP_Port.Value;
+        }
+
+        private void numericUpDown_UDP_Port_ValueChanged(object sender, EventArgs e)
+        {
+            numericUpDown_TCP_Port.Value = numericUpDown_UDP_Port.Value;
+            numericUpDown_server_port.Value = numericUpDown_UDP_Port.Value;
+        }
+
+        private void numericUpDown_server_port_ValueChanged(object sender, EventArgs e)
+        {
+            numericUpDown_TCP_Port.Value = numericUpDown_server_port.Value;
+            numericUpDown_UDP_Port.Value = numericUpDown_server_port.Value;
         }
     }
 }
