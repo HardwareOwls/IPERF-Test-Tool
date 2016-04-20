@@ -36,6 +36,8 @@
             this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
+            this.textBox_TCP_bitrate = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.numericUpDown_TCP_pakke_storlse = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
             this.numericUpDown_TCP_parallele_streams = new System.Windows.Forms.NumericUpDown();
@@ -105,8 +107,6 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripProgressBar3 = new System.Windows.Forms.ToolStripProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.textBox_TCP_bitrate = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -217,7 +217,6 @@
             // button9
             // 
             this.button9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button9.Enabled = false;
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button9.Location = new System.Drawing.Point(0, 329);
             this.button9.Name = "button9";
@@ -225,6 +224,7 @@
             this.button9.TabIndex = 38;
             this.button9.Text = "Test 1";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button8
             // 
@@ -246,6 +246,26 @@
             this.label16.Size = new System.Drawing.Size(132, 20);
             this.label16.TabIndex = 37;
             this.label16.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // textBox_TCP_bitrate
+            // 
+            this.textBox_TCP_bitrate.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBox_TCP_bitrate.Location = new System.Drawing.Point(0, 266);
+            this.textBox_TCP_bitrate.Name = "textBox_TCP_bitrate";
+            this.textBox_TCP_bitrate.Size = new System.Drawing.Size(132, 20);
+            this.textBox_TCP_bitrate.TabIndex = 42;
+            this.textBox_TCP_bitrate.Text = "0";
+            this.textBox_TCP_bitrate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label18
+            // 
+            this.label18.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label18.Location = new System.Drawing.Point(0, 246);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(132, 20);
+            this.label18.TabIndex = 41;
+            this.label18.Text = "Ønsked bitrate K/M/G";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // numericUpDown_TCP_pakke_storlse
             // 
@@ -1164,28 +1184,8 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 11000;
+            this.timer1.Interval = 301000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // textBox_TCP_bitrate
-            // 
-            this.textBox_TCP_bitrate.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox_TCP_bitrate.Location = new System.Drawing.Point(0, 266);
-            this.textBox_TCP_bitrate.Name = "textBox_TCP_bitrate";
-            this.textBox_TCP_bitrate.Size = new System.Drawing.Size(132, 20);
-            this.textBox_TCP_bitrate.TabIndex = 42;
-            this.textBox_TCP_bitrate.Text = "0";
-            this.textBox_TCP_bitrate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label18
-            // 
-            this.label18.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label18.Location = new System.Drawing.Point(0, 246);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(132, 20);
-            this.label18.TabIndex = 41;
-            this.label18.Text = "Ønsked bitrate K/M/G";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // Form1
             // 

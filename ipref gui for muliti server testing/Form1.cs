@@ -94,7 +94,8 @@ namespace ipref_gui_for_muliti_server_testing
                         " -P " + numericUpDown_TCP_parallele_streams.Value +
                         " -l " + numericUpDown_TCP_pakke_storlse.Value +
                         " -c " + textBox_TCP_IP_DNS.Text +
-                        " -p " + numericUpDown_TCP_Port.Value;
+                        " -p " + numericUpDown_TCP_Port.Value +
+                        " -t 300";
                     }
                     else
                     {
@@ -103,7 +104,8 @@ namespace ipref_gui_for_muliti_server_testing
                         " -l " + numericUpDown_TCP_pakke_storlse.Value +
                         " -b " + textBox_TCP_bitrate.Text +
                         " -c " + textBox_TCP_IP_DNS.Text +
-                        " -p " + numericUpDown_TCP_Port.Value;
+                        " -p " + numericUpDown_TCP_Port.Value +
+                        " -t 300";
                     }
                     protocol = "TCP";
                     start_ipref3_async(arg);
@@ -353,7 +355,7 @@ namespace ipref_gui_for_muliti_server_testing
         /// <param name="Ip">The ip.</param>
         /// <param name="times">Times to ping.</param>
         /// <param name="name">The name of the log file.</param>
-        public void ping(string Ip, string times, string name)
+        public void ping(string Ip, string times, string name, bool echo)
         {
             string cmd = Ip + " I -q -i 0 -n " + times.ToString();
             Process proc = new Process();
@@ -366,26 +368,26 @@ namespace ipref_gui_for_muliti_server_testing
             {
                 proc.Start();
                 string output = proc.StandardOutput.ReadToEnd();
-                output = output.Replace("ms", "");
-                output = output.Substring(output.Length - 8, 6);
-                output = output.Replace("=", "").Replace(" ", "");
-                output = output.TrimEnd(Environment.NewLine.ToCharArray()).Replace('.', ',');
-
-                try
+                output = output.Substring(output.LastIndexOf(" "));
+                output = output.TrimEnd(Environment.NewLine.ToCharArray()).Replace("ms", "");
+                if (echo)
                 {
-                    Invoke((MethodInvoker)delegate
+                    try
                     {
-                        if (name == "ping_1")
-                            tekst_boks_ping_ud_1.Text = output;
-                        if (name == "ping_2")
-                            tekst_boks_ping_ud_2.Text = output; 
-                    });
-                }
-                catch (Exception e)
-                {
-                    if (debug)
-                        MessageBox.Show(e.ToString(), "Error");
-                }
+                        Invoke((MethodInvoker)delegate
+                        {
+                            if (name == "ping_1")
+                                tekst_boks_ping_ud_1.Text = output;
+                            if (name == "ping_2")
+                                tekst_boks_ping_ud_2.Text = output;
+                        });
+                    }
+                    catch (Exception e)
+                    {
+                        if (debug)
+                            MessageBox.Show(e.ToString(), "Error");
+                    }
+                }                
                 using (StreamWriter file = new StreamWriter(get_log_path(name), true))
                 {
                     file.WriteLine(output);
@@ -406,42 +408,49 @@ namespace ipref_gui_for_muliti_server_testing
         {
             test_number_ping++;
             progressBar1.Maximum = (int)numericUpDown1.Value;
-            Thread th3 = new Thread(() => run_more_times((int)numericUpDown1.Value));
+            Thread th3 = new Thread(() => run_more_times((int)numericUpDown1.Value, tekst_boks_ip_adresse_1.Text, tekst_boks_ip_adresse_2.Text, antal_ping_1.Value.ToString(), antal_ping_2.Value.ToString(), "ping_1", "ping_2", true));
             th3.IsBackground = true;
             th3.Start();
         }
 
-        private void run_more_times(int antal)
+        private void run_more_times(int antal, string Ip1, string Ip2, string times1, string times2, string name1, string name2, bool echo)
         {
-            try
-            {
-                Invoke((MethodInvoker)delegate
-                {
-                    progressBar1.Value = 0;
-                });
-            }
-            catch (Exception)
-            {
-                //throw;
-            }
-            for (int i = 0; i < antal; i++)
+            if (echo)
             {
                 try
                 {
                     Invoke((MethodInvoker)delegate
                     {
-                        progressBar1.Value = i;
+                        progressBar1.Value = 0;
                     });
                 }
                 catch (Exception)
                 {
                     //throw;
                 }
-
-                Thread th = new Thread(() => ping(tekst_boks_ip_adresse_1.Text, antal_ping_1.Value.ToString(), "ping_1"));
+            }
+           
+            for (int i = 0; i < antal; i++)
+            {
+                if (echo)
+                {
+                    try
+                    {
+                        Invoke((MethodInvoker)delegate
+                        {
+                            progressBar1.Value = i;
+                        });
+                    }
+                    catch (Exception)
+                    {
+                        //throw;
+                    }
+                }
+                
+                Thread th = new Thread(() => ping(Ip1, times1, name1, echo));
                 th.IsBackground = true;
 
-                Thread th2 = new Thread(() => ping(tekst_boks_ip_adresse_2.Text, antal_ping_2.Value.ToString(), "ping_2"));
+                Thread th2 = new Thread(() => ping(Ip2, times2, name2, echo));
                 th2.IsBackground = true;
 
                 th.Start();
@@ -452,18 +461,22 @@ namespace ipref_gui_for_muliti_server_testing
 
                 Thread.Sleep(1000);
             }
-            try
+            if (echo)
             {
-                Invoke((MethodInvoker)delegate
+                try
                 {
-                    progressBar1.Value = 0;
-                });
+                    Invoke((MethodInvoker)delegate
+                    {
+                        progressBar1.Value = 0;
+                    });
+                }
+                catch (Exception e)
+                {
+                    if (debug)
+                        MessageBox.Show(e.ToString(), "Error");
+                }
             }
-            catch (Exception e)
-            {
-                if (debug)
-                    MessageBox.Show(e.ToString(), "Error");
-            }
+            
 
         }
 
@@ -670,7 +683,7 @@ namespace ipref_gui_for_muliti_server_testing
         private void btn_ping1_Click(object sender, EventArgs e)
         {
             test_number_ping++;
-            Thread th = new Thread(() => ping(tekst_boks_ip_adresse_1.Text, antal_ping_1.Value.ToString(), "ping_1"));
+            Thread th = new Thread(() => ping(tekst_boks_ip_adresse_1.Text, antal_ping_1.Value.ToString(), "ping_1", true));
             if (!th.IsAlive)
             {
                 th.IsBackground = true;
@@ -681,7 +694,7 @@ namespace ipref_gui_for_muliti_server_testing
         private void btn_ping2_Click(object sender, EventArgs e)
         {
             test_number_ping++;
-            Thread th = new Thread(() => ping(tekst_boks_ip_adresse_2.Text, antal_ping_2.Value.ToString(), "ping_2"));
+            Thread th = new Thread(() => ping(tekst_boks_ip_adresse_2.Text, antal_ping_2.Value.ToString(), "ping_2", true));
             if (!th.IsAlive)
             {
                 th.IsBackground = true;
@@ -721,6 +734,43 @@ namespace ipref_gui_for_muliti_server_testing
         {
             numericUpDown_TCP_Port.Value = numericUpDown_server_port.Value;
             numericUpDown_UDP_Port.Value = numericUpDown_server_port.Value;
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Thread th = new Thread(() => test1_tcp());
+            th.Start();
+        }
+        private void test1_tcp()
+        {
+            for (int i = 1; i < 31; i++)
+            {
+                this.Invoke((MethodInvoker)delegate
+                {
+                    toolStripProgressBar1.Value = 1;
+                    toolStripProgressBar2.Value = 1;
+                });
+                arg = "-i " + numericUpDown_TCP_Interval.Value +
+                    " -P " + numericUpDown_TCP_parallele_streams.Value +
+                    " -l " + numericUpDown_TCP_pakke_storlse.Value +
+                    " -b " + i + "M" +
+                    " -c " + textBox_TCP_IP_DNS.Text +
+                    " -p " + numericUpDown_TCP_Port.Value +
+                    " -t 1000";
+                protocol = "TCP";
+                Thread th = new Thread(() => run_more_times(200, tekst_boks_ip_adresse_1.Text, tekst_boks_ip_adresse_2.Text, antal_ping_1.Value.ToString(), antal_ping_2.Value.ToString(), "ping_1_" + i + "M", "ping_2_" + i + "M", false));
+                Thread th1 = new Thread(() => start_ipref3_async(arg));
+                th1.Start();
+                th.Start();
+                th.Join();
+                th1.Abort();
+                this.Invoke((MethodInvoker)delegate
+                {
+                    toolStripProgressBar1.Value = 0;
+                    toolStripProgressBar2.Value = 0;
+                });
+            }
+            MessageBox.Show("Test done");
         }
     }
 }
