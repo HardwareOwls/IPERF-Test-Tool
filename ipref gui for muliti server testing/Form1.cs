@@ -15,8 +15,6 @@ using System.Text.RegularExpressions;
 
 /// <summary>
 /// TODO:
-/// * Fiks TCP til ekstern server
-/// * Fiks UDP til ekstern server
 /// * Lav klasser
 /// * Ryd op i kode der ikke bliver brugt 
 /// </summary>
