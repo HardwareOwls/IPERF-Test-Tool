@@ -782,7 +782,7 @@ namespace ipref_gui_for_muliti_server_testing
                     toolStripProgressBar2.Value = 0;
                 });
               //  MessageBox.Show("Thread sleeping");
-                Thread.Sleep(10000);
+                Thread.Sleep(60000);
                // MessageBox.Show("Thead slept");
             }
             MessageBox.Show("Test done");
