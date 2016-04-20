@@ -107,6 +107,7 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripProgressBar3 = new System.Windows.Forms.ToolStripProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tsLabelTime = new System.Windows.Forms.ToolStripLabel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -1130,10 +1131,11 @@
             this.toolStripProgressBar1,
             this.toolStripSeparator2,
             this.toolStripLabel3,
-            this.toolStripProgressBar3});
+            this.toolStripProgressBar3,
+            this.tsLabelTime});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(233, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(264, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // toolStripLabel2
@@ -1186,6 +1188,11 @@
             // 
             this.timer1.Interval = 301000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // tsLabelTime
+            // 
+            this.tsLabelTime.Name = "tsLabelTime";
+            this.tsLabelTime.Size = new System.Drawing.Size(0, 22);
             // 
             // Form1
             // 
@@ -1327,6 +1334,7 @@
         private System.Windows.Forms.SplitContainer splitContainer4;
         private System.Windows.Forms.TextBox textBox_TCP_bitrate;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ToolStripLabel tsLabelTime;
     }
 }
 

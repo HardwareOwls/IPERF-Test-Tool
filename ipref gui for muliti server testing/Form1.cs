@@ -432,6 +432,7 @@ namespace ipref_gui_for_muliti_server_testing
            
             for (int i = 0; i < antal; i++)
             {
+                
                 if (echo)
                 {
                     try
@@ -743,6 +744,7 @@ namespace ipref_gui_for_muliti_server_testing
         }
         private void test1_tcp()
         {
+            Stopwatch sw = new Stopwatch();
             for (int i = 1; i < 31; i++)
             {
                 this.Invoke((MethodInvoker)delegate
@@ -756,19 +758,32 @@ namespace ipref_gui_for_muliti_server_testing
                     " -b " + i + "M" +
                     " -c " + textBox_TCP_IP_DNS.Text +
                     " -p " + numericUpDown_TCP_Port.Value +
-                    " -t 1000";
+                    " -t 275";
                 protocol = "TCP";
+                sw.Start();
                 Thread th = new Thread(() => run_more_times(200, tekst_boks_ip_adresse_1.Text, tekst_boks_ip_adresse_2.Text, antal_ping_1.Value.ToString(), antal_ping_2.Value.ToString(), "ping_1_" + i + "M", "ping_2_" + i + "M", false));
                 Thread th1 = new Thread(() => start_ipref3_async(arg));
                 th1.Start();
                 th.Start();
+
+               // MessageBox.Show("Ping started!");
                 th.Join();
+                //MessageBox.Show("Ping Done!" + sw.Elapsed.ToString());
+                
+                this.Invoke((MethodInvoker)delegate
+                {
+                    tsLabelTime.Text = sw.Elapsed.ToString();
+                });
+                sw.Reset();
                 th1.Abort();
                 this.Invoke((MethodInvoker)delegate
                 {
                     toolStripProgressBar1.Value = 0;
                     toolStripProgressBar2.Value = 0;
                 });
+              //  MessageBox.Show("Thread sleeping");
+                Thread.Sleep(10000);
+               // MessageBox.Show("Thead slept");
             }
             MessageBox.Show("Test done");
         }
