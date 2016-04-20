@@ -22,9 +22,12 @@ namespace ipref_gui_for_muliti_server_testing
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        private bool debug = false;
+        public Form1(string[] args)
         {
             InitializeComponent();
+            if (Environment.GetCommandLineArgs().Contains("-debug"))
+                debug = true;
         }
 
         // ---------------------------------------------------------- //
@@ -380,7 +383,8 @@ namespace ipref_gui_for_muliti_server_testing
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.ToString(), "Error");
+                    if (debug)
+                        MessageBox.Show(e.ToString(), "Error");
                 }
                 using (StreamWriter file = new StreamWriter(get_log_path(name), true))
                 {
@@ -389,7 +393,8 @@ namespace ipref_gui_for_muliti_server_testing
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString(),"Error");
+                if(debug)
+                    MessageBox.Show(e.ToString(),"Error");
                 //throw;
             }
             
@@ -454,9 +459,10 @@ namespace ipref_gui_for_muliti_server_testing
                     progressBar1.Value = 0;
                 });
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                //throw;
+                if (debug)
+                    MessageBox.Show(e.ToString(), "Error");
             }
 
         }
@@ -487,7 +493,8 @@ namespace ipref_gui_for_muliti_server_testing
                 }
                 catch (Exception)
                 {
-                    //throw;
+                    if (debug)
+                        MessageBox.Show(e.ToString(), "Error");
                 }
                 button2.Text = "Start";
             }
@@ -522,9 +529,10 @@ namespace ipref_gui_for_muliti_server_testing
                 ipref3_server.BeginOutputReadLine();
                 ipref3_server.BeginErrorReadLine();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                //throw;
+                if (debug)
+                    MessageBox.Show(e.ToString(), "Error");
             }
             //process.WaitForExit();
         }
@@ -546,17 +554,18 @@ namespace ipref_gui_for_muliti_server_testing
                             file.WriteLine(outLine.Data);
                         }
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
-                        //throw;
+                        if (debug)
+                            MessageBox.Show(e.ToString(), "Error");
                     }
 
                 })));
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                //throw;
+                if (debug)
+                    MessageBox.Show(e.ToString(), "Error");
             }
             //richTextBox1.Text = outLine.Data;
         }
@@ -577,7 +586,8 @@ namespace ipref_gui_for_muliti_server_testing
             }
             catch (Exception)
             {
-                //throw;
+                if (debug)
+                    MessageBox.Show(e.ToString(), "Error");
             }
         }
 
@@ -589,12 +599,13 @@ namespace ipref_gui_for_muliti_server_testing
             }
             catch (Exception)
             {
-                //throw;
+                if (debug)
+                    MessageBox.Show(e.ToString(), "Error");
             }
         }
 
         // ---------------------------------------------------------- //
-        // Ipref3 TCP Nulstill
+        // Ipref3 TCP Nulstil
         // ---------------------------------------------------------- //
         private void button8_Click(object sender, EventArgs e)
         {
@@ -607,7 +618,7 @@ namespace ipref_gui_for_muliti_server_testing
         }
 
         // ---------------------------------------------------------- //
-        // Ipref3 UDP nulstill
+        // Ipref3 UDP nulstil
         // ---------------------------------------------------------- //
         private void button14_Click(object sender, EventArgs e)
         {
