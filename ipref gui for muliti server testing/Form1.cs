@@ -30,30 +30,35 @@ namespace ipref_gui_for_muliti_server_testing
         // ---------------------------------------------------------- //
         // Start ting
         // ---------------------------------------------------------- //
-        Process ipref3_server = new Process();
-        bool hej = false;
-        int test_number = 0;
-        string arg = "";
-        int test_number_ping = 0;
-        string protocol = "";
+        Process ipref3_server = new Process(); // Starting of the process ipref3_server for global access
+        bool iperf_running = false; // Definning if iperf is still running 
+        int test_number = 0; // Defining what test there is running for iperf
+        string arg = ""; // Global access to the givning argument for the ipref client
+        int test_number_ping = 0; // Defining what test there is running for ping
+        string protocol = ""; // Global access to the protocol type for ipref "TCP/UDP"
 
-
+        // ---------------------------------------------------------- //
+        // Function to get the current time and date
+        // ---------------------------------------------------------- //
         static public string get_time_and_date()
         {
-            Console.WriteLine(DateTime.Now); //18-04-2016 10:12:41
-            string date_and_time = DateTime.Now.ToString();
+            //Console.WriteLine(DateTime.Now); //18-04-2016 10:12:41
+            string date_and_time = DateTime.Now.ToString(); //18-04-2016 10:12:41
 
-            return date_and_time.Replace(":", "-");
+            return date_and_time.Replace(":", "-"); // Changeing ":" to "-" 18-04-2016 10-12-41 so it can be used in file and folder names
         }
 
-        string shared_time_and_date = get_time_and_date();
+        string shared_time_and_date = get_time_and_date(); // Getting the current time and saving it to a string for later use
 
-        public string get_log_path(string log_type) //JHEj
+        // ---------------------------------------------------------- //
+        // Function to define the path where the log shoud be saved
+        // ---------------------------------------------------------- //
+        public string get_log_path(string log_type) // 
         {
-            string path = Directory.GetCurrentDirectory() + "\\log\\" + shared_time_and_date + " - " + log_type + ".csv";
-            path = @Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\log - ping and speedtester\\" + shared_time_and_date + "  - " + log_type + ".csv";
-            Directory.CreateDirectory(@Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\log - ping and speedtester");
-            return path;
+            //string path = Directory.GetCurrentDirectory() + "\\log\\" + shared_time_and_date + " - " + log_type + ".csv";
+            Directory.CreateDirectory(@Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\log - ping and speedtester"); // Making the log folder if not do exists
+            string path = @Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\log - ping and speedtester\\" + shared_time_and_date + "  - " + log_type + ".csv"; // Defining the folder path to a folder "log - ping and speedtester" on the desktop
+            return path; // Retuning the log folder path
         }
 
         // ---------------------------------------------------------- //
@@ -62,11 +67,11 @@ namespace ipref_gui_for_muliti_server_testing
         //Thread th = new Thread(() => start_ipref3_async(arg));
         private void button1_Click(object sender, EventArgs e)
         {
-            if (timer1.Enabled == false)
+            if (timer1.Enabled == false) 
             {
                 if (toolStripProgressBar1.Value == 1)
                 {
-                    hej = true;
+                    iperf_running = true; 
                     MessageBox.Show(
                         "Please wait for iperf to exit!",
                         "Retard alert",
@@ -121,7 +126,7 @@ namespace ipref_gui_for_muliti_server_testing
             {
                 if (toolStripProgressBar1.Value == 1)
                 {
-                    hej = true;
+                    iperf_running = true;
                     MessageBox.Show(
                         "Please wait for iperf to exit!",
                         "Retard alert",
@@ -176,7 +181,7 @@ namespace ipref_gui_for_muliti_server_testing
             {
                 if (toolStripProgressBar1.Value == 1)
                 {
-                    hej = true;
+                    iperf_running = true;
                     MessageBox.Show(
                         "Please wait for iperf to exit!",
                         "Retard alert",
@@ -221,7 +226,7 @@ namespace ipref_gui_for_muliti_server_testing
             {
                 if (toolStripProgressBar1.Value == 1)
                 {
-                    hej = true;
+                    iperf_running = true;
                     MessageBox.Show(
                         "Please wait for iperf to exit!",
                         "Retard alert",
@@ -298,9 +303,9 @@ namespace ipref_gui_for_muliti_server_testing
             this.Invoke((new MethodInvoker(delegate () {
                 try
                 {
-                    if (timer1.Enabled == false && hej == true)
+                    if (timer1.Enabled == false && iperf_running == true)
                     {
-                        hej = false;
+                        iperf_running = false;
                         MessageBox.Show(
                                 "iperf has exited",
                                 "",
