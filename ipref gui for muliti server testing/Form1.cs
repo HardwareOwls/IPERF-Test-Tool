@@ -758,16 +758,30 @@ namespace ipref_gui_for_muliti_server_testing
                     " -b " + i + "M" +
                     " -c " + textBox_TCP_IP_DNS.Text +
                     " -p " + numericUpDown_TCP_Port.Value +
-                    " -t 275";
+                    " -t 500";
                 protocol = "TCP";
                 sw.Start();
-                Thread th = new Thread(() => run_more_times(200, tekst_boks_ip_adresse_1.Text, tekst_boks_ip_adresse_2.Text, antal_ping_1.Value.ToString(), antal_ping_2.Value.ToString(), "ping_1_" + i + "M", "ping_2_" + i + "M", false));
+                Thread th = new Thread(() => run_more_times(10, tekst_boks_ip_adresse_1.Text, tekst_boks_ip_adresse_2.Text, antal_ping_1.Value.ToString(), antal_ping_2.Value.ToString(), "ping_1_" + i + "M", "ping_2_" + i + "M", false));
                 Thread th1 = new Thread(() => start_ipref3_async(arg));
                 th1.Start();
                 th.Start();
 
                // MessageBox.Show("Ping started!");
                 th.Join();
+                var proc = Process.GetProcesses().Where(pr => pr.ProcessName == "iperf3");
+                try
+                {
+                    foreach (var process in proc)
+                    {
+                        process.Kill();
+                    }
+                }
+                catch (Exception e)
+                {
+                    if (debug)
+                        MessageBox.Show(e.ToString(), "Error");
+                }
+               
                 //MessageBox.Show("Ping Done!" + sw.Elapsed.ToString());
                 
                 this.Invoke((MethodInvoker)delegate
