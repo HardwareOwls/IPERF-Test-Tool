@@ -418,57 +418,58 @@ namespace ipref_gui_for_muliti_server_testing
 
         private void run_more_times(int antal, string Ip1, string Ip2, string times1, string times2, string name1, string name2, bool echo)
         {
-            //if (echo)
-            //{
-            //    try
-            //    {
-            //        Invoke((MethodInvoker)delegate
-            //        {
-            //            progressBar1.Value = 0;
-            //        });
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        if (debug)
-            //            MessageBox.Show(e.ToString(), "Error");
-            //    }
-            //}
             Stopwatch sw = new Stopwatch();
-            Thread th = new Thread(() => ping(Ip1, times1, name1, echo));
-            //th.IsBackground = true;
-
-            Thread th2 = new Thread(() => ping(Ip2, times2, name2, echo));
-            //th2.IsBackground = true;
+            if (echo)
+            {
+                try
+                {
+                    Invoke((MethodInvoker)delegate
+                    {
+                        progressBar1.Value = 0;
+                    });
+                }
+                catch (Exception e)
+                {
+                    if (debug)
+                        MessageBox.Show(e.ToString(), "Error");
+                }
+            }
 
             for (int i = 0; i < antal; i++)
             {
                 sw.Start();
-                //if (echo)
-                //{
-                //    try
-                //    {
-                //        Invoke((MethodInvoker)delegate
-                //        {
-                //            progressBar1.Value = i;
-                //        });
-                //    }
-                //    catch (Exception)
-                //    {
-                //        //throw;
-                //    }
-                //}
-                
-               
+                if (echo)
+                {
+                    try
+                    {
+                        Invoke((MethodInvoker)delegate
+                        {
+                            progressBar1.Value = i;
+                        });
+                    }
+                    catch (Exception)
+                    {
+                        //throw;
+                    }
+                }
+                Thread th = new Thread(() => ping(Ip1, times1, name1, echo));
+                th.IsBackground = true;
+
+                Thread th2 = new Thread(() => ping(Ip2, times2, name2, echo));
+                th2.IsBackground = true;
+
 
                 th.Start();
-                //th2.Start();
+                th2.Start();
 
                 th.Join();
-                //th2.Join();
+                th2.Join();
                 th.Abort();
-                //th2.Abort();
+                th2.Abort();
                 sw.Stop();
-                Thread.Sleep(2000 - (int)sw.ElapsedMilliseconds);
+                Console.WriteLine("Ping tog " + (int)sw.ElapsedMilliseconds + "ms");
+                Thread.Sleep(1000 - (int)sw.ElapsedMilliseconds);
+                sw.Reset();
             }
             if (echo)
             {
