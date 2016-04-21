@@ -770,7 +770,7 @@ namespace ipref_gui_for_muliti_server_testing
                     " -b " + i + "M" +
                     " -c " + textBox_TCP_IP_DNS.Text +
                     " -p " + numericUpDown_TCP_Port.Value +
-                    " -t 25";
+                    " -t 500";
                 //JEG PUMPER DIT RØV HUL
                 protocol = "TCP";
                 sw.Start();
@@ -779,7 +779,7 @@ namespace ipref_gui_for_muliti_server_testing
                 th1.Start();
                 if (debug)
                     MessageBox.Show("Ping started!");
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < 200; j++)
                 {
                     ping(tekst_boks_ip_adresse_1.Text, "1", "ping_1_" + i + " M", false);
                 }
