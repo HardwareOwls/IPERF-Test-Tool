@@ -767,10 +767,10 @@ namespace ipref_gui_for_muliti_server_testing
                     " -b " + i + "M" +
                     " -c " + textBox_TCP_IP_DNS.Text +
                     " -p " + numericUpDown_TCP_Port.Value +
-                    " -t 25";
+                    " -t 420";
                 protocol = "TCP";
                 sw.Start();
-                Thread th = new Thread(() => run_more_times(10, tekst_boks_ip_adresse_1.Text, tekst_boks_ip_adresse_2.Text, antal_ping_1.Value.ToString(), antal_ping_2.Value.ToString(), "ping_1_" + i + "M", "ping_2_" + i + "M", false));
+                Thread th = new Thread(() => run_more_times(200, tekst_boks_ip_adresse_1.Text, tekst_boks_ip_adresse_2.Text, antal_ping_1.Value.ToString(), antal_ping_2.Value.ToString(), "ping_1_" + i + "M", "ping_2_" + i + "M", false));
                 Thread th1 = new Thread(() => start_ipref3_async(arg));
                 th1.Start();
                 th.Start();
@@ -806,7 +806,7 @@ namespace ipref_gui_for_muliti_server_testing
                 });
                 if(debug)
                     MessageBox.Show("Thread sleeping");
-                Thread.Sleep(10000);
+                Thread.Sleep(60000);
                 if(debug)
                     MessageBox.Show("Thead slept");
             }
