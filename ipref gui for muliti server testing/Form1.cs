@@ -463,7 +463,7 @@ namespace ipref_gui_for_muliti_server_testing
                 th.Join();
                 th2.Join();
                 sw.Stop();
-                Thread.Sleep(1000 - (int)sw.ElapsedMilliseconds);
+                Thread.Sleep(2000 - (int)sw.ElapsedMilliseconds);
             }
             if (echo)
             {
@@ -765,7 +765,7 @@ namespace ipref_gui_for_muliti_server_testing
                     " -b " + i + "M" +
                     " -c " + textBox_TCP_IP_DNS.Text +
                     " -p " + numericUpDown_TCP_Port.Value +
-                    " -t 11";
+                    " -t 25";
                 protocol = "TCP";
                 sw.Start();
                 Thread th = new Thread(() => run_more_times(10, tekst_boks_ip_adresse_1.Text, tekst_boks_ip_adresse_2.Text, antal_ping_1.Value.ToString(), antal_ping_2.Value.ToString(), "ping_1_" + i + "M", "ping_2_" + i + "M", false));
