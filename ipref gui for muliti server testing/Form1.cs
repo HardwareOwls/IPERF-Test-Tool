@@ -355,7 +355,7 @@ namespace ipref_gui_for_muliti_server_testing
         /// <param name="Ip">The ip.</param>
         /// <param name="times">Times to ping.</param>
         /// <param name="name">The name of the log file.</param>
-        public void ping(string Ip, string times, string name, bool echo)
+        public bool ping(string Ip, string times, string name, bool echo)
         {
             string cmd = Ip + " I -q -i 0 -n " + times;
             Process proc = new Process();
@@ -386,11 +386,13 @@ namespace ipref_gui_for_muliti_server_testing
                     {
                         if (debug)
                             MessageBox.Show(e.ToString(), "Error");
+                        return false;
                     }
                 }                
                 using (StreamWriter file = new StreamWriter(get_log_path(name), true))
                 {
                     file.WriteLine(output);
+                    return true;
                 }
             }
             catch (Exception e)
@@ -398,6 +400,7 @@ namespace ipref_gui_for_muliti_server_testing
                 if(debug)
                     MessageBox.Show(e.ToString(),"Error");
                 //throw;
+                return false;
             }
             
         }       
@@ -458,12 +461,12 @@ namespace ipref_gui_for_muliti_server_testing
                
 
                 th.Start();
-                th2.Start();
+                //th2.Start();
 
                 th.Join();
-                th2.Join();
+                //th2.Join();
                 th.Abort();
-                th2.Abort();
+                //th2.Abort();
                 sw.Stop();
                 Thread.Sleep(2000 - (int)sw.ElapsedMilliseconds);
             }
@@ -752,10 +755,10 @@ namespace ipref_gui_for_muliti_server_testing
             Stopwatch sw = new Stopwatch();
             for (int i = 1; i < 31; i++)
             {
-                //startIperf();
-                //if (debug)
-                //    MessageBox.Show("iPerf started");
-                //Thread.Sleep(1000);
+                startIperf(tekst_boks_ip_adresse_1.Text);
+                if (debug)
+                    MessageBox.Show("iPerf started");
+                Thread.Sleep(1000);
                 this.Invoke((MethodInvoker)delegate
                 {
                     toolStripProgressBar1.Value = 1;
@@ -770,26 +773,31 @@ namespace ipref_gui_for_muliti_server_testing
                     " -t 25";
                 protocol = "TCP";
                 sw.Start();
-                Thread th = new Thread(() => run_more_times(10, tekst_boks_ip_adresse_1.Text, tekst_boks_ip_adresse_2.Text, antal_ping_1.Value.ToString(), antal_ping_2.Value.ToString(), "ping_1_" + i + "M", "ping_2_" + i + "M", false));
+                //Thread th = new Thread(() => run_more_times(10, tekst_boks_ip_adresse_1.Text, tekst_boks_ip_adresse_2.Text, antal_ping_1.Value.ToString(), antal_ping_2.Value.ToString(), "ping_1_" + i + "M", "ping_2_" + i + "M", false));
                 Thread th1 = new Thread(() => start_ipref3_async(arg));
                 th1.Start();
-                th.Start();
-                if(debug)
+                if (debug)
                     MessageBox.Show("Ping started!");
-                th.Join();
-                //var proc = Process.GetProcesses().Where(pr => pr.ProcessName == "iperf3");
-                //try
-                //{
-                //    foreach (var process in proc)
-                //    {
-                //        process.Kill();
-                //    }
-                //}
-                //catch (Exception e)
-                //{
-                //    if (debug)
-                //        MessageBox.Show(e.ToString(), "Error");
-                //}
+                for (int j = 0; j < 10; j++)
+                {
+                    ping(tekst_boks_ip_adresse_1.Text, "1", "ping_1_" + i + " M", false);
+                }
+                //th.Start();
+                
+                //th.Join();
+                var proc = Process.GetProcesses().Where(pr => pr.ProcessName == "iperf3");
+                try
+                {
+                    foreach (var process in proc)
+                    {
+                        process.Kill();
+                    }
+                }
+                catch (Exception e)
+                {
+                    if (debug)
+                        MessageBox.Show(e.ToString(), "Error");
+                }
                 if(debug)
                     MessageBox.Show("Ping Done!" + sw.Elapsed.ToString());
                 
@@ -812,9 +820,9 @@ namespace ipref_gui_for_muliti_server_testing
             }
             MessageBox.Show("Test done");
         }
-        private void startIperf()
+        private void startIperf(string Ip)
         {
-            using(var client = new SshClient(tekst_boks_ip_adresse_1.Text, "pi", "raspberry"))
+            using(var client = new SshClient(Ip, "pi", "raspberry"))
             {
                 client.Connect();
                 client.RunCommand("iperf3 -s -1");
