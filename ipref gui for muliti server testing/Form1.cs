@@ -411,12 +411,15 @@ namespace ipref_gui_for_muliti_server_testing
         {
             test_number_ping++;
             progressBar1.Maximum = (int)numericUpDown1.Value;
-            Thread th3 = new Thread(() => run_more_times((int)numericUpDown1.Value, tekst_boks_ip_adresse_1.Text, tekst_boks_ip_adresse_2.Text, antal_ping_1.Value.ToString(), antal_ping_2.Value.ToString(), "ping_1", "ping_2", true));
-            th3.IsBackground = true;
-            th3.Start();
+            Thread th1 = new Thread(() => run_more_times((int)numericUpDown1.Value, tekst_boks_ip_adresse_1.Text, antal_ping_1.Value.ToString(), "ping_1", true));
+            th1.IsBackground = true;
+            th1.Start();
+            Thread th2 = new Thread(() => run_more_times((int)numericUpDown1.Value, tekst_boks_ip_adresse_2.Text, antal_ping_2.Value.ToString(), "ping_2", true));
+            th2.IsBackground = true;
+            th2.Start();
         }
 
-        private void run_more_times(int antal, string Ip1, string Ip2, string times1, string times2, string name1, string name2, bool echo)
+        private void run_more_times(int antal, string Ip1, string times1, string name1, bool echo)
         {
             Stopwatch sw = new Stopwatch();
             if (echo)
@@ -455,20 +458,14 @@ namespace ipref_gui_for_muliti_server_testing
                 Thread th = new Thread(() => ping(Ip1, times1, name1, echo));
                 th.IsBackground = true;
 
-                Thread th2 = new Thread(() => ping(Ip2, times2, name2, echo));
-                th2.IsBackground = true;
-
-
                 th.Start();
-                th2.Start();
 
                 th.Join();
-                th2.Join();
                 th.Abort();
-                th2.Abort();
                 sw.Stop();
-                Console.WriteLine("Ping tog " + (int)sw.ElapsedMilliseconds + "ms");
-                Thread.Sleep(1000 - (int)sw.ElapsedMilliseconds);
+                Console.WriteLine(name1 + " tog " + (int)sw.ElapsedMilliseconds + "ms");
+                //Thread.Sleep(1000 - (int)sw.ElapsedMilliseconds);
+                Thread.Sleep(1000);
                 sw.Reset();
             }
             if (echo)
