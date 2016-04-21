@@ -755,7 +755,7 @@ namespace ipref_gui_for_muliti_server_testing
             Stopwatch sw = new Stopwatch();
             for (int i = 1; i < 31; i++)
             {
-                startIperf(tekst_boks_ip_adresse_1.Text);
+                startIperf();
                 if (debug)
                     MessageBox.Show("iPerf started");
                 Thread.Sleep(1000);
@@ -771,6 +771,7 @@ namespace ipref_gui_for_muliti_server_testing
                     " -c " + textBox_TCP_IP_DNS.Text +
                     " -p " + numericUpDown_TCP_Port.Value +
                     " -t 25";
+                //JEG PUMPER DIT RØV HUL
                 protocol = "TCP";
                 sw.Start();
                 //Thread th = new Thread(() => run_more_times(10, tekst_boks_ip_adresse_1.Text, tekst_boks_ip_adresse_2.Text, antal_ping_1.Value.ToString(), antal_ping_2.Value.ToString(), "ping_1_" + i + "M", "ping_2_" + i + "M", false));
@@ -820,9 +821,9 @@ namespace ipref_gui_for_muliti_server_testing
             }
             MessageBox.Show("Test done");
         }
-        private void startIperf(string Ip)
+        private void startIperf()
         {
-            using(var client = new SshClient(Ip, "pi", "raspberry"))
+            using(var client = new SshClient("192.168.20.5", "pi", "raspberry"))
             {
                 client.Connect();
                 client.RunCommand("iperf3 -s -1");
