@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-
+using Renci.SshNet;
 
 /// <summary>
 /// TODO:
@@ -415,38 +415,41 @@ namespace ipref_gui_for_muliti_server_testing
 
         private void run_more_times(int antal, string Ip1, string Ip2, string times1, string times2, string name1, string name2, bool echo)
         {
-            if (echo)
-            {
-                try
-                {
-                    Invoke((MethodInvoker)delegate
-                    {
-                        progressBar1.Value = 0;
-                    });
-                }
-                catch (Exception)
-                {
-                    //throw;
-                }
-            }
-           
+            //if (echo)
+            //{
+            //    try
+            //    {
+            //        Invoke((MethodInvoker)delegate
+            //        {
+            //            progressBar1.Value = 0;
+            //        });
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        if (debug)
+            //            MessageBox.Show(e.ToString(), "Error");
+            //    }
+            //}
+            Stopwatch sw = new Stopwatch();
+
+
             for (int i = 0; i < antal; i++)
             {
-                
-                if (echo)
-                {
-                    try
-                    {
-                        Invoke((MethodInvoker)delegate
-                        {
-                            progressBar1.Value = i;
-                        });
-                    }
-                    catch (Exception)
-                    {
-                        //throw;
-                    }
-                }
+                sw.Start();
+                //if (echo)
+                //{
+                //    try
+                //    {
+                //        Invoke((MethodInvoker)delegate
+                //        {
+                //            progressBar1.Value = i;
+                //        });
+                //    }
+                //    catch (Exception)
+                //    {
+                //        //throw;
+                //    }
+                //}
                 
                 Thread th = new Thread(() => ping(Ip1, times1, name1, echo));
                 th.IsBackground = true;
@@ -459,8 +462,8 @@ namespace ipref_gui_for_muliti_server_testing
 
                 th.Join();
                 th2.Join();
-
-                Thread.Sleep(1000);
+                sw.Stop();
+                Thread.Sleep(1000 - (int)sw.ElapsedMilliseconds);
             }
             if (echo)
             {
@@ -747,6 +750,10 @@ namespace ipref_gui_for_muliti_server_testing
             Stopwatch sw = new Stopwatch();
             for (int i = 1; i < 31; i++)
             {
+                //startIperf();
+                //if (debug)
+                //    MessageBox.Show("iPerf started");
+                //Thread.Sleep(1000);
                 this.Invoke((MethodInvoker)delegate
                 {
                     toolStripProgressBar1.Value = 1;
@@ -758,48 +765,59 @@ namespace ipref_gui_for_muliti_server_testing
                     " -b " + i + "M" +
                     " -c " + textBox_TCP_IP_DNS.Text +
                     " -p " + numericUpDown_TCP_Port.Value +
-                    " -t 500";
+                    " -t 11";
                 protocol = "TCP";
                 sw.Start();
                 Thread th = new Thread(() => run_more_times(10, tekst_boks_ip_adresse_1.Text, tekst_boks_ip_adresse_2.Text, antal_ping_1.Value.ToString(), antal_ping_2.Value.ToString(), "ping_1_" + i + "M", "ping_2_" + i + "M", false));
                 Thread th1 = new Thread(() => start_ipref3_async(arg));
                 th1.Start();
                 th.Start();
-
-               // MessageBox.Show("Ping started!");
+                if(debug)
+                    MessageBox.Show("Ping started!");
                 th.Join();
-                var proc = Process.GetProcesses().Where(pr => pr.ProcessName == "iperf3");
-                try
-                {
-                    foreach (var process in proc)
-                    {
-                        process.Kill();
-                    }
-                }
-                catch (Exception e)
-                {
-                    if (debug)
-                        MessageBox.Show(e.ToString(), "Error");
-                }
-               
-                //MessageBox.Show("Ping Done!" + sw.Elapsed.ToString());
+                //var proc = Process.GetProcesses().Where(pr => pr.ProcessName == "iperf3");
+                //try
+                //{
+                //    foreach (var process in proc)
+                //    {
+                //        process.Kill();
+                //    }
+                //}
+                //catch (Exception e)
+                //{
+                //    if (debug)
+                //        MessageBox.Show(e.ToString(), "Error");
+                //}
+                if(debug)
+                    MessageBox.Show("Ping Done!" + sw.Elapsed.ToString());
                 
                 this.Invoke((MethodInvoker)delegate
                 {
                     tsLabelTime.Text = sw.Elapsed.ToString();
                 });
                 sw.Reset();
-                th1.Abort();
+                //th1.Abort();
                 this.Invoke((MethodInvoker)delegate
                 {
                     toolStripProgressBar1.Value = 0;
                     toolStripProgressBar2.Value = 0;
                 });
-              //  MessageBox.Show("Thread sleeping");
-                Thread.Sleep(60000);
-               // MessageBox.Show("Thead slept");
+                if(debug)
+                    MessageBox.Show("Thread sleeping");
+                Thread.Sleep(10000);
+                if(debug)
+                    MessageBox.Show("Thead slept");
             }
             MessageBox.Show("Test done");
+        }
+        private void startIperf()
+        {
+            using(var client = new SshClient(tekst_boks_ip_adresse_1.Text, "pi", "raspberry"))
+            {
+                client.Connect();
+                client.RunCommand("iperf3 -s -1");
+                client.Disconnect();
+            }
         }
     }
 }
