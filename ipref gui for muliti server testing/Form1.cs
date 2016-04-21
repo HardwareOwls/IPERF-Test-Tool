@@ -782,6 +782,7 @@ namespace ipref_gui_for_muliti_server_testing
                 for (int j = 0; j < 200; j++)
                 {
                     ping(tekst_boks_ip_adresse_1.Text, "1", "ping_1_" + i + " M", false);
+                    Thread.Sleep(1000);
                 }
                 //th.Start();
                 
