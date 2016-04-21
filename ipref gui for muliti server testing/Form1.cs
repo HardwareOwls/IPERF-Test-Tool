@@ -782,10 +782,12 @@ namespace ipref_gui_for_muliti_server_testing
                 for (int j = 0; j < 200; j++)
                 {
                     ping(tekst_boks_ip_adresse_1.Text, "1", "ping_1_" + i + " M", false);
+                    Console.WriteLine("Ping sent: " + j);
                     Thread.Sleep(1000);
+                    Console.WriteLine("Slept");
                 }
                 //th.Start();
-                
+
                 //th.Join();
                 var proc = Process.GetProcesses().Where(pr => pr.ProcessName == "iperf3");
                 try
@@ -800,6 +802,7 @@ namespace ipref_gui_for_muliti_server_testing
                     if (debug)
                         MessageBox.Show(e.ToString(), "Error");
                 }
+                Thread.Sleep(60000);
                 if(debug)
                     MessageBox.Show("Ping Done!" + sw.Elapsed.ToString());
                 
@@ -816,7 +819,6 @@ namespace ipref_gui_for_muliti_server_testing
                 });
                 if(debug)
                     MessageBox.Show("Thread sleeping");
-                Thread.Sleep(10000);
                 if(debug)
                     MessageBox.Show("Thead slept");
             }
@@ -824,7 +826,7 @@ namespace ipref_gui_for_muliti_server_testing
         }
         private void startIperf()
         {
-            using(var client = new SshClient("192.168.20.5", "pi", "raspberry"))
+            using(var client = new SshClient(textBox_TCP_IP_DNS.Text, "pi", "raspberry"))
             {
                 client.Connect();
                 client.RunCommand("iperf3 -s -1");
