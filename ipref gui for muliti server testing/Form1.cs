@@ -357,7 +357,7 @@ namespace ipref_gui_for_muliti_server_testing
         /// <param name="name">The name of the log file.</param>
         public void ping(string Ip, string times, string name, bool echo)
         {
-            string cmd = Ip + " I -q -i 0 -n " + times.ToString();
+            string cmd = Ip + " I -q -i 0 -n " + times;
             Process proc = new Process();
             proc.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\psping.exe";
             proc.StartInfo.Arguments = cmd;
@@ -431,7 +431,11 @@ namespace ipref_gui_for_muliti_server_testing
             //    }
             //}
             Stopwatch sw = new Stopwatch();
+            Thread th = new Thread(() => ping(Ip1, times1, name1, echo));
+            //th.IsBackground = true;
 
+            Thread th2 = new Thread(() => ping(Ip2, times2, name2, echo));
+            //th2.IsBackground = true;
 
             for (int i = 0; i < antal; i++)
             {
@@ -451,19 +455,17 @@ namespace ipref_gui_for_muliti_server_testing
                 //    }
                 //}
                 
-                Thread th = new Thread(() => ping(Ip1, times1, name1, echo));
-                th.IsBackground = true;
-
-                Thread th2 = new Thread(() => ping(Ip2, times2, name2, echo));
-                th2.IsBackground = true;
+               
 
                 th.Start();
                 th2.Start();
 
                 th.Join();
                 th2.Join();
+                th.Abort();
+                th2.Abort();
                 sw.Stop();
-                Thread.Sleep(1000 - (int)sw.ElapsedMilliseconds);
+                Thread.Sleep(2000 - (int)sw.ElapsedMilliseconds);
             }
             if (echo)
             {
@@ -765,7 +767,7 @@ namespace ipref_gui_for_muliti_server_testing
                     " -b " + i + "M" +
                     " -c " + textBox_TCP_IP_DNS.Text +
                     " -p " + numericUpDown_TCP_Port.Value +
-                    " -t 11";
+                    " -t 25";
                 protocol = "TCP";
                 sw.Start();
                 Thread th = new Thread(() => run_more_times(10, tekst_boks_ip_adresse_1.Text, tekst_boks_ip_adresse_2.Text, antal_ping_1.Value.ToString(), antal_ping_2.Value.ToString(), "ping_1_" + i + "M", "ping_2_" + i + "M", false));
