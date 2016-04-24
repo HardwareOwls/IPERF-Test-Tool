@@ -22,14 +22,14 @@ namespace ipref_gui_for_muliti_server_testing
 {
     public partial class Form1 : Form
     {
-        private bool debug = false;
+        private bool debug = true;
         public Form1(string[] args)
         {
             InitializeComponent();
             if (Environment.GetCommandLineArgs().Contains("-debug"))
                 debug = true;
         }
-
+        public bool test1 = false;
         // ---------------------------------------------------------- //
         // Start ting
         // ---------------------------------------------------------- //
@@ -95,7 +95,7 @@ namespace ipref_gui_for_muliti_server_testing
                         " -l " + numericUpDown_TCP_pakke_storlse.Value +
                         " -c " + textBox_TCP_IP_DNS.Text +
                         " -p " + numericUpDown_TCP_Port.Value +
-                        " -t 300";
+                        " -t 10";
                     }
                     else
                     {
@@ -105,7 +105,7 @@ namespace ipref_gui_for_muliti_server_testing
                         " -b " + textBox_TCP_bitrate.Text +
                         " -c " + textBox_TCP_IP_DNS.Text +
                         " -p " + numericUpDown_TCP_Port.Value +
-                        " -t 300";
+                        " -t 10";
                     }
                     protocol = "TCP";
                     start_ipref3_async(arg);
@@ -572,6 +572,7 @@ namespace ipref_gui_for_muliti_server_testing
                         using (StreamWriter file = new StreamWriter(get_log_path("server_log"), true))
                         {
                             file.WriteLine(outLine.Data);
+                            test1 = true;
                         }
                     }
                     catch (Exception e)
@@ -768,15 +769,16 @@ namespace ipref_gui_for_muliti_server_testing
                     " -b " + i + "M" +
                     " -c " + textBox_TCP_IP_DNS.Text +
                     " -p " + numericUpDown_TCP_Port.Value +
-                    " -t 500";
+                    " -t 280";
                 //JEG PUMPER DIT RØV HUL
                 protocol = "TCP";
                 sw.Start();
                 //Thread th = new Thread(() => run_more_times(10, tekst_boks_ip_adresse_1.Text, tekst_boks_ip_adresse_2.Text, antal_ping_1.Value.ToString(), antal_ping_2.Value.ToString(), "ping_1_" + i + "M", "ping_2_" + i + "M", false));
-                Thread th1 = new Thread(() => start_ipref3_async(arg));
-                th1.Start();
+                //Thread th1 = new Thread(() => start_ipref3_async(arg));
+                //th1.Start();
+                start_ipref3_async(arg);
                 if (debug)
-                    MessageBox.Show("Ping started!");
+                        MessageBox.Show("Ping started!");
                 for (int j = 0; j < 200; j++)
                 {
                     ping(tekst_boks_ip_adresse_1.Text, "1", "ping_1_" + i + " M", false);
@@ -800,7 +802,7 @@ namespace ipref_gui_for_muliti_server_testing
                     if (debug)
                         MessageBox.Show(e.ToString(), "Error");
                 }
-                Thread.Sleep(60000);
+                Thread.Sleep(6000);
                 if(debug)
                     MessageBox.Show("Ping Done!" + sw.Elapsed.ToString());
                 
