@@ -12,6 +12,9 @@ using System.IO;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Renci.SshNet;
+using System.Reflection;
+using System.Diagnostics;
+using System.Deployment.Application;
 
 /// <summary>
 /// TODO:
@@ -22,26 +25,62 @@ namespace ipref_gui_for_muliti_server_testing
 {
     public partial class Form1 : Form
     {
-        private bool debug = true;
-        public Form1(string[] args)
-        {
-            InitializeComponent();
-            if (Environment.GetCommandLineArgs().Contains("-debug"))
-                debug = true;
-            //var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            Text = String.Format("Ninja tester V{0}", version);
-        }
-        public bool test1 = false;
         // ---------------------------------------------------------- //
         // Start ting
         // ---------------------------------------------------------- //
+        private bool debug = true;
         Process ipref3_server = new Process(); // Starting of the process ipref3_server for global access
         bool iperf_running = false; // Definning if iperf is still running 
         int test_number = 0; // Defining what test there is running for iperf
         string arg = ""; // Global access to the givning argument for the ipref client
         int test_number_ping = 0; // Defining what test there is running for ping
         string protocol = ""; // Global access to the protocol type for ipref "TCP/UDP"
+        public bool test1 = false; // Askes snask, ingen ved det, alle sankker om det
+
+        public string CurrentVersion
+        {
+            get
+            {
+                return ApplicationDeployment.IsNetworkDeployed
+                       ? ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString()
+                       : Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            }
+        }
+
+        // ---------------------------------------------------------- //
+        // Start From1
+        // ---------------------------------------------------------- //
+        public Form1(string[] args)
+        {
+            InitializeComponent();
+            if (Environment.GetCommandLineArgs().Contains("-debug"))
+            {
+                debug = true;
+            }
+            else
+            {
+                debug = false;
+            }
+            debug = true; // Fordi aske er en nar
+            //var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+            string version = fileVersionInfo.ProductVersion;
+            version = (FileVersionInfo.GetVersionInfo(Assembly.GetCallingAssembly().Location).ProductVersion).ToString();
+            Text = String.Format("Ninja tester V" + version);
+
+            if (ApplicationDeployment.IsNetworkDeployed == true)
+            {
+                version = ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+            }
+            else
+            {
+                version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            }
+            Text = String.Format("Ninja tester V" + version);
+            Text = String.Format("Ninja tester V" + CurrentVersion);
+        }
+
 
         // ---------------------------------------------------------- //
         // Function to get the current time and date
@@ -598,39 +637,6 @@ namespace ipref_gui_for_muliti_server_testing
             //richTextBox1.Text = outLine.Data;
         }
 
-        // ---------------------------------------------------------- //
-        // Andet
-        // ---------------------------------------------------------- //
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            get_time_and_date();
-        }
-
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            try
-            {
-                //ipref3_server.Kill();
-            }
-            catch (Exception)
-            {
-                if (debug)
-                    MessageBox.Show(e.ToString(), "Error");
-            }
-        }
-
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            try
-            {
-                ipref3_server.Kill();
-            }
-            catch (Exception)
-            {
-                if (debug)
-                    MessageBox.Show(e.ToString(), "Error");
-            }
-        }
 
         // ---------------------------------------------------------- //
         // Ipref3 TCP Nulstil
@@ -840,6 +846,40 @@ namespace ipref_gui_for_muliti_server_testing
                 client.Connect();
                 client.RunCommand("iperf3 -s -1");
                 client.Disconnect();
+            }
+        }
+
+        // ---------------------------------------------------------- //
+        // Andet
+        // ---------------------------------------------------------- //
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            get_time_and_date();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                //ipref3_server.Kill();
+            }
+            catch (Exception)
+            {
+                if (debug)
+                    MessageBox.Show(e.ToString(), "Error");
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                ipref3_server.Kill();
+            }
+            catch (Exception)
+            {
+                if (debug)
+                    MessageBox.Show(e.ToString(), "Error");
             }
         }
     }
