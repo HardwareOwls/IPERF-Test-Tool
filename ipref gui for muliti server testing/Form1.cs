@@ -28,6 +28,9 @@ namespace ipref_gui_for_muliti_server_testing
             InitializeComponent();
             if (Environment.GetCommandLineArgs().Contains("-debug"))
                 debug = true;
+            //var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            string version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            Text = String.Format("Ninja tester V{0}", version);
         }
         public bool test1 = false;
         // ---------------------------------------------------------- //
@@ -95,7 +98,7 @@ namespace ipref_gui_for_muliti_server_testing
                         " -l " + numericUpDown_TCP_pakke_storlse.Value +
                         " -c " + textBox_TCP_IP_DNS.Text +
                         " -p " + numericUpDown_TCP_Port.Value +
-                        " -t 10";
+                        " -t " + numericUpDown_TCP_runtime.Value;
                     }
                     else
                     {
@@ -105,7 +108,7 @@ namespace ipref_gui_for_muliti_server_testing
                         " -b " + textBox_TCP_bitrate.Text +
                         " -c " + textBox_TCP_IP_DNS.Text +
                         " -p " + numericUpDown_TCP_Port.Value +
-                        " -t 10";
+                        " -t " + numericUpDown_TCP_runtime.Value;
                     }
                     protocol = "TCP";
                     start_ipref3_async(arg);
@@ -151,7 +154,8 @@ namespace ipref_gui_for_muliti_server_testing
                         " -P " + numericUpDown_TCP_parallele_streams.Value +
                         " -l " + numericUpDown_TCP_pakke_storlse.Value +
                         " -c " + textBox_TCP_IP_DNS.Text +
-                        " -p " + numericUpDown_TCP_Port.Value;
+                        " -p " + numericUpDown_TCP_Port.Value +
+                        " -t " + numericUpDown_TCP_runtime.Value;
                     }
                     else
                     {
@@ -160,7 +164,8 @@ namespace ipref_gui_for_muliti_server_testing
                         " -l " + numericUpDown_TCP_pakke_storlse.Value +
                         " -b " + textBox_TCP_bitrate.Text +
                         " -c " + textBox_TCP_IP_DNS.Text +
-                        " -p " + numericUpDown_TCP_Port.Value;
+                        " -p " + numericUpDown_TCP_Port.Value +
+                        " -t " + numericUpDown_TCP_runtime.Value;
                     }
                     protocol = "TCP";
                     start_ipref3_async(arg);
@@ -206,7 +211,8 @@ namespace ipref_gui_for_muliti_server_testing
                         " -l " + numericUpDown_UDP_pakke_storlse.Value +
                         " -b " + textBox_UDP_bitrate.Text +
                         " -c " + textBox_UDP_IP_DNS.Text +
-                        " -p " + numericUpDown_UDP_Port.Value;
+                        " -p " + numericUpDown_UDP_Port.Value +
+                        " -t " + numericUpDown_UDP_runtime.Value;
                     protocol = "UDP";
                     start_ipref3_async(arg);
                     timer1.Start();
@@ -250,7 +256,8 @@ namespace ipref_gui_for_muliti_server_testing
                         " -l " + numericUpDown_UDP_pakke_storlse.Value +
                         " -b " + textBox_UDP_bitrate.Text +
                         " -c " + textBox_UDP_IP_DNS.Text +
-                        " -p " + numericUpDown_UDP_Port.Value;
+                        " -p " + numericUpDown_UDP_Port.Value +
+                        " -t " + numericUpDown_UDP_runtime.Value;
                     protocol = "UDP";
                     start_ipref3_async(arg);
                     timer1.Start();
@@ -636,6 +643,7 @@ namespace ipref_gui_for_muliti_server_testing
             textBox_TCP_IP_DNS.Text = "localhost";
             numericUpDown_TCP_Port.Value = 5201;
             textBox_TCP_bitrate.Text = "0";
+            numericUpDown_TCP_runtime.Value = 10;
         }
 
         // ---------------------------------------------------------- //
@@ -649,6 +657,7 @@ namespace ipref_gui_for_muliti_server_testing
             textBox_UDP_IP_DNS.Text = "localhost";
             numericUpDown_UDP_Port.Value = 5201;
             textBox_UDP_bitrate.Text = "1M";
+            numericUpDown_UDP_runtime.Value = 10;
         }
 
         private void antal_ping_1_ValueChanged(object sender, EventArgs e)
