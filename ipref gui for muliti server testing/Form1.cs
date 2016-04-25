@@ -13,7 +13,6 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Renci.SshNet;
 using System.Reflection;
-using System.Diagnostics;
 using System.Deployment.Application;
 
 /// <summary>
@@ -847,6 +846,10 @@ namespace ipref_gui_for_muliti_server_testing
         private void Form1_Load(object sender, EventArgs e)
         {
             get_time_and_date();
+            foreach (var process in Process.GetProcessesByName("iperf3"))
+            {
+                process.Kill();
+            }
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -860,6 +863,10 @@ namespace ipref_gui_for_muliti_server_testing
                 if (debug)
                     MessageBox.Show(e.ToString(), "Error");
             }
+            foreach (var process in Process.GetProcessesByName("iperf3"))
+            {
+                process.Kill();
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -872,6 +879,10 @@ namespace ipref_gui_for_muliti_server_testing
             {
                 if (debug)
                     MessageBox.Show(e.ToString(), "Error");
+            }
+            foreach (var process in Process.GetProcessesByName("iperf3"))
+            {
+                process.Kill();
             }
         }
     }
