@@ -61,7 +61,6 @@ namespace ipref_gui_for_muliti_server_testing
             {
                 debug = false;
             }
-            debug = true; // Fordi aske er en nar
             //var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
