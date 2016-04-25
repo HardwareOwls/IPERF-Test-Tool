@@ -803,11 +803,7 @@ namespace ipref_gui_for_muliti_server_testing
                 Thread.Sleep(60000);
                 if(debug)
                     MessageBox.Show("Ping Done!" + sw.Elapsed.ToString());
-                
-                this.Invoke((MethodInvoker)delegate
-                {
-                    tsLabelTime.Text = sw.Elapsed.ToString();
-                });
+               
                 sw.Reset();
                 //th1.Abort();
                 this.Invoke((MethodInvoker)delegate
