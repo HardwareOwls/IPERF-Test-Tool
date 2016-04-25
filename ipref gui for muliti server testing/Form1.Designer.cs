@@ -1453,6 +1453,7 @@
             // splitContainer9
             // 
             this.splitContainer9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer9.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer9.Location = new System.Drawing.Point(0, 0);
             this.splitContainer9.Name = "splitContainer9";
             // 
