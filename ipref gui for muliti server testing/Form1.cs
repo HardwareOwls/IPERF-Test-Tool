@@ -77,7 +77,7 @@ namespace ipref_gui_for_muliti_server_testing
                     process.Kill();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 if (debug)
                     MessageBox.Show(e.ToString(), "Error");
@@ -908,6 +908,26 @@ namespace ipref_gui_for_muliti_server_testing
                 if (debug)
                     MessageBox.Show(e.ToString(), "Error");
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tekst_boks_ip_adresse_2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void splitContainer9_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+
+        }
+
+        private void splitContainer5_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+
         }
     }
 }
