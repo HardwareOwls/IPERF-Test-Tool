@@ -784,14 +784,23 @@ namespace ipref_gui_for_muliti_server_testing
                     " -b " + i + "M" +
                     " -c " + textBox_TCP_IP_DNS.Text +
                     " -p " + numericUpDown_TCP_Port.Value +
-                    " -t 280";
+                    " -t 500";
                 //JEG PUMPER DIT RØV HUL
                 protocol = "TCP";
                 sw.Start();
                 //Thread th = new Thread(() => run_more_times(10, tekst_boks_ip_adresse_1.Text, tekst_boks_ip_adresse_2.Text, antal_ping_1.Value.ToString(), antal_ping_2.Value.ToString(), "ping_1_" + i + "M", "ping_2_" + i + "M", false));
                 //Thread th1 = new Thread(() => start_ipref3_async(arg));
                 //th1.Start();
-                start_ipref3_async(arg);
+                //start_ipref3_async(arg);
+                Process process = new Process();
+                process.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\iperf3.exe";
+                process.StartInfo.Arguments = arg;
+                process.StartInfo.CreateNoWindow = false;
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.RedirectStandardOutput = true;
+                process.StartInfo.RedirectStandardError = true;
+                process.Start();
+                
                 if (debug)
                         MessageBox.Show("Ping started!");
                 for (int j = 0; j < 200; j++)
@@ -804,27 +813,11 @@ namespace ipref_gui_for_muliti_server_testing
                 //th.Start();
 
                 //th.Join();
-                var proc = Process.GetProcesses().Where(pr => pr.ProcessName == "iperf3");
-                try
-                {
-                    foreach (var process in proc)
-                    {
-                        process.Kill();
-                    }
-                }
-                catch (Exception e)
-                {
-                    if (debug)
-                        MessageBox.Show(e.ToString(), "Error");
-                }
-                Thread.Sleep(6000);
+                
+                //Thread.Sleep(60000);
                 if(debug)
                     MessageBox.Show("Ping Done!" + sw.Elapsed.ToString());
-                
-                this.Invoke((MethodInvoker)delegate
-                {
-                    tsLabelTime.Text = sw.Elapsed.ToString();
-                });
+               
                 sw.Reset();
                 //th1.Abort();
                 this.Invoke((MethodInvoker)delegate
@@ -834,8 +827,15 @@ namespace ipref_gui_for_muliti_server_testing
                 });
                 if(debug)
                     MessageBox.Show("Thread sleeping");
-                if(debug)
+                Thread.Sleep(60000);
+                if (debug)
                     MessageBox.Show("Thead slept");
+                if (!process.HasExited)
+                {
+                    process.Kill();
+                    MessageBox.Show("iPerf was killed");
+
+                }
             }
             MessageBox.Show("Test done");
         }
