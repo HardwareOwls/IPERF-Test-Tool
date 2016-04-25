@@ -70,6 +70,18 @@ namespace ipref_gui_for_muliti_server_testing
                 version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             }
             Text = String.Format("Ninja tester V" + version);
+            try
+            {
+                foreach (var process in Process.GetProcessesByName("iperf3"))
+                {
+                    process.Kill();
+                }
+            }
+            catch (Exception)
+            {
+                if (debug)
+                    MessageBox.Show(e.ToString(), "Error");
+            }
         }
 
 
@@ -542,11 +554,15 @@ namespace ipref_gui_for_muliti_server_testing
             {
                 try
                 {
-                    ipref3_server.Kill();
-                    ipref3_server.CancelOutputRead();
-                    ipref3_server.CancelErrorRead();
-                    ipref3_server.Close();
+                    //ipref3_server.Kill();
+                    //ipref3_server.CancelOutputRead();
+                    //ipref3_server.CancelErrorRead();
+                    //ipref3_server.Close();
                     toolStripProgressBar3.Value = 0;
+                    foreach (var process in Process.GetProcessesByName("iperf3"))
+                    {
+                        process.Kill();
+                    }
                 }
                 catch (Exception)
                 {
@@ -560,7 +576,7 @@ namespace ipref_gui_for_muliti_server_testing
         private void start_ipref3_async_server(string arguments)
         {
             //* Create your Process
-            //Process ipref3_server = new Process();
+            Process ipref3_server = new Process();
             ipref3_server.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\iperf3.exe";
             ipref3_server.StartInfo.Arguments = arguments;
             ipref3_server.StartInfo.CreateNoWindow = true;
@@ -846,9 +862,17 @@ namespace ipref_gui_for_muliti_server_testing
         private void Form1_Load(object sender, EventArgs e)
         {
             get_time_and_date();
-            foreach (var process in Process.GetProcessesByName("iperf3"))
+            try
             {
-                process.Kill();
+                foreach (var process in Process.GetProcessesByName("iperf3"))
+                {
+                    process.Kill();
+                }
+            }
+            catch (Exception)
+            {
+                if (debug)
+                    MessageBox.Show(e.ToString(), "Error");
             }
         }
 
@@ -857,15 +881,15 @@ namespace ipref_gui_for_muliti_server_testing
             try
             {
                 //ipref3_server.Kill();
+                foreach (var process in Process.GetProcessesByName("iperf3"))
+                {
+                    process.Kill();
+                }
             }
             catch (Exception)
             {
                 if (debug)
                     MessageBox.Show(e.ToString(), "Error");
-            }
-            foreach (var process in Process.GetProcessesByName("iperf3"))
-            {
-                process.Kill();
             }
         }
 
@@ -874,15 +898,15 @@ namespace ipref_gui_for_muliti_server_testing
             try
             {
                 ipref3_server.Kill();
+                foreach (var process in Process.GetProcessesByName("iperf3"))
+                {
+                    process.Kill();
+                }
             }
             catch (Exception)
             {
                 if (debug)
                     MessageBox.Show(e.ToString(), "Error");
-            }
-            foreach (var process in Process.GetProcessesByName("iperf3"))
-            {
-                process.Kill();
             }
         }
     }
