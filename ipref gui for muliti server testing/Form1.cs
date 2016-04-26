@@ -13,8 +13,10 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Renci.SshNet;
 using System.Reflection;
-using System.Diagnostics;
 using System.Deployment.Application;
+using System.Runtime.InteropServices;
+
+
 
 /// <summary>
 /// TODO:
@@ -23,12 +25,15 @@ using System.Deployment.Application;
 /// </summary>
 namespace ipref_gui_for_muliti_server_testing
 {
+    
     public partial class Form1 : Form
     {
+        [DllImport("kernel32.dll", EntryPoint = "AllocConsole", SetLastError = true, CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+        private static extern int AllocConsole();        
         // ---------------------------------------------------------- //
         // Start ting
         // ---------------------------------------------------------- //
-        private bool debug = true;
+        private bool debug = false;
         Process ipref3_server = new Process(); // Starting of the process ipref3_server for global access
         bool iperf_running = false; // Definning if iperf is still running 
         int test_number = 0; // Defining what test there is running for iperf
@@ -57,13 +62,12 @@ namespace ipref_gui_for_muliti_server_testing
                 debug = true;
             else
                 debug = false;
-            
-            //var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+                        //var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
             string version = fileVersionInfo.ProductVersion;
             version = (FileVersionInfo.GetVersionInfo(Assembly.GetCallingAssembly().Location).ProductVersion).ToString();
-            Text = String.Format("Ninja tester V" + version);
+            Text = String.Format("iPerf test gui v" + version);
 
             if (ApplicationDeployment.IsNetworkDeployed == true)
             {
@@ -74,7 +78,18 @@ namespace ipref_gui_for_muliti_server_testing
                 version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             }
             Text = String.Format("Ninja tester V" + version);
-            Text = String.Format("Ninja tester V" + CurrentVersion);
+            try
+            {
+                foreach (var process in Process.GetProcessesByName("iperf3"))
+                {
+                    process.Kill();
+        }
+            }
+            catch (Exception e)
+            {
+                if (debug)
+                    MessageBox.Show(e.ToString(), "Error");
+            }
         }
 
 
@@ -547,11 +562,15 @@ namespace ipref_gui_for_muliti_server_testing
             {
                 try
                 {
-                    ipref3_server.Kill();
-                    ipref3_server.CancelOutputRead();
-                    ipref3_server.CancelErrorRead();
-                    ipref3_server.Close();
+                    //ipref3_server.Kill();
+                    //ipref3_server.CancelOutputRead();
+                    //ipref3_server.CancelErrorRead();
+                    //ipref3_server.Close();
                     toolStripProgressBar3.Value = 0;
+                    foreach (var process in Process.GetProcessesByName("iperf3"))
+                    {
+                        process.Kill();
+                }
                 }
                 catch (Exception)
                 {
@@ -565,7 +584,7 @@ namespace ipref_gui_for_muliti_server_testing
         private void start_ipref3_async_server(string arguments)
         {
             //* Create your Process
-            //Process ipref3_server = new Process();
+            Process ipref3_server = new Process();
             ipref3_server.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\iperf3.exe";
             ipref3_server.StartInfo.Arguments = arguments;
             ipref3_server.StartInfo.CreateNoWindow = true;
@@ -757,10 +776,10 @@ namespace ipref_gui_for_muliti_server_testing
 
         private void button9_Click(object sender, EventArgs e)
         {
-            Thread th = new Thread(() => test1_tcp());
+            Thread th = new Thread(() => test("tcp"));
             th.Start();
         }
-        private void test1_tcp()
+        private void test(string prot)
         {
             Stopwatch sw = new Stopwatch();
             for (int i = 1; i < 31; i++)
@@ -781,13 +800,8 @@ namespace ipref_gui_for_muliti_server_testing
                     " -c " + textBox_TCP_IP_DNS.Text +
                     " -p " + numericUpDown_TCP_Port.Value +
                     " -t 500";
-                //JEG PUMPER DIT RØV HUL
-                protocol = "TCP";
+                protocol = prot;
                 sw.Start();
-                //Thread th = new Thread(() => run_more_times(10, tekst_boks_ip_adresse_1.Text, tekst_boks_ip_adresse_2.Text, antal_ping_1.Value.ToString(), antal_ping_2.Value.ToString(), "ping_1_" + i + "M", "ping_2_" + i + "M", false));
-                //Thread th1 = new Thread(() => start_ipref3_async(arg));
-                //th1.Start();
-                //start_ipref3_async(arg);
                 Process process = new Process();
                 process.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\iperf3.exe";
                 process.StartInfo.Arguments = arg;
@@ -797,44 +811,33 @@ namespace ipref_gui_for_muliti_server_testing
                 process.StartInfo.RedirectStandardError = true;
                 process.Start();
                 
-                if (debug)
-                        MessageBox.Show("Ping started!");
+                Console.WriteLine("Ping started!");
                 for (int j = 0; j < 200; j++)
                 {
-                    ping(tekst_boks_ip_adresse_1.Text, "1", "ping_1_" + i + " M", false);
+                    ping(tekst_boks_ip_adresse_1.Text, "1", "ping_1_+" + i + " M " + prot, false);
                     Console.WriteLine("Ping sent: " + j);
                     Thread.Sleep(1000);
                     Console.WriteLine("Slept");
                 }
-                //th.Start();
-
-                //th.Join();
-                
-                //Thread.Sleep(60000);
-                if(debug)
-                    MessageBox.Show("Ping Done!" + sw.Elapsed.ToString());
+                Console.WriteLine("Ping Done!" + sw.Elapsed.ToString());
                
                 sw.Reset();
-                //th1.Abort();
                 this.Invoke((MethodInvoker)delegate
                 {
                     toolStripProgressBar1.Value = 0;
                     toolStripProgressBar2.Value = 0;
                 });
-                if(debug)
-                    MessageBox.Show("Thread sleeping");
+                Console.WriteLine("Thread sleeping");
                 Thread.Sleep(60000);
-                if (debug)
-                    MessageBox.Show("Thead slept");
+                Console.WriteLine("Thead slept");
                 if (!process.HasExited)
                 {
                     process.Kill();
-                    if(debug)
-                        MessageBox.Show("iPerf was killed");
+                    Console.WriteLine("iPerf was killed");
 
                 }
             }
-            MessageBox.Show("Test done");
+            Console.WriteLine("Test done");
         }
         private void startIperf()
         {
@@ -851,7 +854,20 @@ namespace ipref_gui_for_muliti_server_testing
         // ---------------------------------------------------------- //
         private void Form1_Load(object sender, EventArgs e)
         {
+            AllocConsole();
             get_time_and_date();
+            try
+            {
+                foreach (var process in Process.GetProcessesByName("iperf3"))
+                {
+                    process.Kill();
+                }
+            }
+            catch (Exception)
+            {
+                if (debug)
+                    MessageBox.Show(e.ToString(), "Error");
+            }
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -859,6 +875,10 @@ namespace ipref_gui_for_muliti_server_testing
             try
             {
                 //ipref3_server.Kill();
+                foreach (var process in Process.GetProcessesByName("iperf3"))
+                {
+                    process.Kill();
+                }
             }
             catch (Exception)
             {
@@ -872,12 +892,22 @@ namespace ipref_gui_for_muliti_server_testing
             try
             {
                 ipref3_server.Kill();
+                foreach (var process in Process.GetProcessesByName("iperf3"))
+                {
+                    process.Kill();
+                }
             }
             catch (Exception)
             {
                 if (debug)
                     MessageBox.Show(e.ToString(), "Error");
             }
+        }
+
+        private void btn_udpTest1_Click(object sender, EventArgs e)
+        {
+            Thread th = new Thread(() => test("udp"));
+            th.Start();
         }
     }
 }
