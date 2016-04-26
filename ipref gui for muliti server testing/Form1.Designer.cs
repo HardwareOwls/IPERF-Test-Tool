@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.textBox_TCP_log = new System.Windows.Forms.TextBox();
             this.button11 = new System.Windows.Forms.Button();
@@ -112,6 +113,17 @@
             this.numericUpDown_TCP_runtime = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_UDP_runtime = new System.Windows.Forms.NumericUpDown();
             this.label20 = new System.Windows.Forms.Label();
+            this.splitContainer5 = new System.Windows.Forms.SplitContainer();
+            this.label21 = new System.Windows.Forms.Label();
+            this.splitContainer6 = new System.Windows.Forms.SplitContainer();
+            this.label22 = new System.Windows.Forms.Label();
+            this.splitContainer7 = new System.Windows.Forms.SplitContainer();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.splitContainer8 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer9 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer10 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -149,6 +161,30 @@
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_TCP_runtime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_UDP_runtime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
+            this.splitContainer5.Panel1.SuspendLayout();
+            this.splitContainer5.Panel2.SuspendLayout();
+            this.splitContainer5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).BeginInit();
+            this.splitContainer6.Panel1.SuspendLayout();
+            this.splitContainer6.Panel2.SuspendLayout();
+            this.splitContainer6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).BeginInit();
+            this.splitContainer7.Panel1.SuspendLayout();
+            this.splitContainer7.Panel2.SuspendLayout();
+            this.splitContainer7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).BeginInit();
+            this.splitContainer8.Panel1.SuspendLayout();
+            this.splitContainer8.Panel2.SuspendLayout();
+            this.splitContainer8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer9)).BeginInit();
+            this.splitContainer9.Panel1.SuspendLayout();
+            this.splitContainer9.Panel2.SuspendLayout();
+            this.splitContainer9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer10)).BeginInit();
+            this.splitContainer10.Panel1.SuspendLayout();
+            this.splitContainer10.Panel2.SuspendLayout();
+            this.splitContainer10.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -469,30 +505,17 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(478, 497);
+            this.tabControl1.Size = new System.Drawing.Size(484, 501);
             this.tabControl1.TabIndex = 4;
             // 
             // Pingtest
             // 
+            this.Pingtest.Controls.Add(this.splitContainer8);
             this.Pingtest.Controls.Add(this.splitContainer4);
-            this.Pingtest.Controls.Add(this.progressBar1);
-            this.Pingtest.Controls.Add(this.numericUpDown1);
-            this.Pingtest.Controls.Add(this.knap_alle);
-            this.Pingtest.Controls.Add(this.label3);
-            this.Pingtest.Controls.Add(this.label2);
-            this.Pingtest.Controls.Add(this.tekst_boks_ip_adresse_2);
-            this.Pingtest.Controls.Add(this.antal_ping_2);
-            this.Pingtest.Controls.Add(this.tekst_boks_ping_ud_2);
-            this.Pingtest.Controls.Add(this.btn_ping2);
-            this.Pingtest.Controls.Add(this.antal_ping_1);
-            this.Pingtest.Controls.Add(this.tekst_boks_ping_ud_1);
-            this.Pingtest.Controls.Add(this.label1);
-            this.Pingtest.Controls.Add(this.tekst_boks_ip_adresse_1);
-            this.Pingtest.Controls.Add(this.btn_ping1);
             this.Pingtest.Location = new System.Drawing.Point(4, 22);
             this.Pingtest.Name = "Pingtest";
             this.Pingtest.Padding = new System.Windows.Forms.Padding(3);
-            this.Pingtest.Size = new System.Drawing.Size(470, 471);
+            this.Pingtest.Size = new System.Drawing.Size(476, 475);
             this.Pingtest.TabIndex = 2;
             this.Pingtest.Text = "Ping test";
             this.Pingtest.UseVisualStyleBackColor = true;
@@ -506,15 +529,17 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(8, 391);
+            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.progressBar1.Location = new System.Drawing.Point(0, 0);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(298, 20);
+            this.progressBar1.Size = new System.Drawing.Size(308, 20);
             this.progressBar1.Step = 1;
             this.progressBar1.TabIndex = 30;
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(312, 391);
+            this.numericUpDown1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.numericUpDown1.Location = new System.Drawing.Point(0, 0);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -526,7 +551,7 @@
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(69, 20);
+            this.numericUpDown1.Size = new System.Drawing.Size(70, 20);
             this.numericUpDown1.TabIndex = 9;
             this.numericUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numericUpDown1.ThousandsSeparator = true;
@@ -538,10 +563,11 @@
             // 
             // knap_alle
             // 
+            this.knap_alle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.knap_alle.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.knap_alle.Location = new System.Drawing.Point(387, 388);
+            this.knap_alle.Location = new System.Drawing.Point(0, 0);
             this.knap_alle.Name = "knap_alle";
-            this.knap_alle.Size = new System.Drawing.Size(75, 23);
+            this.knap_alle.Size = new System.Drawing.Size(78, 20);
             this.knap_alle.TabIndex = 10;
             this.knap_alle.Text = "Ping alle";
             this.knap_alle.UseVisualStyleBackColor = true;
@@ -549,38 +575,43 @@
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label3.Location = new System.Drawing.Point(284, 11);
+            this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(98, 15);
+            this.label3.Size = new System.Drawing.Size(103, 15);
             this.label3.TabIndex = 27;
             this.label3.Text = "gennemsnit i ms";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(206, 12);
+            this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 15);
+            this.label2.Size = new System.Drawing.Size(74, 15);
             this.label2.TabIndex = 26;
             this.label2.Text = "antal gange";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // tekst_boks_ip_adresse_2
             // 
-            this.tekst_boks_ip_adresse_2.Location = new System.Drawing.Point(8, 60);
+            this.tekst_boks_ip_adresse_2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tekst_boks_ip_adresse_2.Location = new System.Drawing.Point(0, 45);
             this.tekst_boks_ip_adresse_2.Name = "tekst_boks_ip_adresse_2";
-            this.tekst_boks_ip_adresse_2.Size = new System.Drawing.Size(195, 20);
+            this.tekst_boks_ip_adresse_2.Size = new System.Drawing.Size(190, 20);
             this.tekst_boks_ip_adresse_2.TabIndex = 5;
             this.tekst_boks_ip_adresse_2.Text = "127.0.0.1";
+            this.tekst_boks_ip_adresse_2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tekst_boks_ip_adresse_2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tekst_boks_ip_adresse_2_KeyDown);
             // 
             // antal_ping_2
             // 
-            this.antal_ping_2.Location = new System.Drawing.Point(209, 60);
+            this.antal_ping_2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.antal_ping_2.Location = new System.Drawing.Point(0, 45);
             this.antal_ping_2.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -592,7 +623,7 @@
             0,
             0});
             this.antal_ping_2.Name = "antal_ping_2";
-            this.antal_ping_2.Size = new System.Drawing.Size(69, 20);
+            this.antal_ping_2.Size = new System.Drawing.Size(74, 20);
             this.antal_ping_2.TabIndex = 6;
             this.antal_ping_2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.antal_ping_2.Value = new decimal(new int[] {
@@ -604,20 +635,22 @@
             // 
             // tekst_boks_ping_ud_2
             // 
-            this.tekst_boks_ping_ud_2.Location = new System.Drawing.Point(284, 60);
+            this.tekst_boks_ping_ud_2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tekst_boks_ping_ud_2.Location = new System.Drawing.Point(0, 45);
             this.tekst_boks_ping_ud_2.Name = "tekst_boks_ping_ud_2";
             this.tekst_boks_ping_ud_2.ReadOnly = true;
-            this.tekst_boks_ping_ud_2.Size = new System.Drawing.Size(98, 20);
+            this.tekst_boks_ping_ud_2.Size = new System.Drawing.Size(103, 20);
             this.tekst_boks_ping_ud_2.TabIndex = 7;
             this.tekst_boks_ping_ud_2.TabStop = false;
             this.tekst_boks_ping_ud_2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btn_ping2
             // 
+            this.btn_ping2.Dock = System.Windows.Forms.DockStyle.Top;
             this.btn_ping2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btn_ping2.Location = new System.Drawing.Point(388, 57);
+            this.btn_ping2.Location = new System.Drawing.Point(0, 43);
             this.btn_ping2.Name = "btn_ping2";
-            this.btn_ping2.Size = new System.Drawing.Size(75, 23);
+            this.btn_ping2.Size = new System.Drawing.Size(91, 23);
             this.btn_ping2.TabIndex = 8;
             this.btn_ping2.Text = "Pedal";
             this.btn_ping2.UseVisualStyleBackColor = true;
@@ -625,7 +658,8 @@
             // 
             // antal_ping_1
             // 
-            this.antal_ping_1.Location = new System.Drawing.Point(209, 30);
+            this.antal_ping_1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.antal_ping_1.Location = new System.Drawing.Point(0, 15);
             this.antal_ping_1.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -637,7 +671,7 @@
             0,
             0});
             this.antal_ping_1.Name = "antal_ping_1";
-            this.antal_ping_1.Size = new System.Drawing.Size(69, 20);
+            this.antal_ping_1.Size = new System.Drawing.Size(74, 20);
             this.antal_ping_1.TabIndex = 2;
             this.antal_ping_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.antal_ping_1.ThousandsSeparator = true;
@@ -651,10 +685,11 @@
             // 
             // tekst_boks_ping_ud_1
             // 
-            this.tekst_boks_ping_ud_1.Location = new System.Drawing.Point(284, 29);
+            this.tekst_boks_ping_ud_1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tekst_boks_ping_ud_1.Location = new System.Drawing.Point(0, 15);
             this.tekst_boks_ping_ud_1.Name = "tekst_boks_ping_ud_1";
             this.tekst_boks_ping_ud_1.ReadOnly = true;
-            this.tekst_boks_ping_ud_1.Size = new System.Drawing.Size(98, 20);
+            this.tekst_boks_ping_ud_1.Size = new System.Drawing.Size(103, 20);
             this.tekst_boks_ping_ud_1.TabIndex = 3;
             this.tekst_boks_ping_ud_1.TabStop = false;
             this.tekst_boks_ping_ud_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -662,30 +697,33 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Location = new System.Drawing.Point(8, 12);
+            this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(186, 15);
+            this.label1.Size = new System.Drawing.Size(190, 15);
             this.label1.TabIndex = 19;
             this.label1.Text = "indtast ip eller web adresse : port";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // tekst_boks_ip_adresse_1
             // 
-            this.tekst_boks_ip_adresse_1.Location = new System.Drawing.Point(8, 30);
+            this.tekst_boks_ip_adresse_1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tekst_boks_ip_adresse_1.Location = new System.Drawing.Point(0, 15);
             this.tekst_boks_ip_adresse_1.Name = "tekst_boks_ip_adresse_1";
-            this.tekst_boks_ip_adresse_1.Size = new System.Drawing.Size(195, 20);
+            this.tekst_boks_ip_adresse_1.Size = new System.Drawing.Size(190, 20);
             this.tekst_boks_ip_adresse_1.TabIndex = 1;
             this.tekst_boks_ip_adresse_1.Text = "127.0.0.1";
+            this.tekst_boks_ip_adresse_1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tekst_boks_ip_adresse_1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tekst_boks_ip_adresse_1_KeyDown);
             // 
             // btn_ping1
             // 
+            this.btn_ping1.Dock = System.Windows.Forms.DockStyle.Top;
             this.btn_ping1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btn_ping1.Location = new System.Drawing.Point(388, 28);
+            this.btn_ping1.Location = new System.Drawing.Point(0, 15);
             this.btn_ping1.Name = "btn_ping1";
-            this.btn_ping1.Size = new System.Drawing.Size(75, 23);
+            this.btn_ping1.Size = new System.Drawing.Size(91, 23);
             this.btn_ping1.TabIndex = 4;
             this.btn_ping1.Text = "Pedal!";
             this.btn_ping1.UseVisualStyleBackColor = true;
@@ -1118,13 +1156,13 @@
             // 
             this.toolStripContainer1.ContentPanel.AutoScroll = true;
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tabControl1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(478, 497);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(484, 501);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.LeftToolStripPanelVisible = false;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
             this.toolStripContainer1.RightToolStripPanelVisible = false;
-            this.toolStripContainer1.Size = new System.Drawing.Size(478, 522);
+            this.toolStripContainer1.Size = new System.Drawing.Size(484, 526);
             this.toolStripContainer1.TabIndex = 5;
             this.toolStripContainer1.Text = "toolStripContainer1";
             this.toolStripContainer1.TopToolStripPanelVisible = false;
@@ -1274,13 +1312,194 @@
             this.label20.Text = "Runtime sek";
             this.label20.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
+            // splitContainer5
+            // 
+            this.splitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer5.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer5.Name = "splitContainer5";
+            // 
+            // splitContainer5.Panel1
+            // 
+            this.splitContainer5.Panel1.Controls.Add(this.tekst_boks_ip_adresse_2);
+            this.splitContainer5.Panel1.Controls.Add(this.label21);
+            this.splitContainer5.Panel1.Controls.Add(this.tekst_boks_ip_adresse_1);
+            this.splitContainer5.Panel1.Controls.Add(this.label1);
+            this.splitContainer5.Panel1MinSize = 190;
+            // 
+            // splitContainer5.Panel2
+            // 
+            this.splitContainer5.Panel2.Controls.Add(this.splitContainer6);
+            this.splitContainer5.Panel2MinSize = 266;
+            this.splitContainer5.Size = new System.Drawing.Size(470, 444);
+            this.splitContainer5.SplitterDistance = 190;
+            this.splitContainer5.TabIndex = 32;
+            // 
+            // label21
+            // 
+            this.label21.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label21.Location = new System.Drawing.Point(0, 35);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(190, 10);
+            this.label21.TabIndex = 38;
+            this.label21.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // splitContainer6
+            // 
+            this.splitContainer6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer6.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer6.Name = "splitContainer6";
+            // 
+            // splitContainer6.Panel1
+            // 
+            this.splitContainer6.Panel1.Controls.Add(this.antal_ping_2);
+            this.splitContainer6.Panel1.Controls.Add(this.label22);
+            this.splitContainer6.Panel1.Controls.Add(this.antal_ping_1);
+            this.splitContainer6.Panel1.Controls.Add(this.label2);
+            this.splitContainer6.Panel1MinSize = 72;
+            // 
+            // splitContainer6.Panel2
+            // 
+            this.splitContainer6.Panel2.Controls.Add(this.splitContainer7);
+            this.splitContainer6.Panel2MinSize = 190;
+            this.splitContainer6.Size = new System.Drawing.Size(276, 444);
+            this.splitContainer6.SplitterDistance = 74;
+            this.splitContainer6.TabIndex = 0;
+            // 
+            // label22
+            // 
+            this.label22.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label22.Location = new System.Drawing.Point(0, 35);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(74, 10);
+            this.label22.TabIndex = 39;
+            this.label22.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // splitContainer7
+            // 
+            this.splitContainer7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer7.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer7.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer7.Name = "splitContainer7";
+            // 
+            // splitContainer7.Panel1
+            // 
+            this.splitContainer7.Panel1.Controls.Add(this.tekst_boks_ping_ud_2);
+            this.splitContainer7.Panel1.Controls.Add(this.label25);
+            this.splitContainer7.Panel1.Controls.Add(this.tekst_boks_ping_ud_1);
+            this.splitContainer7.Panel1.Controls.Add(this.label3);
+            this.splitContainer7.Panel1MinSize = 99;
+            // 
+            // splitContainer7.Panel2
+            // 
+            this.splitContainer7.Panel2.Controls.Add(this.btn_ping2);
+            this.splitContainer7.Panel2.Controls.Add(this.label24);
+            this.splitContainer7.Panel2.Controls.Add(this.btn_ping1);
+            this.splitContainer7.Panel2.Controls.Add(this.label23);
+            this.splitContainer7.Panel2MinSize = 87;
+            this.splitContainer7.Size = new System.Drawing.Size(198, 444);
+            this.splitContainer7.SplitterDistance = 103;
+            this.splitContainer7.TabIndex = 0;
+            // 
+            // label23
+            // 
+            this.label23.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label23.Location = new System.Drawing.Point(0, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(91, 15);
+            this.label23.TabIndex = 39;
+            this.label23.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label24
+            // 
+            this.label24.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label24.Location = new System.Drawing.Point(0, 38);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(91, 5);
+            this.label24.TabIndex = 40;
+            this.label24.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label25
+            // 
+            this.label25.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label25.Location = new System.Drawing.Point(0, 35);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(103, 10);
+            this.label25.TabIndex = 40;
+            this.label25.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // splitContainer8
+            // 
+            this.splitContainer8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer8.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer8.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer8.Name = "splitContainer8";
+            this.splitContainer8.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer8.Panel1
+            // 
+            this.splitContainer8.Panel1.Controls.Add(this.splitContainer5);
+            this.splitContainer8.Panel1MinSize = 441;
+            // 
+            // splitContainer8.Panel2
+            // 
+            this.splitContainer8.Panel2.Controls.Add(this.splitContainer9);
+            this.splitContainer8.Panel2MinSize = 20;
+            this.splitContainer8.Size = new System.Drawing.Size(470, 469);
+            this.splitContainer8.SplitterDistance = 444;
+            this.splitContainer8.TabIndex = 33;
+            // 
+            // splitContainer9
+            // 
+            this.splitContainer9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer9.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer9.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer9.Name = "splitContainer9";
+            // 
+            // splitContainer9.Panel1
+            // 
+            this.splitContainer9.Panel1.Controls.Add(this.progressBar1);
+            this.splitContainer9.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.splitContainer9.Panel1MinSize = 308;
+            // 
+            // splitContainer9.Panel2
+            // 
+            this.splitContainer9.Panel2.Controls.Add(this.splitContainer10);
+            this.splitContainer9.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.splitContainer9.Panel2MinSize = 159;
+            this.splitContainer9.Size = new System.Drawing.Size(470, 21);
+            this.splitContainer9.SplitterDistance = 308;
+            this.splitContainer9.TabIndex = 0;
+            // 
+            // splitContainer10
+            // 
+            this.splitContainer10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer10.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer10.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer10.Name = "splitContainer10";
+            // 
+            // splitContainer10.Panel1
+            // 
+            this.splitContainer10.Panel1.Controls.Add(this.numericUpDown1);
+            this.splitContainer10.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.splitContainer10.Panel1MinSize = 70;
+            // 
+            // splitContainer10.Panel2
+            // 
+            this.splitContainer10.Panel2.Controls.Add(this.knap_alle);
+            this.splitContainer10.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.splitContainer10.Panel2MinSize = 85;
+            this.splitContainer10.Size = new System.Drawing.Size(152, 20);
+            this.splitContainer10.SplitterDistance = 70;
+            this.splitContainer10.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(478, 522);
+            this.ClientSize = new System.Drawing.Size(484, 526);
             this.Controls.Add(this.toolStripContainer1);
-            this.MinimumSize = new System.Drawing.Size(494, 507);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(500, 565);
             this.Name = "Form1";
             this.Text = "Ninja tester";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -1298,7 +1517,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_TCP_Port)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.Pingtest.ResumeLayout(false);
-            this.Pingtest.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
@@ -1333,6 +1551,32 @@
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_TCP_runtime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_UDP_runtime)).EndInit();
+            this.splitContainer5.Panel1.ResumeLayout(false);
+            this.splitContainer5.Panel1.PerformLayout();
+            this.splitContainer5.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
+            this.splitContainer5.ResumeLayout(false);
+            this.splitContainer6.Panel1.ResumeLayout(false);
+            this.splitContainer6.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).EndInit();
+            this.splitContainer6.ResumeLayout(false);
+            this.splitContainer7.Panel1.ResumeLayout(false);
+            this.splitContainer7.Panel1.PerformLayout();
+            this.splitContainer7.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).EndInit();
+            this.splitContainer7.ResumeLayout(false);
+            this.splitContainer8.Panel1.ResumeLayout(false);
+            this.splitContainer8.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).EndInit();
+            this.splitContainer8.ResumeLayout(false);
+            this.splitContainer9.Panel1.ResumeLayout(false);
+            this.splitContainer9.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer9)).EndInit();
+            this.splitContainer9.ResumeLayout(false);
+            this.splitContainer10.Panel1.ResumeLayout(false);
+            this.splitContainer10.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer10)).EndInit();
+            this.splitContainer10.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1421,6 +1665,17 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.NumericUpDown numericUpDown_UDP_runtime;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.SplitContainer splitContainer5;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.SplitContainer splitContainer6;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.SplitContainer splitContainer7;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.SplitContainer splitContainer8;
+        private System.Windows.Forms.SplitContainer splitContainer9;
+        private System.Windows.Forms.SplitContainer splitContainer10;
     }
 }
 

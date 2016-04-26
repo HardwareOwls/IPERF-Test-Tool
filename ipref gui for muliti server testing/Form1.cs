@@ -829,7 +829,8 @@ namespace ipref_gui_for_muliti_server_testing
                 if (!process.HasExited)
                 {
                     process.Kill();
-                    MessageBox.Show("iPerf was killed");
+                    if(debug)
+                        MessageBox.Show("iPerf was killed");
 
                 }
             }
