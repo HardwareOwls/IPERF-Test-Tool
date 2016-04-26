@@ -59,9 +59,13 @@ namespace ipref_gui_for_muliti_server_testing
         {
             InitializeComponent();
             if (Environment.GetCommandLineArgs().Contains("-debug"))
+            {
                 debug = true;
+            }
             else
+            {
                 debug = false;
+            }
             //var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
