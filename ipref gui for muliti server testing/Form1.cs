@@ -449,7 +449,8 @@ namespace ipref_gui_for_muliti_server_testing
                             MessageBox.Show(e.ToString(), "Error");
                         return false;
                     }
-                }                
+                }
+                Console.WriteLine("Ping: " + output);           
                 using (StreamWriter file = new StreamWriter(get_log_path(name), true))
                 {
                     file.WriteLine(output);
