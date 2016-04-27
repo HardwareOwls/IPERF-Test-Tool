@@ -818,7 +818,7 @@ namespace ipref_gui_for_muliti_server_testing
                 Console.WriteLine("Ping started!");
                 for (int j = 0; j < 200; j++)
                 {
-                    ping(textBox_TCP_IP_DNS.Text, "100", "ping_1_+" + i + " M " + prot, false);
+                    ping(textBox_TCP_IP_DNS.Text, "1", "ping_1_+" + i + " M " + prot, false);
                     Console.WriteLine("Ping sent: " + j);
                     Thread.Sleep(1000);
                     Console.WriteLine("Slept");
