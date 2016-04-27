@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>https://software.m-host.dk/auu/iperf-ping/</InstallUrl>
+    <InstallUrl>https://software.m-host.dk/aau/iperf-ping/</InstallUrl>
     <SupportUrl>https://software.m-host.dk/support</SupportUrl>
     <ErrorReportUrl>https://software.m-host.dk/error</ErrorReportUrl>
     <ProductName>ping and speedtester</ProductName>
@@ -31,7 +31,7 @@
     <MinimumRequiredVersion>1.0.0.18</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.php</WebPage>
-    <ApplicationRevision>32</ApplicationRevision>
+    <ApplicationRevision>34</ApplicationRevision>
     <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
