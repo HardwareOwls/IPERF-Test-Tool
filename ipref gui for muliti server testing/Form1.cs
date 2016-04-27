@@ -789,9 +789,16 @@ namespace ipref_gui_for_muliti_server_testing
             Stopwatch sw = new Stopwatch();
             for (int i = 1; i < 31; i++)
             {
-                startIperf();
+                if (textBox_TCP_IP_DNS.Text != "localhost")
+                {
+                    startIperf();
+                }
+
                 if (debug)
-                    MessageBox.Show("iPerf started");
+                {
+                    Console.WriteLine("iPerf started");
+                }
+
                 Thread.Sleep(1000);
                 this.Invoke((MethodInvoker)delegate
                 {
@@ -848,9 +855,17 @@ namespace ipref_gui_for_muliti_server_testing
         {
             using(var client = new SshClient(textBox_TCP_IP_DNS.Text, "pi", "raspberry"))
             {
-                client.Connect();
-                client.RunCommand("iperf3 -s -1");
-                client.Disconnect();
+                try
+                {
+                    client.Connect();
+                    client.RunCommand("iperf3 -s -1");
+                    client.Disconnect();
+                }
+                catch (Exception)
+                {
+
+                    //throw;
+                }
             }
         }
 
