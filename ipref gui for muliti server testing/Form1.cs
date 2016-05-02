@@ -121,7 +121,7 @@ namespace ipref_gui_for_muliti_server_testing
         {
             //string path = Directory.GetCurrentDirectory() + "\\log\\" + shared_time_and_date + " - " + log_type + ".csv";
             Directory.CreateDirectory(@Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\log - ping and speedtester"); // Making the log folder if not do exists
-            string path = @Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\log - ping and speedtester\\" + get_time_and_date() + "  - " + log_type + ".csv"; // Defining the folder path to a folder "log - ping and speedtester" on the desktop
+            string path = @Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\log - ping and speedtester\\" + shared_time_and_date + "  - " + log_type + ".csv"; // Defining the folder path to a folder "log - ping and speedtester" on the desktop
             return path; // Retuning the log folder path
         }
 
@@ -144,6 +144,7 @@ namespace ipref_gui_for_muliti_server_testing
                 }
                 else
                 {
+                    shared_time_and_date = get_time_and_date();
                     test_number++;
                     timer1.Enabled = true;
                     toolStripProgressBar1.Value = 1;
@@ -201,6 +202,7 @@ namespace ipref_gui_for_muliti_server_testing
                 }
                 else
                 {
+                    shared_time_and_date = get_time_and_date();
                     test_number++;
                     timer1.Enabled = true;
                     toolStripProgressBar1.Value = 1;
@@ -258,6 +260,7 @@ namespace ipref_gui_for_muliti_server_testing
                 }
                 else
                 {
+                    shared_time_and_date = get_time_and_date();
                     test_number++;
                     timer1.Enabled = true;
                     toolStripProgressBar1.Value = 1;
@@ -304,6 +307,7 @@ namespace ipref_gui_for_muliti_server_testing
                 }
                 else
                 {
+                    shared_time_and_date = get_time_and_date();
                     test_number++;
                     timer1.Enabled = true;
                     toolStripProgressBar1.Value = 1;
@@ -476,6 +480,7 @@ namespace ipref_gui_for_muliti_server_testing
         // ---------------------------------------------------------- //
         private void knap_alle_Click(object sender, EventArgs e)
         {
+            shared_time_and_date = get_time_and_date();
             test_number_ping++;
             progressBar1.Maximum = (int)numericUpDown1.Value;
             Thread th1 = new Thread(() => run_more_times((int)numericUpDown1.Value, tekst_boks_ip_adresse_1.Text, antal_ping_1.Value.ToString(), "ping_1", true));
@@ -730,6 +735,7 @@ namespace ipref_gui_for_muliti_server_testing
 
         private void btn_ping1_Click(object sender, EventArgs e)
         {
+            shared_time_and_date = get_time_and_date();
             test_number_ping++;
             Thread th = new Thread(() => ping(tekst_boks_ip_adresse_1.Text, antal_ping_1.Value.ToString(), "ping_1", true));
             if (!th.IsAlive)
@@ -741,6 +747,7 @@ namespace ipref_gui_for_muliti_server_testing
 
         private void btn_ping2_Click(object sender, EventArgs e)
         {
+            shared_time_and_date = get_time_and_date();
             test_number_ping++;
             Thread th = new Thread(() => ping(tekst_boks_ip_adresse_2.Text, antal_ping_2.Value.ToString(), "ping_2", true));
             if (!th.IsAlive)
@@ -794,6 +801,7 @@ namespace ipref_gui_for_muliti_server_testing
             Stopwatch sw = new Stopwatch();
             for (int i = 1; i < 31; i++)
             {
+                shared_time_and_date = get_time_and_date();
                 if (textBox_TCP_IP_DNS.Text != "localhost")
                     startIperf();
                
