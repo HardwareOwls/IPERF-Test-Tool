@@ -814,7 +814,7 @@ namespace ipref_gui_for_muliti_server_testing
                     toolStripProgressBar1.Value = 1;
                     toolStripProgressBar2.Value = 1;
                 });
-                if (prot == "tdp")
+                if (prot == "tcp")
                 {
                     arg = "-R -i " + numericUpDown_TCP_Interval.Value +
                     " -P " + numericUpDown_TCP_parallele_streams.Value +
@@ -833,10 +833,11 @@ namespace ipref_gui_for_muliti_server_testing
                         " -b " + i + "M" +
                         " -c " + textBox_UDP_IP_DNS.Text +
                         " -p " + numericUpDown_UDP_Port.Value +
-                        " -t " + numericUpDown_UDP_runtime.Value;
+                        " -t 500";
                 }
                 protocol = prot;
                 sw.Start();
+                //* Create your Process
                 Process process = new Process();
                 process.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\iperf3.exe";
                 process.StartInfo.Arguments = arg;
