@@ -30,8 +30,6 @@ namespace ipref_gui_for_muliti_server_testing
     {
         [DllImport("kernel32.dll", EntryPoint = "AllocConsole", SetLastError = true, CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         private static extern int AllocConsole();
-        
-        
         // ---------------------------------------------------------- //
         // Start ting
         // ---------------------------------------------------------- //
@@ -43,8 +41,6 @@ namespace ipref_gui_for_muliti_server_testing
         int test_number_ping = 0; // Defining what test there is running for ping
         string protocol = ""; // Global access to the protocol type for ipref "TCP/UDP"
         public bool test1 = false; // Askes snask, ingen ved det, alle sankker om det
-
-
 
         public string CurrentVersion
         {
@@ -902,7 +898,8 @@ namespace ipref_gui_for_muliti_server_testing
         // ---------------------------------------------------------- //
         private void Form1_Load(object sender, EventArgs e)
         {
-            AllocConsole();
+            if(debug)
+                AllocConsole();
             get_time_and_date();
             try
             {
