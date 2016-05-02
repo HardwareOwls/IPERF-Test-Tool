@@ -818,7 +818,7 @@ namespace ipref_gui_for_muliti_server_testing
                         " -i " + numericUpDown_UDP_Interval.Value +
                         " -P " + numericUpDown_UDP_parallele_streams.Value +
                         " -l " + numericUpDown_UDP_pakke_storlse.Value +
-                        " -b " + textBox_UDP_bitrate.Text +
+                        " -b " + i + "M" +
                         " -c " + textBox_UDP_IP_DNS.Text +
                         " -p " + numericUpDown_UDP_Port.Value +
                         " -t " + numericUpDown_UDP_runtime.Value;
@@ -837,10 +837,20 @@ namespace ipref_gui_for_muliti_server_testing
                 Console.WriteLine("Ping started!");
                 for (int j = 0; j < 200; j++)
                 {
-                    ping(textBox_TCP_IP_DNS.Text, "1", "ping_1_" + textBox_TCP_IP_DNS.Text +  " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
-                    Console.WriteLine("Ping sent: " + j);
-                    Thread.Sleep(1000);
-                    Console.WriteLine("Slept");
+                    if (prot == "tcp")
+                    {
+                        ping(textBox_TCP_IP_DNS.Text, "1", "ping_1_" + textBox_TCP_IP_DNS.Text + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
+                        Console.WriteLine("Ping sent: " + j);
+                        Thread.Sleep(1000);
+                        Console.WriteLine("Slept");
+                    }
+                    if (prot == "udp")
+                    {
+                        ping(textBox_UDP_IP_DNS.Text, "1", "ping_1_" + textBox_UDP_IP_DNS.Text + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
+                        Console.WriteLine("Ping sent: " + j);
+                        Thread.Sleep(1000);
+                        Console.WriteLine("Slept");
+                    }
                 }
                 Console.WriteLine("Ping Done!" + sw.Elapsed.ToString());
                
