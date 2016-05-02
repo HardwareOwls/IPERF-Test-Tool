@@ -789,7 +789,11 @@ namespace ipref_gui_for_muliti_server_testing
             Stopwatch sw = new Stopwatch();
             for (int i = 1; i < 31; i++)
             {
-                if (textBox_TCP_IP_DNS.Text != "localhost")
+                if (textBox_TCP_IP_DNS.Text == "localhost")
+                {
+                    
+                }
+                else
                 {
                     startIperf();
                 }
