@@ -117,7 +117,7 @@ namespace ipref_gui_for_muliti_server_testing
         {
             //string path = Directory.GetCurrentDirectory() + "\\log\\" + shared_time_and_date + " - " + log_type + ".csv";
             Directory.CreateDirectory(@Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\log - ping and speedtester"); // Making the log folder if not do exists
-            string path = @Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\log - ping and speedtester\\" + shared_time_and_date + "  - " + log_type + ".csv"; // Defining the folder path to a folder "log - ping and speedtester" on the desktop
+            string path = @Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\log - ping and speedtester\\" + get_time_and_date() + "  - " + log_type + ".csv"; // Defining the folder path to a folder "log - ping and speedtester" on the desktop
             return path; // Retuning the log folder path
         }
 
