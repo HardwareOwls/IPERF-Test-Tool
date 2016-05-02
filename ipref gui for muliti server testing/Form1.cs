@@ -789,19 +789,11 @@ namespace ipref_gui_for_muliti_server_testing
             Stopwatch sw = new Stopwatch();
             for (int i = 1; i < 31; i++)
             {
-                if (textBox_TCP_IP_DNS.Text == "localhost")
-                {
-                    
-                }
-                else
-                {
+                if (textBox_TCP_IP_DNS.Text != "localhost")
                     startIperf();
-                }
-
+               
                 if (debug)
-                {
                     Console.WriteLine("iPerf started");
-                }
 
                 Thread.Sleep(1000);
                 this.Invoke((MethodInvoker)delegate
@@ -830,7 +822,7 @@ namespace ipref_gui_for_muliti_server_testing
                 Console.WriteLine("Ping started!");
                 for (int j = 0; j < 200; j++)
                 {
-                    ping(textBox_TCP_IP_DNS.Text, "1", "ping_1_+" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
+                    ping(textBox_TCP_IP_DNS.Text, "1", "ping_1_" + textBox_TCP_IP_DNS.Text +  " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
                     Console.WriteLine("Ping sent: " + j);
                     Thread.Sleep(1000);
                     Console.WriteLine("Slept");
@@ -862,8 +854,11 @@ namespace ipref_gui_for_muliti_server_testing
                 try
                 {
                     client.Connect();
+                    Console.WriteLine("SSH established");
                     client.RunCommand("iperf3 -s -1");
+                    Console.WriteLine("iPerf started with: -s -1 ");
                     client.Disconnect();
+                    Console.WriteLine("SSH Closed");
                 }
                 catch (Exception)
                 {
