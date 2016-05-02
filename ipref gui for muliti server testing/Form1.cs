@@ -841,7 +841,7 @@ namespace ipref_gui_for_muliti_server_testing
                 Process process = new Process();
                 process.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\iperf3.exe";
                 process.StartInfo.Arguments = arg;
-                process.StartInfo.CreateNoWindow = false;
+                process.StartInfo.CreateNoWindow = true;
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.RedirectStandardOutput = true;
                 process.StartInfo.RedirectStandardError = true;
