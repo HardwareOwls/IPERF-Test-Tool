@@ -29,7 +29,7 @@ namespace ipref_gui_for_muliti_server_testing
     public partial class Form1 : Form
     {
         [DllImport("kernel32.dll", EntryPoint = "AllocConsole", SetLastError = true, CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
-        private static extern int AllocConsole();        
+        private static extern int AllocConsole();
         // ---------------------------------------------------------- //
         // Start ting
         // ---------------------------------------------------------- //
@@ -873,7 +873,8 @@ namespace ipref_gui_for_muliti_server_testing
         // ---------------------------------------------------------- //
         private void Form1_Load(object sender, EventArgs e)
         {
-            AllocConsole();
+            if(debug)
+                AllocConsole();
             get_time_and_date();
             try
             {
