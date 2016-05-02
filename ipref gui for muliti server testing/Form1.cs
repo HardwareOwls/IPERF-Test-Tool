@@ -117,7 +117,7 @@ namespace ipref_gui_for_muliti_server_testing
         {
             //string path = Directory.GetCurrentDirectory() + "\\log\\" + shared_time_and_date + " - " + log_type + ".csv";
             Directory.CreateDirectory(@Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\log - ping and speedtester"); // Making the log folder if not do exists
-            string path = @Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\log - ping and speedtester\\" + shared_time_and_date + "  - " + log_type + ".csv"; // Defining the folder path to a folder "log - ping and speedtester" on the desktop
+            string path = @Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\log - ping and speedtester\\" + get_time_and_date() + "  - " + log_type + ".csv"; // Defining the folder path to a folder "log - ping and speedtester" on the desktop
             return path; // Retuning the log folder path
         }
 
@@ -259,7 +259,7 @@ namespace ipref_gui_for_muliti_server_testing
                     toolStripProgressBar1.Value = 1;
                     toolStripProgressBar2.Value = 1;
                     //Task task = Task.Run((void));
-                    arg = "-R" +
+                    arg = "-R -u" +
                         " -i " + numericUpDown_UDP_Interval.Value +
                         " -P " + numericUpDown_UDP_parallele_streams.Value +
                         " -l " + numericUpDown_UDP_pakke_storlse.Value +
@@ -305,7 +305,8 @@ namespace ipref_gui_for_muliti_server_testing
                     toolStripProgressBar1.Value = 1;
                     toolStripProgressBar2.Value = 1;
                     //Task task = Task.Run((void));
-                    arg = "-i " + numericUpDown_UDP_Interval.Value +
+                    arg = "-u" +
+                        "-i " + numericUpDown_UDP_Interval.Value +
                         " -P " + numericUpDown_UDP_parallele_streams.Value +
                         " -l " + numericUpDown_UDP_pakke_storlse.Value +
                         " -b " + textBox_UDP_bitrate.Text +
@@ -801,13 +802,27 @@ namespace ipref_gui_for_muliti_server_testing
                     toolStripProgressBar1.Value = 1;
                     toolStripProgressBar2.Value = 1;
                 });
-                arg = "-i " + numericUpDown_TCP_Interval.Value +
+                if (prot == "tdp")
+                {
+                    arg = "-R -i " + numericUpDown_TCP_Interval.Value +
                     " -P " + numericUpDown_TCP_parallele_streams.Value +
                     " -l " + numericUpDown_TCP_pakke_storlse.Value +
                     " -b " + i + "M" +
                     " -c " + textBox_TCP_IP_DNS.Text +
                     " -p " + numericUpDown_TCP_Port.Value +
                     " -t 500";
+                }
+                if (prot == "udp")
+                {
+                    arg = "-R -u" +
+                        " -i " + numericUpDown_UDP_Interval.Value +
+                        " -P " + numericUpDown_UDP_parallele_streams.Value +
+                        " -l " + numericUpDown_UDP_pakke_storlse.Value +
+                        " -b " + i + "M" +
+                        " -c " + textBox_UDP_IP_DNS.Text +
+                        " -p " + numericUpDown_UDP_Port.Value +
+                        " -t " + numericUpDown_UDP_runtime.Value;
+                }
                 protocol = prot;
                 sw.Start();
                 Process process = new Process();
@@ -822,10 +837,20 @@ namespace ipref_gui_for_muliti_server_testing
                 Console.WriteLine("Ping started!");
                 for (int j = 0; j < 200; j++)
                 {
-                    ping(textBox_TCP_IP_DNS.Text, "1", "ping_1_" + textBox_TCP_IP_DNS.Text +  " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
-                    Console.WriteLine("Ping sent: " + j);
-                    Thread.Sleep(1000);
-                    Console.WriteLine("Slept");
+                    if (prot == "tcp")
+                    {
+                        ping(textBox_TCP_IP_DNS.Text, "1", "ping_1_" + textBox_TCP_IP_DNS.Text + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
+                        Console.WriteLine("Ping sent: " + j);
+                        Thread.Sleep(1000);
+                        Console.WriteLine("Slept");
+                    }
+                    if (prot == "udp")
+                    {
+                        ping(textBox_UDP_IP_DNS.Text, "1", "ping_1_" + textBox_UDP_IP_DNS.Text + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
+                        Console.WriteLine("Ping sent: " + j);
+                        Thread.Sleep(1000);
+                        Console.WriteLine("Slept");
+                    }
                 }
                 Console.WriteLine("Ping Done!" + sw.Elapsed.ToString());
                
