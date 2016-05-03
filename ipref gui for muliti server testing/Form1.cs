@@ -861,6 +861,11 @@ namespace ipref_gui_for_muliti_server_testing
                     {
                         ping(textBox_TCP_IP_DNS.Text, "1", "ping_1_" + textBox_TCP_IP_DNS.Text + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
                         Console.WriteLine("Ping sent: " + j);
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            Test_status_label.Text = "Speed " + i + "Mbit";
+                            Test_status_label2.Text = "Ping sent: " + j;
+                        });
                         Thread.Sleep(1000);
                         Console.WriteLine("Slept");
                     }
@@ -868,6 +873,11 @@ namespace ipref_gui_for_muliti_server_testing
                     {
                         ping(textBox_UDP_IP_DNS.Text, "1", "ping_1_" + textBox_UDP_IP_DNS.Text + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
                         Console.WriteLine("Ping sent: " + j);
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            Test_status_label.Text = "Speed " + i + "Mbit";
+                            Test_status_label2.Text = "Ping sent: " + j;
+                        });
                         Thread.Sleep(1000);
                         Console.WriteLine("Slept");
                     }
@@ -897,6 +907,8 @@ namespace ipref_gui_for_muliti_server_testing
             {
                 //toolStripProgressBar1.Value = 0;
                 toolStripProgressBar2.Value = 0;
+                Test_status_label.Text = "Speed DONE";
+                Test_status_label2.Text = "Ping DONE";
             });
             Console.WriteLine("Test done");
         }
@@ -990,6 +1002,16 @@ namespace ipref_gui_for_muliti_server_testing
                 Thread th = new Thread(() => test("udp"));
                 th.Start();
             }
+        }
+
+        private void label26_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripLabel4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

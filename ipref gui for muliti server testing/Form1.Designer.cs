@@ -123,7 +123,11 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripProgressBar3 = new System.Windows.Forms.ToolStripProgressBar();
             this.tsLabelTime = new System.Windows.Forms.ToolStripLabel();
+            this.Test_status_label = new System.Windows.Forms.ToolStripLabel();
+            this.Test_status_label2 = new System.Windows.Forms.ToolStripLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -221,7 +225,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.label5);
             this.splitContainer1.Panel2.Controls.Add(this.btn_TCP_UL);
             this.splitContainer1.Panel2.Controls.Add(this.btn_TCP_DL);
-            this.splitContainer1.Size = new System.Drawing.Size(470, 469);
+            this.splitContainer1.Size = new System.Drawing.Size(470, 489);
             this.splitContainer1.SplitterDistance = 334;
             this.splitContainer1.TabIndex = 3;
             // 
@@ -232,7 +236,7 @@
             this.textBox_TCP_log.Multiline = true;
             this.textBox_TCP_log.Name = "textBox_TCP_log";
             this.textBox_TCP_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_TCP_log.Size = new System.Drawing.Size(334, 469);
+            this.textBox_TCP_log.Size = new System.Drawing.Size(334, 489);
             this.textBox_TCP_log.TabIndex = 0;
             // 
             // button11
@@ -540,7 +544,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(484, 501);
+            this.tabControl1.Size = new System.Drawing.Size(484, 521);
             this.tabControl1.TabIndex = 4;
             // 
             // Pingtest
@@ -550,7 +554,7 @@
             this.Pingtest.Location = new System.Drawing.Point(4, 22);
             this.Pingtest.Name = "Pingtest";
             this.Pingtest.Padding = new System.Windows.Forms.Padding(3);
-            this.Pingtest.Size = new System.Drawing.Size(476, 475);
+            this.Pingtest.Size = new System.Drawing.Size(476, 495);
             this.Pingtest.TabIndex = 2;
             this.Pingtest.Text = "Ping test";
             this.Pingtest.UseVisualStyleBackColor = true;
@@ -571,8 +575,8 @@
             // 
             this.splitContainer8.Panel2.Controls.Add(this.splitContainer9);
             this.splitContainer8.Panel2MinSize = 20;
-            this.splitContainer8.Size = new System.Drawing.Size(470, 469);
-            this.splitContainer8.SplitterDistance = 440;
+            this.splitContainer8.Size = new System.Drawing.Size(470, 489);
+            this.splitContainer8.SplitterDistance = 460;
             this.splitContainer8.TabIndex = 33;
             // 
             // splitContainer5
@@ -593,7 +597,7 @@
             // 
             this.splitContainer5.Panel2.Controls.Add(this.splitContainer6);
             this.splitContainer5.Panel2MinSize = 266;
-            this.splitContainer5.Size = new System.Drawing.Size(470, 440);
+            this.splitContainer5.Size = new System.Drawing.Size(470, 460);
             this.splitContainer5.SplitterDistance = 190;
             this.splitContainer5.TabIndex = 32;
             // 
@@ -657,7 +661,7 @@
             // 
             this.splitContainer6.Panel2.Controls.Add(this.splitContainer7);
             this.splitContainer6.Panel2MinSize = 190;
-            this.splitContainer6.Size = new System.Drawing.Size(276, 440);
+            this.splitContainer6.Size = new System.Drawing.Size(276, 460);
             this.splitContainer6.SplitterDistance = 74;
             this.splitContainer6.TabIndex = 0;
             // 
@@ -756,7 +760,7 @@
             this.splitContainer7.Panel2.Controls.Add(this.btn_ping1);
             this.splitContainer7.Panel2.Controls.Add(this.label23);
             this.splitContainer7.Panel2MinSize = 87;
-            this.splitContainer7.Size = new System.Drawing.Size(198, 440);
+            this.splitContainer7.Size = new System.Drawing.Size(198, 460);
             this.splitContainer7.SplitterDistance = 103;
             this.splitContainer7.TabIndex = 0;
             // 
@@ -947,7 +951,7 @@
             this.TCPSpeedtest.Location = new System.Drawing.Point(4, 22);
             this.TCPSpeedtest.Name = "TCPSpeedtest";
             this.TCPSpeedtest.Padding = new System.Windows.Forms.Padding(3);
-            this.TCPSpeedtest.Size = new System.Drawing.Size(476, 475);
+            this.TCPSpeedtest.Size = new System.Drawing.Size(476, 495);
             this.TCPSpeedtest.TabIndex = 0;
             this.TCPSpeedtest.Text = "TCP Speedtest";
             this.TCPSpeedtest.UseVisualStyleBackColor = true;
@@ -958,7 +962,7 @@
             this.UDPTest.Location = new System.Drawing.Point(4, 22);
             this.UDPTest.Name = "UDPTest";
             this.UDPTest.Padding = new System.Windows.Forms.Padding(3);
-            this.UDPTest.Size = new System.Drawing.Size(476, 475);
+            this.UDPTest.Size = new System.Drawing.Size(476, 495);
             this.UDPTest.TabIndex = 3;
             this.UDPTest.Text = "UDP Test";
             this.UDPTest.UseVisualStyleBackColor = true;
@@ -997,7 +1001,7 @@
             this.splitContainer3.Panel2.Controls.Add(this.label12);
             this.splitContainer3.Panel2.Controls.Add(this.btn_UDP_UL);
             this.splitContainer3.Panel2.Controls.Add(this.btn_UDP_DL);
-            this.splitContainer3.Size = new System.Drawing.Size(470, 469);
+            this.splitContainer3.Size = new System.Drawing.Size(470, 489);
             this.splitContainer3.SplitterDistance = 334;
             this.splitContainer3.TabIndex = 4;
             // 
@@ -1008,7 +1012,7 @@
             this.textBox_UDP_log.Multiline = true;
             this.textBox_UDP_log.Name = "textBox_UDP_log";
             this.textBox_UDP_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_UDP_log.Size = new System.Drawing.Size(334, 469);
+            this.textBox_UDP_log.Size = new System.Drawing.Size(334, 489);
             this.textBox_UDP_log.TabIndex = 0;
             // 
             // btn_udpTest3
@@ -1312,7 +1316,7 @@
             this.Server.Location = new System.Drawing.Point(4, 22);
             this.Server.Name = "Server";
             this.Server.Padding = new System.Windows.Forms.Padding(3);
-            this.Server.Size = new System.Drawing.Size(476, 475);
+            this.Server.Size = new System.Drawing.Size(476, 495);
             this.Server.TabIndex = 1;
             this.Server.Text = "Server";
             this.Server.UseVisualStyleBackColor = true;
@@ -1333,7 +1337,7 @@
             this.splitContainer2.Panel2.Controls.Add(this.label4);
             this.splitContainer2.Panel2.Controls.Add(this.numericUpDown_server_port);
             this.splitContainer2.Panel2.Controls.Add(this.button2);
-            this.splitContainer2.Size = new System.Drawing.Size(470, 469);
+            this.splitContainer2.Size = new System.Drawing.Size(470, 489);
             this.splitContainer2.SplitterDistance = 334;
             this.splitContainer2.TabIndex = 4;
             // 
@@ -1343,7 +1347,7 @@
             this.textBox_server_log.Location = new System.Drawing.Point(0, 0);
             this.textBox_server_log.Multiline = true;
             this.textBox_server_log.Name = "textBox_server_log";
-            this.textBox_server_log.Size = new System.Drawing.Size(334, 469);
+            this.textBox_server_log.Size = new System.Drawing.Size(334, 489);
             this.textBox_server_log.TabIndex = 0;
             // 
             // label4
@@ -1403,13 +1407,13 @@
             // 
             this.toolStripContainer1.ContentPanel.AutoScroll = true;
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tabControl1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(484, 501);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(484, 521);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.LeftToolStripPanelVisible = false;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
             this.toolStripContainer1.RightToolStripPanelVisible = false;
-            this.toolStripContainer1.Size = new System.Drawing.Size(484, 526);
+            this.toolStripContainer1.Size = new System.Drawing.Size(484, 546);
             this.toolStripContainer1.TabIndex = 5;
             this.toolStripContainer1.Text = "toolStripContainer1";
             this.toolStripContainer1.TopToolStripPanelVisible = false;
@@ -1427,10 +1431,14 @@
             this.toolStripSeparator2,
             this.toolStripLabel3,
             this.toolStripProgressBar3,
-            this.tsLabelTime});
+            this.tsLabelTime,
+            this.toolStripSeparator4,
+            this.Test_status_label,
+            this.toolStripSeparator3,
+            this.Test_status_label2});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(233, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(265, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // toolStripLabel2
@@ -1484,19 +1492,41 @@
             this.tsLabelTime.Name = "tsLabelTime";
             this.tsLabelTime.Size = new System.Drawing.Size(0, 22);
             // 
+            // Test_status_label
+            // 
+            this.Test_status_label.Name = "Test_status_label";
+            this.Test_status_label.Size = new System.Drawing.Size(10, 22);
+            this.Test_status_label.Text = " ";
+            // 
+            // Test_status_label2
+            // 
+            this.Test_status_label2.Name = "Test_status_label2";
+            this.Test_status_label2.Size = new System.Drawing.Size(10, 22);
+            this.Test_status_label2.Text = " ";
+            // 
             // timer1
             // 
             this.timer1.Interval = 301000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 526);
+            this.ClientSize = new System.Drawing.Size(484, 546);
             this.Controls.Add(this.toolStripContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(500, 565);
+            this.MinimumSize = new System.Drawing.Size(500, 585);
             this.Name = "Form1";
             this.Text = "Ninja tester";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -1673,6 +1703,10 @@
         private System.Windows.Forms.SplitContainer splitContainer8;
         private System.Windows.Forms.SplitContainer splitContainer9;
         private System.Windows.Forms.SplitContainer splitContainer10;
+        private System.Windows.Forms.ToolStripLabel Test_status_label;
+        private System.Windows.Forms.ToolStripLabel Test_status_label2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }
 
