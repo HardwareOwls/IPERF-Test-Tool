@@ -908,8 +908,8 @@ namespace ipref_gui_for_muliti_server_testing
                 {
                     client.Connect();
                     Console.WriteLine("SSH established");
-                    client.RunCommand("iperf3 -s -1");
-                    Console.WriteLine("iPerf started with: -s -1 ");
+                    client.RunCommand("iperf3 -s");
+                    Console.WriteLine("iPerf started with: -s");
                     client.Disconnect();
                     Console.WriteLine("SSH Closed");
                 }
