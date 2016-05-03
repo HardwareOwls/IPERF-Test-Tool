@@ -793,14 +793,26 @@ namespace ipref_gui_for_muliti_server_testing
 
         private void button9_Click(object sender, EventArgs e)
         {
-            Thread th = new Thread(() => test("tcp"));
-            th.Start();
+            if (toolStripProgressBar1.Value == 1)
+            {
+                MessageBox.Show("Testen er startet", "Error");
+            }
+            else
+            {
+                Thread th = new Thread(() => test("tcp"));
+                th.Start();
+            }
         }
         private void test(string prot)
         {
             Stopwatch sw = new Stopwatch();
             for (int i = 1; i < 31; i++)
             {
+                this.Invoke((MethodInvoker)delegate
+                {
+                    toolStripProgressBar1.Value = 1;
+                    toolStripProgressBar2.Value = 1;
+                });
                 shared_time_and_date = get_time_and_date();
                 if (textBox_TCP_IP_DNS.Text != "localhost")
                     startIperf();
@@ -809,11 +821,6 @@ namespace ipref_gui_for_muliti_server_testing
                     Console.WriteLine("iPerf started");
 
                 Thread.Sleep(1000);
-                this.Invoke((MethodInvoker)delegate
-                {
-                    toolStripProgressBar1.Value = 1;
-                    toolStripProgressBar2.Value = 1;
-                });
                 if (prot == "tcp")
                 {
                     arg = "-R -i " + numericUpDown_TCP_Interval.Value +
@@ -871,10 +878,10 @@ namespace ipref_gui_for_muliti_server_testing
                 this.Invoke((MethodInvoker)delegate
                 {
                     toolStripProgressBar1.Value = 0;
-                    toolStripProgressBar2.Value = 0;
+                    //toolStripProgressBar2.Value = 0;
                 });
                 Console.WriteLine("Thread sleeping");
-                Thread.Sleep(60000);
+                Thread.Sleep(2000);
                 Console.WriteLine("Thead slept");
                 if (!process.HasExited)
                 {
@@ -882,7 +889,15 @@ namespace ipref_gui_for_muliti_server_testing
                     Console.WriteLine("iPerf was killed");
 
                 }
+                Console.WriteLine("Thread sleeping");
+                Thread.Sleep(2000);
+                Console.WriteLine("Thead slept");
             }
+            this.Invoke((MethodInvoker)delegate
+            {
+                //toolStripProgressBar1.Value = 0;
+                toolStripProgressBar2.Value = 0;
+            });
             Console.WriteLine("Test done");
         }
         private void startIperf()
@@ -964,8 +979,15 @@ namespace ipref_gui_for_muliti_server_testing
 
         private void btn_udpTest1_Click(object sender, EventArgs e)
         {
-            Thread th = new Thread(() => test("udp"));
-            th.Start();
+            if (toolStripProgressBar1.Value == 1)
+            {
+                MessageBox.Show("Testen er startet", "Error");
+            }
+            else
+            {
+                Thread th = new Thread(() => test("udp"));
+                th.Start();
+            }
         }
     }
 }
