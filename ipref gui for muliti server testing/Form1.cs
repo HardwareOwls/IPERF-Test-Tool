@@ -152,7 +152,7 @@ namespace ipref_gui_for_muliti_server_testing
                     //Task task = Task.Run((void));
                     if (textBox_TCP_bitrate.Text == "0")
                     {
-                        arg = "-i " + numericUpDown_TCP_Interval.Value +
+                        arg = "-R -i " + numericUpDown_TCP_Interval.Value +
                         " -P " + numericUpDown_TCP_parallele_streams.Value +
                         " -l " + numericUpDown_TCP_pakke_storlse.Value +
                         " -c " + textBox_TCP_IP_DNS.Text +
@@ -161,7 +161,7 @@ namespace ipref_gui_for_muliti_server_testing
                     }
                     else
                     {
-                        arg = "-i " + numericUpDown_TCP_Interval.Value +
+                        arg = "-R -i " + numericUpDown_TCP_Interval.Value +
                         " -P " + numericUpDown_TCP_parallele_streams.Value +
                         " -l " + numericUpDown_TCP_pakke_storlse.Value +
                         " -b " + textBox_TCP_bitrate.Text +
