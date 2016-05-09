@@ -859,7 +859,7 @@ namespace ipref_gui_for_muliti_server_testing
                 {
                     if (prot == "tcp")
                     {
-                        ping(textBox_TCP_IP_DNS.Text, "1", "ping_1_" + textBox_TCP_IP_DNS.Text + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
+                        ping(textBox_TCP_IP_DNS.Text, "1", "ping_1_" + textBox_TCP_IP_DNS.Text + " " + prot + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
                         Console.WriteLine("Ping sent: " + j);
                         this.Invoke((MethodInvoker)delegate
                         {
@@ -871,7 +871,7 @@ namespace ipref_gui_for_muliti_server_testing
                     }
                     if (prot == "udp")
                     {
-                        ping(textBox_UDP_IP_DNS.Text, "1", "ping_1_" + textBox_UDP_IP_DNS.Text + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
+                        ping(textBox_UDP_IP_DNS.Text, "1", "ping_1_" + textBox_UDP_IP_DNS.Text + " " + prot + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
                         Console.WriteLine("Ping sent: " + j);
                         this.Invoke((MethodInvoker)delegate
                         {
