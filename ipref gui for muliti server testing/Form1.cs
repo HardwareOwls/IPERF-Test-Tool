@@ -1048,69 +1048,72 @@ namespace ipref_gui_for_muliti_server_testing
                 }
                 else if (testnumber == 2)
                 {
-                    for (int j = 0; j < 10000; j++)
+                    if (i == 1 || i == 2 || i == 5 || i == 10 || i == 15 || i == 20 || i == 25 || i == 30)
                     {
-                        if (prot == "tcp")
+                        for (int j = 0; j < 10000; j++)
                         {
-                            if (i == 1)
-                            {
-                                ping(textBox_TCP_IP_DNS.Text, "1", "ping test 2 " + textBox_TCP_IP_DNS.Text + " " + prot + " +" + 0 + " M " + prot, false);
-                            }
-                            else if (i == 2)
-                            {
-                                ping(textBox_TCP_IP_DNS.Text, "1", "ping test 2 " + textBox_TCP_IP_DNS.Text + " " + prot + " +" + 1 + " M " + prot, false);
-                            }
-                            else
-                            {
-                                ping(textBox_TCP_IP_DNS.Text, "1", "ping test 2 " + textBox_TCP_IP_DNS.Text + " " + prot + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
-                            }
-                            
-                            Console.WriteLine("Ping sent: " + j);
-                            this.Invoke((MethodInvoker)delegate
+                            if (prot == "tcp")
                             {
                                 if (i == 1)
                                 {
-                                    Test_status_label.Text = "Speed " + 0 + "Mbit";
-                                    Test_status_label2.Text = "Ping sent: " + j;
+                                    ping(textBox_TCP_IP_DNS.Text, "1", "ping test 2 " + textBox_TCP_IP_DNS.Text + " " + prot + " +" + 0 + " M " + prot, false);
                                 }
                                 else if (i == 2)
                                 {
-                                    Test_status_label.Text = "Speed " + 1 + "Mbit";
-                                    Test_status_label2.Text = "Ping sent: " + j;
+                                    ping(textBox_TCP_IP_DNS.Text, "1", "ping test 2 " + textBox_TCP_IP_DNS.Text + " " + prot + " +" + 1 + " M " + prot, false);
                                 }
                                 else
                                 {
-                                    Test_status_label.Text = "Speed " + i + "Mbit";
-                                    Test_status_label2.Text = "Ping sent: " + j;
+                                    ping(textBox_TCP_IP_DNS.Text, "1", "ping test 2 " + textBox_TCP_IP_DNS.Text + " " + prot + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
                                 }
-                            });
-                            Thread.Sleep(250);
-                            Console.WriteLine("Slept");
-                        }
-                        if (prot == "udp")
-                        {
-                            ping(textBox_UDP_IP_DNS.Text, "1", "ping test 2 " + textBox_UDP_IP_DNS.Text + " " + prot + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
-                            Console.WriteLine("Ping sent: " + j);
-                            this.Invoke((MethodInvoker)delegate
+
+                                Console.WriteLine("Ping sent: " + j);
+                                this.Invoke((MethodInvoker)delegate
+                                {
+                                    if (i == 1)
+                                    {
+                                        Test_status_label.Text = "Speed " + 0 + "Mbit";
+                                        Test_status_label2.Text = "Ping sent: " + j;
+                                    }
+                                    else if (i == 2)
+                                    {
+                                        Test_status_label.Text = "Speed " + 1 + "Mbit";
+                                        Test_status_label2.Text = "Ping sent: " + j;
+                                    }
+                                    else
+                                    {
+                                        Test_status_label.Text = "Speed " + i + "Mbit";
+                                        Test_status_label2.Text = "Ping sent: " + j;
+                                    }
+                                });
+                                Thread.Sleep(250);
+                                Console.WriteLine("Slept");
+                            }
+                            if (prot == "udp")
                             {
-                                if (i == 1)
+                                ping(textBox_UDP_IP_DNS.Text, "1", "ping test 2 " + textBox_UDP_IP_DNS.Text + " " + prot + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
+                                Console.WriteLine("Ping sent: " + j);
+                                this.Invoke((MethodInvoker)delegate
                                 {
-                                    Test_status_label.Text = "Speed " + 0 + "Mbit";
-                                    Test_status_label2.Text = "Ping sent: " + j;
-                                }
-                                else if (i == 2)
-                                {
-                                    Test_status_label.Text = "Speed " + 1 + "Mbit";
-                                    Test_status_label2.Text = "Ping sent: " + j;
-                                }
-                                else
-                                {
-                                    Test_status_label.Text = "Speed " + i + "Mbit";
-                                    Test_status_label2.Text = "Ping sent: " + j;
-                                }
-                            });
-                            Thread.Sleep(250);
-                            Console.WriteLine("Slept");
+                                    if (i == 1)
+                                    {
+                                        Test_status_label.Text = "Speed " + 0 + "Mbit";
+                                        Test_status_label2.Text = "Ping sent: " + j;
+                                    }
+                                    else if (i == 2)
+                                    {
+                                        Test_status_label.Text = "Speed " + 1 + "Mbit";
+                                        Test_status_label2.Text = "Ping sent: " + j;
+                                    }
+                                    else
+                                    {
+                                        Test_status_label.Text = "Speed " + i + "Mbit";
+                                        Test_status_label2.Text = "Ping sent: " + j;
+                                    }
+                                });
+                                Thread.Sleep(250);
+                                Console.WriteLine("Slept");
+                            }
                         }
                     }
                 }
