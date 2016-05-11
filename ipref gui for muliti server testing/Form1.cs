@@ -799,11 +799,77 @@ namespace ipref_gui_for_muliti_server_testing
             }
             else
             {
-                Thread th = new Thread(() => test("tcp"));
+                Thread th = new Thread(() => test("tcp", 1));
                 th.Start();
             }
         }
-        private void test(string prot)
+
+        private void btn_udpTest1_Click(object sender, EventArgs e)
+        {
+            if (toolStripProgressBar1.Value == 1)
+            {
+                MessageBox.Show("Testen er startet", "Error");
+            }
+            else
+            {
+                Thread th = new Thread(() => test("udp", 1));
+                th.Start();
+            }
+        }
+
+        private void button_test2_tcp_Click(object sender, EventArgs e)
+        {
+            if (toolStripProgressBar1.Value == 1)
+            {
+                MessageBox.Show("Testen er startet", "Error");
+            }
+            else
+            {
+                Thread th = new Thread(() => test("tcp", 2));
+                th.Start();
+            }
+        }
+
+        private void button_test2_udp_Click(object sender, EventArgs e)
+        {
+            if (toolStripProgressBar1.Value == 1)
+            {
+                MessageBox.Show("Testen er startet", "Error");
+            }
+            else
+            {
+                Thread th = new Thread(() => test("udp", 2));
+                th.Start();
+            }
+        }
+
+        private void button_test3_tcp_Click(object sender, EventArgs e)
+        {
+            if (toolStripProgressBar1.Value == 1)
+            {
+                MessageBox.Show("Testen er startet", "Error");
+            }
+            else
+            {
+                Thread th = new Thread(() => test("tcp", 3));
+                th.Start();
+            }
+        }
+
+        private void button_test3_udp_Click(object sender, EventArgs e)
+        {
+            if (toolStripProgressBar1.Value == 1)
+            {
+                MessageBox.Show("Testen er startet", "Error");
+            }
+            else
+            {
+                Thread th = new Thread(() => test("udp", 3));
+                th.Start();
+            }
+        }
+
+        private void test(string prot, int testnumber)
         {
             Stopwatch sw = new Stopwatch();
             for (int i = 1; i < 31; i++)
@@ -821,67 +887,233 @@ namespace ipref_gui_for_muliti_server_testing
                     Console.WriteLine("iPerf started");
 
                 Thread.Sleep(1000);
-                if (prot == "tcp")
-                {
-                    arg = "-R -i " + numericUpDown_TCP_Interval.Value +
-                    " -P " + numericUpDown_TCP_parallele_streams.Value +
-                    " -l " + numericUpDown_TCP_pakke_storlse.Value +
-                    " -b " + i + "M" +
-                    " -c " + textBox_TCP_IP_DNS.Text +
-                    " -p " + numericUpDown_TCP_Port.Value +
-                    " -t 500";
-                }
-                if (prot == "udp")
-                {
-                    arg = "-R -u" +
-                        " -i " + numericUpDown_UDP_Interval.Value +
-                        " -P " + numericUpDown_UDP_parallele_streams.Value +
-                        " -l " + numericUpDown_UDP_pakke_storlse.Value +
-                        " -b " + i + "M" +
-                        " -c " + textBox_UDP_IP_DNS.Text +
-                        " -p " + numericUpDown_UDP_Port.Value +
-                        " -t 500";
-                }
-                protocol = prot;
-                sw.Start();
-                //* Create your Process
+
                 Process process = new Process();
-                process.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\iperf3.exe";
-                process.StartInfo.Arguments = arg;
-                process.StartInfo.CreateNoWindow = true;
-                process.StartInfo.UseShellExecute = false;
-                process.StartInfo.RedirectStandardOutput = true;
-                process.StartInfo.RedirectStandardError = true;
-                process.Start();
-                
-                Console.WriteLine("Ping started!");
-                for (int j = 0; j < 200; j++)
+
+                if (testnumber == 1)
                 {
                     if (prot == "tcp")
                     {
-                        ping(textBox_TCP_IP_DNS.Text, "1", "ping_1_" + textBox_TCP_IP_DNS.Text + " " + prot + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
-                        Console.WriteLine("Ping sent: " + j);
-                        this.Invoke((MethodInvoker)delegate
+                        arg = "-R -i " + numericUpDown_TCP_Interval.Value +
+                        " -P " + numericUpDown_TCP_parallele_streams.Value +
+                        " -l " + numericUpDown_TCP_pakke_storlse.Value +
+                        " -b " + i + "M" +
+                        " -c " + textBox_TCP_IP_DNS.Text +
+                        " -p " + numericUpDown_TCP_Port.Value +
+                        " -t 3000";
+                    }
+                    else if (prot == "udp")
+                    {
+                        arg = "-R -u" +
+                            " -i " + numericUpDown_UDP_Interval.Value +
+                            " -P " + numericUpDown_UDP_parallele_streams.Value +
+                            " -l " + numericUpDown_UDP_pakke_storlse.Value +
+                            " -b " + i + "M" +
+                            " -c " + textBox_UDP_IP_DNS.Text +
+                            " -p " + numericUpDown_UDP_Port.Value +
+                            " -t 3000";
+                    }
+
+                    protocol = prot;
+                    sw.Start();
+                    //* Create your Process
+                    process.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\iperf3.exe";
+                    process.StartInfo.Arguments = arg;
+                    process.StartInfo.CreateNoWindow = true;
+                    process.StartInfo.UseShellExecute = false;
+                    process.StartInfo.RedirectStandardOutput = true;
+                    process.StartInfo.RedirectStandardError = true;
+                    process.Start();
+                }
+                else if (testnumber == 2)
+                {
+                    if (i == 1 || i == 2 || i == 5 || i == 10 || i == 15 || i == 20 || i == 25 || i == 30)
+                    {
+                        if (i == 1)
                         {
-                            Test_status_label.Text = "Speed " + i + "Mbit";
-                            Test_status_label2.Text = "Ping sent: " + j;
-                        });
-                        Thread.Sleep(1000);
-                        Console.WriteLine("Slept");
+
+                        }
+                        else if (i == 2)
+                        {
+                            if (prot == "tcp")
+                            {
+                                arg = "-R -i " + numericUpDown_TCP_Interval.Value +
+                                " -P " + numericUpDown_TCP_parallele_streams.Value +
+                                " -l " + numericUpDown_TCP_pakke_storlse.Value +
+                                " -b " + 1 + "M" +
+                                " -c " + textBox_TCP_IP_DNS.Text +
+                                " -p " + numericUpDown_TCP_Port.Value +
+                                " -t 3000";
+                            }
+                            else if (prot == "udp")
+                            {
+                                arg = "-R -u" +
+                                    " -i " + numericUpDown_UDP_Interval.Value +
+                                    " -P " + numericUpDown_UDP_parallele_streams.Value +
+                                    " -l " + numericUpDown_UDP_pakke_storlse.Value +
+                                    " -b " + 1 + "M" +
+                                    " -c " + textBox_UDP_IP_DNS.Text +
+                                    " -p " + numericUpDown_UDP_Port.Value +
+                                    " -t 3000";
+                            }
+                            protocol = prot;
+                            sw.Start();
+                            //* Create your Process
+                            process.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\iperf3.exe";
+                            process.StartInfo.Arguments = arg;
+                            process.StartInfo.CreateNoWindow = true;
+                            process.StartInfo.UseShellExecute = false;
+                            process.StartInfo.RedirectStandardOutput = true;
+                            process.StartInfo.RedirectStandardError = true;
+                            process.Start();
+                        }
+                        else
+                        {
+                            if (prot == "tcp")
+                            {
+                                arg = "-R -i " + numericUpDown_TCP_Interval.Value +
+                                " -P " + numericUpDown_TCP_parallele_streams.Value +
+                                " -l " + numericUpDown_TCP_pakke_storlse.Value +
+                                " -b " + i + "M" +
+                                " -c " + textBox_TCP_IP_DNS.Text +
+                                " -p " + numericUpDown_TCP_Port.Value +
+                                " -t 3000";
+                            }
+                            else if (prot == "udp")
+                            {
+                                arg = "-R -u" +
+                                    " -i " + numericUpDown_UDP_Interval.Value +
+                                    " -P " + numericUpDown_UDP_parallele_streams.Value +
+                                    " -l " + numericUpDown_UDP_pakke_storlse.Value +
+                                    " -b " + i + "M" +
+                                    " -c " + textBox_UDP_IP_DNS.Text +
+                                    " -p " + numericUpDown_UDP_Port.Value +
+                                    " -t 3000";
+                            }
+                            protocol = prot;
+                            sw.Start();
+                            //* Create your Process
+                            process.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\iperf3.exe";
+                            process.StartInfo.Arguments = arg;
+                            process.StartInfo.CreateNoWindow = true;
+                            process.StartInfo.UseShellExecute = false;
+                            process.StartInfo.RedirectStandardOutput = true;
+                            process.StartInfo.RedirectStandardError = true;
+                            process.Start();
+                        }
+                    }
+                }
+                else if (testnumber == 3)
+                {
+                    if (prot == "tcp")
+                    {
+
                     }
                     if (prot == "udp")
                     {
-                        ping(textBox_UDP_IP_DNS.Text, "1", "ping_1_" + textBox_UDP_IP_DNS.Text + " " + prot + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
-                        Console.WriteLine("Ping sent: " + j);
-                        this.Invoke((MethodInvoker)delegate
-                        {
-                            Test_status_label.Text = "Speed " + i + "Mbit";
-                            Test_status_label2.Text = "Ping sent: " + j;
-                        });
-                        Thread.Sleep(1000);
-                        Console.WriteLine("Slept");
+
                     }
                 }
+                
+                Console.WriteLine("Ping started!");
+                if (testnumber == 1)
+                {
+                    for (int j = 0; j < 200; j++)
+                    {
+                        if (prot == "tcp")
+                        {
+                            ping(textBox_TCP_IP_DNS.Text, "1", "ping test 1 " + textBox_TCP_IP_DNS.Text + " " + prot + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
+                            Console.WriteLine("Ping sent: " + j);
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                Test_status_label.Text = "Speed " + i + "Mbit";
+                                Test_status_label2.Text = "Ping sent: " + j;
+                            });
+                            Thread.Sleep(1000);
+                            Console.WriteLine("Slept");
+                        }
+                        if (prot == "udp")
+                        {
+                            ping(textBox_UDP_IP_DNS.Text, "1", "ping test 1 " + textBox_UDP_IP_DNS.Text + " " + prot + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
+                            Console.WriteLine("Ping sent: " + j);
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                Test_status_label.Text = "Speed " + i + "Mbit";
+                                Test_status_label2.Text = "Ping sent: " + j;
+                            });
+                            Thread.Sleep(1000);
+                            Console.WriteLine("Slept");
+                        }
+                    }
+                }
+                else if (testnumber == 2)
+                {
+                    for (int j = 0; j < 10000; j++)
+                    {
+                        if (prot == "tcp")
+                        {
+                            ping(textBox_TCP_IP_DNS.Text, "1", "ping test 2 " + textBox_TCP_IP_DNS.Text + " " + prot + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
+                            Console.WriteLine("Ping sent: " + j);
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                if (i == 1)
+                                {
+                                    Test_status_label.Text = "Speed " + 0 + "Mbit";
+                                    Test_status_label2.Text = "Ping sent: " + j;
+                                }
+                                else if (i == 2)
+                                {
+                                    Test_status_label.Text = "Speed " + 1 + "Mbit";
+                                    Test_status_label2.Text = "Ping sent: " + j;
+                                }
+                                else
+                                {
+                                    Test_status_label.Text = "Speed " + i + "Mbit";
+                                    Test_status_label2.Text = "Ping sent: " + j;
+                                }
+                            });
+                            Thread.Sleep(250);
+                            Console.WriteLine("Slept");
+                        }
+                        if (prot == "udp")
+                        {
+                            ping(textBox_UDP_IP_DNS.Text, "1", "ping test 2 " + textBox_UDP_IP_DNS.Text + " " + prot + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
+                            Console.WriteLine("Ping sent: " + j);
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                if (i == 1)
+                                {
+                                    Test_status_label.Text = "Speed " + 0 + "Mbit";
+                                    Test_status_label2.Text = "Ping sent: " + j;
+                                }
+                                else if (i == 2)
+                                {
+                                    Test_status_label.Text = "Speed " + 1 + "Mbit";
+                                    Test_status_label2.Text = "Ping sent: " + j;
+                                }
+                                else
+                                {
+                                    Test_status_label.Text = "Speed " + i + "Mbit";
+                                    Test_status_label2.Text = "Ping sent: " + j;
+                                }
+                            });
+                            Thread.Sleep(250);
+                            Console.WriteLine("Slept");
+                        }
+                    }
+                }
+                else if (testnumber == 3)
+                {
+                    if (prot == "tcp")
+                    {
+
+                    }
+                    if (prot == "udp")
+                    {
+
+                    }
+                }
+
                 Console.WriteLine("Ping Done!" + sw.Elapsed.ToString());
                
                 sw.Reset();
@@ -989,29 +1221,6 @@ namespace ipref_gui_for_muliti_server_testing
                 if (debug)
                     MessageBox.Show(e.ToString(), "Error");
             }
-        }
-
-        private void btn_udpTest1_Click(object sender, EventArgs e)
-        {
-            if (toolStripProgressBar1.Value == 1)
-            {
-                MessageBox.Show("Testen er startet", "Error");
-            }
-            else
-            {
-                Thread th = new Thread(() => test("udp"));
-                th.Start();
-            }
-        }
-
-        private void label26_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripLabel4_Click(object sender, EventArgs e)
-        {
-
-        }
+        }       
     }
 }

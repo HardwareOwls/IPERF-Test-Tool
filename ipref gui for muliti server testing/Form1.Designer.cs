@@ -32,9 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.textBox_TCP_log = new System.Windows.Forms.TextBox();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.button_test3_tcp = new System.Windows.Forms.Button();
+            this.button_test2_tcp = new System.Windows.Forms.Button();
+            this.button_test1_tcp = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.numericUpDown_TCP_runtime = new System.Windows.Forms.NumericUpDown();
@@ -85,9 +85,9 @@
             this.UDPTest = new System.Windows.Forms.TabPage();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.textBox_UDP_log = new System.Windows.Forms.TextBox();
-            this.btn_udpTest3 = new System.Windows.Forms.Button();
-            this.btn_udpTest2 = new System.Windows.Forms.Button();
-            this.btn_udpTest1 = new System.Windows.Forms.Button();
+            this.button_test3_udp = new System.Windows.Forms.Button();
+            this.button_test2_udp = new System.Windows.Forms.Button();
+            this.button_test1_udp = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.numericUpDown_UDP_runtime = new System.Windows.Forms.NumericUpDown();
@@ -204,9 +204,9 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.button11);
-            this.splitContainer1.Panel2.Controls.Add(this.button10);
-            this.splitContainer1.Panel2.Controls.Add(this.button9);
+            this.splitContainer1.Panel2.Controls.Add(this.button_test3_tcp);
+            this.splitContainer1.Panel2.Controls.Add(this.button_test2_tcp);
+            this.splitContainer1.Panel2.Controls.Add(this.button_test1_tcp);
             this.splitContainer1.Panel2.Controls.Add(this.button8);
             this.splitContainer1.Panel2.Controls.Add(this.label16);
             this.splitContainer1.Panel2.Controls.Add(this.numericUpDown_TCP_runtime);
@@ -239,41 +239,42 @@
             this.textBox_TCP_log.Size = new System.Drawing.Size(334, 489);
             this.textBox_TCP_log.TabIndex = 0;
             // 
-            // button11
+            // button_test3_tcp
             // 
-            this.button11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button11.Enabled = false;
-            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.Location = new System.Drawing.Point(0, 415);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(132, 23);
-            this.button11.TabIndex = 40;
-            this.button11.Text = "Test 3";
-            this.button11.UseVisualStyleBackColor = true;
+            this.button_test3_tcp.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button_test3_tcp.Enabled = false;
+            this.button_test3_tcp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_test3_tcp.Location = new System.Drawing.Point(0, 415);
+            this.button_test3_tcp.Name = "button_test3_tcp";
+            this.button_test3_tcp.Size = new System.Drawing.Size(132, 23);
+            this.button_test3_tcp.TabIndex = 40;
+            this.button_test3_tcp.Text = "Test 3";
+            this.button_test3_tcp.UseVisualStyleBackColor = true;
+            this.button_test3_tcp.Click += new System.EventHandler(this.button_test3_tcp_Click);
             // 
-            // button10
+            // button_test2_tcp
             // 
-            this.button10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button10.Enabled = false;
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Location = new System.Drawing.Point(0, 392);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(132, 23);
-            this.button10.TabIndex = 39;
-            this.button10.Text = "Test 2";
-            this.button10.UseVisualStyleBackColor = true;
+            this.button_test2_tcp.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button_test2_tcp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_test2_tcp.Location = new System.Drawing.Point(0, 392);
+            this.button_test2_tcp.Name = "button_test2_tcp";
+            this.button_test2_tcp.Size = new System.Drawing.Size(132, 23);
+            this.button_test2_tcp.TabIndex = 39;
+            this.button_test2_tcp.Text = "Test 2";
+            this.button_test2_tcp.UseVisualStyleBackColor = true;
+            this.button_test2_tcp.Click += new System.EventHandler(this.button_test2_tcp_Click);
             // 
-            // button9
+            // button_test1_tcp
             // 
-            this.button9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Location = new System.Drawing.Point(0, 369);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(132, 23);
-            this.button9.TabIndex = 38;
-            this.button9.Text = "Test 1";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.button_test1_tcp.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button_test1_tcp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_test1_tcp.Location = new System.Drawing.Point(0, 369);
+            this.button_test1_tcp.Name = "button_test1_tcp";
+            this.button_test1_tcp.Size = new System.Drawing.Size(132, 23);
+            this.button_test1_tcp.TabIndex = 38;
+            this.button_test1_tcp.Text = "Test 1";
+            this.button_test1_tcp.UseVisualStyleBackColor = true;
+            this.button_test1_tcp.Click += new System.EventHandler(this.button9_Click);
             // 
             // button8
             // 
@@ -980,9 +981,9 @@
             // 
             // splitContainer3.Panel2
             // 
-            this.splitContainer3.Panel2.Controls.Add(this.btn_udpTest3);
-            this.splitContainer3.Panel2.Controls.Add(this.btn_udpTest2);
-            this.splitContainer3.Panel2.Controls.Add(this.btn_udpTest1);
+            this.splitContainer3.Panel2.Controls.Add(this.button_test3_udp);
+            this.splitContainer3.Panel2.Controls.Add(this.button_test2_udp);
+            this.splitContainer3.Panel2.Controls.Add(this.button_test1_udp);
             this.splitContainer3.Panel2.Controls.Add(this.button14);
             this.splitContainer3.Panel2.Controls.Add(this.label14);
             this.splitContainer3.Panel2.Controls.Add(this.numericUpDown_UDP_runtime);
@@ -1015,41 +1016,42 @@
             this.textBox_UDP_log.Size = new System.Drawing.Size(334, 489);
             this.textBox_UDP_log.TabIndex = 0;
             // 
-            // btn_udpTest3
+            // button_test3_udp
             // 
-            this.btn_udpTest3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_udpTest3.Enabled = false;
-            this.btn_udpTest3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_udpTest3.Location = new System.Drawing.Point(0, 415);
-            this.btn_udpTest3.Name = "btn_udpTest3";
-            this.btn_udpTest3.Size = new System.Drawing.Size(132, 23);
-            this.btn_udpTest3.TabIndex = 45;
-            this.btn_udpTest3.Text = "Test 3";
-            this.btn_udpTest3.UseVisualStyleBackColor = true;
+            this.button_test3_udp.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button_test3_udp.Enabled = false;
+            this.button_test3_udp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_test3_udp.Location = new System.Drawing.Point(0, 415);
+            this.button_test3_udp.Name = "button_test3_udp";
+            this.button_test3_udp.Size = new System.Drawing.Size(132, 23);
+            this.button_test3_udp.TabIndex = 45;
+            this.button_test3_udp.Text = "Test 3";
+            this.button_test3_udp.UseVisualStyleBackColor = true;
+            this.button_test3_udp.Click += new System.EventHandler(this.button_test3_udp_Click);
             // 
-            // btn_udpTest2
+            // button_test2_udp
             // 
-            this.btn_udpTest2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_udpTest2.Enabled = false;
-            this.btn_udpTest2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_udpTest2.Location = new System.Drawing.Point(0, 392);
-            this.btn_udpTest2.Name = "btn_udpTest2";
-            this.btn_udpTest2.Size = new System.Drawing.Size(132, 23);
-            this.btn_udpTest2.TabIndex = 44;
-            this.btn_udpTest2.Text = "Test 2";
-            this.btn_udpTest2.UseVisualStyleBackColor = true;
+            this.button_test2_udp.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button_test2_udp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_test2_udp.Location = new System.Drawing.Point(0, 392);
+            this.button_test2_udp.Name = "button_test2_udp";
+            this.button_test2_udp.Size = new System.Drawing.Size(132, 23);
+            this.button_test2_udp.TabIndex = 44;
+            this.button_test2_udp.Text = "Test 2";
+            this.button_test2_udp.UseVisualStyleBackColor = true;
+            this.button_test2_udp.Click += new System.EventHandler(this.button_test2_udp_Click);
             // 
-            // btn_udpTest1
+            // button_test1_udp
             // 
-            this.btn_udpTest1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_udpTest1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_udpTest1.Location = new System.Drawing.Point(0, 369);
-            this.btn_udpTest1.Name = "btn_udpTest1";
-            this.btn_udpTest1.Size = new System.Drawing.Size(132, 23);
-            this.btn_udpTest1.TabIndex = 43;
-            this.btn_udpTest1.Text = "Test 1";
-            this.btn_udpTest1.UseVisualStyleBackColor = true;
-            this.btn_udpTest1.Click += new System.EventHandler(this.btn_udpTest1_Click);
+            this.button_test1_udp.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button_test1_udp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_test1_udp.Location = new System.Drawing.Point(0, 369);
+            this.button_test1_udp.Name = "button_test1_udp";
+            this.button_test1_udp.Size = new System.Drawing.Size(132, 23);
+            this.button_test1_udp.TabIndex = 43;
+            this.button_test1_udp.Text = "Test 1";
+            this.button_test1_udp.UseVisualStyleBackColor = true;
+            this.button_test1_udp.Click += new System.EventHandler(this.btn_udpTest1_Click);
             // 
             // button14
             // 
@@ -1671,16 +1673,16 @@
         private System.Windows.Forms.Button btn_UDP_UL;
         private System.Windows.Forms.Button btn_UDP_DL;
         private System.Windows.Forms.NumericUpDown numericUpDown_TCP_pakke_storlse;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button_test3_tcp;
+        private System.Windows.Forms.Button button_test2_tcp;
+        private System.Windows.Forms.Button button_test1_tcp;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.NumericUpDown numericUpDown_UDP_pakke_storlse;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Button btn_udpTest3;
-        private System.Windows.Forms.Button btn_udpTest2;
-        private System.Windows.Forms.Button btn_udpTest1;
+        private System.Windows.Forms.Button button_test3_udp;
+        private System.Windows.Forms.Button button_test2_udp;
+        private System.Windows.Forms.Button button_test1_udp;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ProgressBar progressBar1;
