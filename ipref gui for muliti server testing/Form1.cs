@@ -1052,7 +1052,19 @@ namespace ipref_gui_for_muliti_server_testing
                     {
                         if (prot == "tcp")
                         {
-                            ping(textBox_TCP_IP_DNS.Text, "1", "ping test 2 " + textBox_TCP_IP_DNS.Text + " " + prot + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
+                            if (i == 1)
+                            {
+                                ping(textBox_TCP_IP_DNS.Text, "1", "ping test 2 " + textBox_TCP_IP_DNS.Text + " " + prot + " +" + 0 + " M " + prot, false);
+                            }
+                            else if (i == 2)
+                            {
+                                ping(textBox_TCP_IP_DNS.Text, "1", "ping test 2 " + textBox_TCP_IP_DNS.Text + " " + prot + " +" + 1 + " M " + prot, false);
+                            }
+                            else
+                            {
+                                ping(textBox_TCP_IP_DNS.Text, "1", "ping test 2 " + textBox_TCP_IP_DNS.Text + " " + prot + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false);
+                            }
+                            
                             Console.WriteLine("Ping sent: " + j);
                             this.Invoke((MethodInvoker)delegate
                             {
@@ -1125,7 +1137,11 @@ namespace ipref_gui_for_muliti_server_testing
                 Console.WriteLine("Thread sleeping");
                 Thread.Sleep(2000);
                 Console.WriteLine("Thead slept");
-                if (!process.HasExited)
+                if (testnumber == 2 || i == 1)
+                {
+
+                }
+                else if (!process.HasExited)
                 {
                     process.Kill();
                     Console.WriteLine("iPerf was killed");
