@@ -900,7 +900,7 @@ namespace ipref_gui_for_muliti_server_testing
                         " -b " + i + "M" +
                         " -c " + textBox_TCP_IP_DNS.Text +
                         " -p " + numericUpDown_TCP_Port.Value +
-                        " -t 3000";
+                        " -t 30000";
                     }
                     else if (prot == "udp")
                     {
@@ -911,7 +911,7 @@ namespace ipref_gui_for_muliti_server_testing
                             " -b " + i + "M" +
                             " -c " + textBox_UDP_IP_DNS.Text +
                             " -p " + numericUpDown_UDP_Port.Value +
-                            " -t 3000";
+                            " -t 30000";
                     }
 
                     protocol = prot;
@@ -943,7 +943,7 @@ namespace ipref_gui_for_muliti_server_testing
                                 " -b " + 1 + "M" +
                                 " -c " + textBox_TCP_IP_DNS.Text +
                                 " -p " + numericUpDown_TCP_Port.Value +
-                                " -t 3000";
+                                " -t 30000";
                             }
                             else if (prot == "udp")
                             {
@@ -954,7 +954,7 @@ namespace ipref_gui_for_muliti_server_testing
                                     " -b " + 1 + "M" +
                                     " -c " + textBox_UDP_IP_DNS.Text +
                                     " -p " + numericUpDown_UDP_Port.Value +
-                                    " -t 3000";
+                                    " -t 30000";
                             }
                             protocol = prot;
                             sw.Start();
@@ -977,7 +977,7 @@ namespace ipref_gui_for_muliti_server_testing
                                 " -b " + i + "M" +
                                 " -c " + textBox_TCP_IP_DNS.Text +
                                 " -p " + numericUpDown_TCP_Port.Value +
-                                " -t 3000";
+                                " -t 30000";
                             }
                             else if (prot == "udp")
                             {
@@ -988,7 +988,7 @@ namespace ipref_gui_for_muliti_server_testing
                                     " -b " + i + "M" +
                                     " -c " + textBox_UDP_IP_DNS.Text +
                                     " -p " + numericUpDown_UDP_Port.Value +
-                                    " -t 3000";
+                                    " -t 30000";
                             }
                             protocol = prot;
                             sw.Start();
