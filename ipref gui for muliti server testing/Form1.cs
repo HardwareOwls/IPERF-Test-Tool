@@ -881,11 +881,14 @@ namespace ipref_gui_for_muliti_server_testing
                 });
                 shared_time_and_date = get_time_and_date();
                 if (textBox_TCP_IP_DNS.Text != "localhost")
+                {
                     startIperf();
-               
-                if (debug)
-                    Console.WriteLine("iPerf started");
-
+                    if (debug)
+                    {
+                        Console.WriteLine("iPerf started");
+                    }
+                }
+                
                 Thread.Sleep(1000);
 
                 Process process = new Process();
@@ -1191,7 +1194,6 @@ namespace ipref_gui_for_muliti_server_testing
                 }
                 catch (Exception)
                 {
-
                     //throw;
                 }
             }
