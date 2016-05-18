@@ -941,12 +941,13 @@ namespace ipref_gui_for_muliti_server_testing
                             if (prot == "tcp")
                             {
                                 arg = "-R -i " + numericUpDown_TCP_Interval.Value +
-                                " -P " + numericUpDown_TCP_parallele_streams.Value +
-                                " -l " + numericUpDown_TCP_pakke_storlse.Value +
-                                " -b " + 1 + "M" +
-                                " -c " + textBox_TCP_IP_DNS.Text +
-                                " -p " + numericUpDown_TCP_Port.Value +
-                                " -t 86400";
+                                    " -P " + numericUpDown_TCP_parallele_streams.Value +
+                                    " -l " + numericUpDown_TCP_pakke_storlse.Value +
+                                    " -b " + 1 + "M" +
+                                    " -c " + textBox_TCP_IP_DNS.Text +
+                                    " -p " + numericUpDown_TCP_Port.Value +
+                                    " -t 86400" +
+                                    "--logfile iperf3log - " + shared_time_and_date;
                             }
                             else if (prot == "udp")
                             {
@@ -957,7 +958,8 @@ namespace ipref_gui_for_muliti_server_testing
                                     " -b " + 1 + "M" +
                                     " -c " + textBox_UDP_IP_DNS.Text +
                                     " -p " + numericUpDown_UDP_Port.Value +
-                                    " -t 86400";
+                                    " -t 86400" +
+                                    "--logfile iperf3log - " + shared_time_and_date;
                             }
                             protocol = prot;
                             sw.Start();
@@ -975,12 +977,13 @@ namespace ipref_gui_for_muliti_server_testing
                             if (prot == "tcp")
                             {
                                 arg = "-R -i " + numericUpDown_TCP_Interval.Value +
-                                " -P " + numericUpDown_TCP_parallele_streams.Value +
-                                " -l " + numericUpDown_TCP_pakke_storlse.Value +
-                                " -b " + i + "M" +
-                                " -c " + textBox_TCP_IP_DNS.Text +
-                                " -p " + numericUpDown_TCP_Port.Value +
-                                " -t 86400";
+                                    " -P " + numericUpDown_TCP_parallele_streams.Value +
+                                    " -l " + numericUpDown_TCP_pakke_storlse.Value +
+                                    " -b " + i + "M" +
+                                    " -c " + textBox_TCP_IP_DNS.Text +
+                                    " -p " + numericUpDown_TCP_Port.Value +
+                                    " -t 86400" +
+                                    "--logfile iperf3log - " + shared_time_and_date;
                             }
                             else if (prot == "udp")
                             {
@@ -991,7 +994,8 @@ namespace ipref_gui_for_muliti_server_testing
                                     " -b " + i + "M" +
                                     " -c " + textBox_UDP_IP_DNS.Text +
                                     " -p " + numericUpDown_UDP_Port.Value +
-                                    " -t 86400";
+                                    " -t 86400" +
+                                    "--logfile iperf3log - " + shared_time_and_date;
                             }
                             protocol = prot;
                             sw.Start();
