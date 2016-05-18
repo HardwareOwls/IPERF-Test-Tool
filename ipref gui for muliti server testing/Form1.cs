@@ -560,7 +560,7 @@ namespace ipref_gui_for_muliti_server_testing
         }
 
         // ---------------------------------------------------------- //
-        // Ipref server
+        // Iperf server
         // ---------------------------------------------------------- //
         private void button2_Click_1(object sender, EventArgs e)
         {
@@ -946,7 +946,7 @@ namespace ipref_gui_for_muliti_server_testing
                                 " -b " + 1 + "M" +
                                 " -c " + textBox_TCP_IP_DNS.Text +
                                 " -p " + numericUpDown_TCP_Port.Value +
-                                " -t 30000";
+                                " -t 86400";
                             }
                             else if (prot == "udp")
                             {
@@ -957,7 +957,7 @@ namespace ipref_gui_for_muliti_server_testing
                                     " -b " + 1 + "M" +
                                     " -c " + textBox_UDP_IP_DNS.Text +
                                     " -p " + numericUpDown_UDP_Port.Value +
-                                    " -t 30000";
+                                    " -t 86400";
                             }
                             protocol = prot;
                             sw.Start();
