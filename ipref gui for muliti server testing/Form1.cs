@@ -88,7 +88,7 @@ namespace ipref_gui_for_muliti_server_testing
             {
                 version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             }
-            Text = String.Format("Ninja tester V" + version); //Setting the text in the top of the window like "Task Manger"
+            Text = String.Format("Bandwidth And Ping Test Tool V" + version); //Setting the text in the top of the window like "Task Manger"
             try
             {
                 foreach (var process in Process.GetProcessesByName("iperf3"))

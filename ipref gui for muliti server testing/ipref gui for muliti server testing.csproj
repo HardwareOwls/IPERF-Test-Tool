@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>pingandspeedtester</RootNamespace>
-    <AssemblyName>ping and speedtester</AssemblyName>
+    <AssemblyName>Bandwidth And Ping Test Tool</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>https://software.m-host.dk/aau/iperf-ping/</InstallUrl>
+    <InstallUrl>http://software.m-host.dk/aau/iperf-ping/</InstallUrl>
     <SupportUrl>https://software.m-host.dk/support</SupportUrl>
     <ErrorReportUrl>https://software.m-host.dk/error</ErrorReportUrl>
     <ProductName>ping and speedtester</ProductName>
@@ -31,7 +31,7 @@
     <MinimumRequiredVersion>1.0.0.18</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.php</WebPage>
-    <ApplicationRevision>63</ApplicationRevision>
+    <ApplicationRevision>64</ApplicationRevision>
     <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -75,6 +75,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>tunnel-1221556.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Renci.SshNet, Version=2013.4.7.0, Culture=neutral, processorArchitecture=MSIL">
@@ -139,6 +142,7 @@
     <Content Include="iperf3.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="tunnel-1221556.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
