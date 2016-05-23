@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ping and speedtester")]
+[assembly: AssemblyTitle("Bandwidth And Ping Test Tool")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ping and speedtester")]
+[assembly: AssemblyProduct("Bandwidth And Ping Test Tool")]
 [assembly: AssemblyCopyright("Copyright © Mikki 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
