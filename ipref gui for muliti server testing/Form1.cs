@@ -604,7 +604,7 @@ namespace ipref_gui_for_muliti_server_testing
                     foreach (var process in Process.GetProcessesByName("iperf3"))
                     {
                         process.Kill(); // Kill all iperf3 to stop the server
-                }
+                    }
                 }
                 catch (Exception)
                 {
@@ -1056,11 +1056,18 @@ namespace ipref_gui_for_muliti_server_testing
                         {
                             ping(textBox_TCP_IP_DNS.Text, "1", "ping test 1 " + textBox_TCP_IP_DNS.Text + " " + prot + " +" + i.ToString().PadLeft(2, '0') + " M " + prot, false); // Start the ping
                             Console.WriteLine("Ping sent: " + j); // Print in console what ping number we is on
-                            this.Invoke((MethodInvoker)delegate
+                            try
                             {
-                                Test_status_label.Text = "Speed " + i + "Mbit"; // Show in interface what iperf3 speed we is running at
-                                Test_status_label2.Text = "Ping sent: " + j; // Show in interface what ping number we is on
-                            });
+                                this.Invoke((MethodInvoker)delegate
+                                {
+                                    Test_status_label.Text = "Speed " + i + "Mbit"; // Show in interface what iperf3 speed we is running at
+                                    Test_status_label2.Text = "Ping sent: " + j; // Show in interface what ping number we is on
+                                });
+                            }
+                            catch (Exception)
+                            {
+                                //throw;
+                            }
                             Thread.Sleep(1000);
                             Console.WriteLine("Slept");
                         }
@@ -1188,7 +1195,7 @@ namespace ipref_gui_for_muliti_server_testing
 
                 }
                 else if (!process.HasExited)
-                {
+                { 
                     process.Kill(); // Kill the process if it is running
                     Console.WriteLine("iPerf was killed");
 
@@ -1220,8 +1227,8 @@ namespace ipref_gui_for_muliti_server_testing
                     Console.WriteLine("SSH established"); // print that ssh is established
                     client.RunCommand("killall iperf3"); // Run the command "killall ipref3"
                     Thread.Sleep(500); // Just wait a "bit"
-                    client.RunCommand("iperf3 -s -D --d -V --logfile iperf3log-" + shared_time_and_date.Replace(' ','-')); // Start iperf3 on the target and use log file
-                    Console.WriteLine("iPerf started with: -s -D --d -V --logfile iperf3log-" + shared_time_and_date.Replace(' ', '-')); // print what it have done
+                    client.RunCommand("iperf3 -s -D -V --logfile iperf3log-" + shared_time_and_date.Replace(' ','-')); // Start iperf3 on the target and use log file
+                    Console.WriteLine("iPerf started with: -s -D -V --logfile iperf3log-" + shared_time_and_date.Replace(' ', '-')); // print what it have done
                     client.Disconnect(); // Disconnet from the SSH
                     Console.WriteLine("SSH Closed"); // Tell its done
                 }

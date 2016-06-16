@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>pingandspeedtester</RootNamespace>
-    <AssemblyName>Bandwidth And Ping Test Tool</AssemblyName>
+    <AssemblyName>Bandwidth and Ping Test Tool</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -24,9 +24,9 @@
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://software.m-host.dk/aau/iperf-ping/</InstallUrl>
-    <SupportUrl>https://software.m-host.dk/support</SupportUrl>
-    <ErrorReportUrl>https://software.m-host.dk/error</ErrorReportUrl>
-    <ProductName>ping and speedtester</ProductName>
+    <SupportUrl>http://software.m-host.dk/support</SupportUrl>
+    <ErrorReportUrl>http://software.m-host.dk/error</ErrorReportUrl>
+    <ProductName>Bandwidth and Ping Test Tool</ProductName>
     <PublisherName>Mikki Sørensen</PublisherName>
     <MinimumRequiredVersion>1.0.0.18</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
